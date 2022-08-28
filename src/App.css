@@ -1,38 +1,99 @@
-.App {
-  text-align: center;
+hr{
+    padding: 0;
+    margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app {
+    display: block;
+    width: 90%;
+    margin: 0 auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    align-items: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.basket {
+    width: 40px;
+    height: 40px;
 }
 
-.App-link {
-  color: #61dafb;
+.content {
+    display: flex;
+    justify-content: space-between;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.category {
+    display: flex;
+    width: 200px;
+    height: 100%;
+    /*border: 1px solid grey;*/
+    border-top: none;
+    padding: 0 10px;
+}
+.category-list{
+    padding-top: 10px;
+
+}
+.category_item{
+    margin: 10px 0;
+}
+
+.catalog {
+    height: 600px;
+    width: 100%;
+
+}
+
+.catalog_title{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px 0 15px;
+
+}
+
+.products{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.catalog_wrap{
+    display: flex;
+    justify-content: center;
+}
+
+.product{
+    width: 200px;
+    height: 300px;
+    margin: 30px;
+    justify-content: center;
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+.product_wrap{
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+.product_img{
+    display: flex;
+    width: 100%;
+    margin: 10px auto;
+    flex-direction: column;
+
+}
+.product_info{
+    width: 90%;
+    height: 100%;
+    padding: 10px 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.product_name{
+    margin-bottom: 10px;
 }
