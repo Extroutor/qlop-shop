@@ -1,0 +1,14 @@
+.category_item{
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.category_item:hover{
+    color: teal;
+}
+
+.active {
+    cursor: pointer;
+    color: teal;
+    font-weight: bold;
+}

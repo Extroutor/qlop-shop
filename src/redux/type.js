@@ -1,0 +1,2 @@
+export const CHANGE_TYPE = 'CHANGE_TYPE'
+export const VIEW_ALL_PRODUCTS = 'VIEW_ALL_PRODUCTS'

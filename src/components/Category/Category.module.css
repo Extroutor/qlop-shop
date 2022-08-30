@@ -1,0 +1,17 @@
+.category {
+    display: flex;
+    width: 200px;
+    height: 100%;
+    border-top: none;
+    padding: 0 10px;
+}
+.category_list{
+    padding-top: 10px;
+}
+.category_item{
+    margin: 10px 0;
+    cursor: pointer;
+}
+.category_item:hover{
+    color: teal;
+}

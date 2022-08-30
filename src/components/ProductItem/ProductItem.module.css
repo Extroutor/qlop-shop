@@ -1,0 +1,29 @@
+.product{
+    width: 200px;
+    height: 300px;
+    margin: 20px;
+    justify-content: center;
+    box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+}
+.product_wrap{
+    width: 90%;
+    margin: 0 auto;
+}
+.product_img{
+    display: flex;
+    width: 100%;
+    margin: 10px auto;
+    flex-direction: column;
+
+}
+.product_info{
+    width: 90%;
+    height: 100%;
+    padding: 10px 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.product_name{
+    margin-bottom: 10px;
+}
