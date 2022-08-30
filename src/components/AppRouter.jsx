@@ -9,6 +9,7 @@ const AppRouter = () => {
             <Routes>
                 <Route path='/' element={<MainPage/>}/>
                 <Route path='/basket' element={<Basket/>}/>
+                <Route path='/category/:id' element={<MainPage/>}/>
             </Routes>
         </div>
     );
