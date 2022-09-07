@@ -1,5 +1,5 @@
 import React from 'react';
-import BasketItem from "../components/BasketItem";
+import BasketItem from "./BasketItem/BasketItem";
 
 const Basket = () => {
     return (

@@ -2,8 +2,13 @@
     width: 200px;
     height: 300px;
     margin: 20px;
+    padding: 10px;
     justify-content: center;
     box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+}
+
+.product:hover{
+    background-color: rgba(48, 180, 180, 0.16);
 }
 .product_wrap{
     width: 90%;
