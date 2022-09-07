@@ -18,7 +18,6 @@ const Catalog = (props) => {
                                 item={item}
                             />
                         )}
-                        {console.log('нет активных')}
                     </div>
                     :
                     <div className={style.products}>
@@ -28,8 +27,6 @@ const Catalog = (props) => {
                                 item={item}
                             />
                         )}
-                        {console.log('есть активные')}
-
                     </div>
                 }
             </div>
