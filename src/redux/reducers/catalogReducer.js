@@ -68,11 +68,28 @@ const initialState = {
         },
     ],
     categoryList: [
-        {id: 1, name: 'Одежда'},
-        {id: 2, name: 'Обувь'},
-        {id: 3, name: 'Аксесуары'},
-        {id: 4, name: 'Часы'},
+        {
+            id: 1,
+            name: 'Новинки'
+        },
+        {
+            id: 2,
+            name: 'Одежда'
+        },
+        {
+            id: 3,
+            name: 'Обувь'
+        },
+        {
+            id: 4,
+            name: 'Аксессуары'
+        },
+        {
+            id: 5,
+            name: 'Косметика'
+        },
     ],
+
     activeCategory: null,
     filteredCatalogList: ''
 }

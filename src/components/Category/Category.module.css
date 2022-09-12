@@ -1,12 +1,13 @@
 .category {
     display: flex;
-    width: 200px;
+    width: 25%;
     height: 100%;
     border-top: none;
     padding: 0 10px;
 }
 .category_list{
     padding-top: 10px;
+    width: 100%;
 }
 .category_item{
     margin: 10px 0;

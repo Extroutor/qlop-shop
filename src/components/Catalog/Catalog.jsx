@@ -7,7 +7,6 @@ const Catalog = (props) => {
 
     return (
         <div className={style.catalog}>
-            <div className={style.catalog_title}>Каталог</div>
             <div className={style.catalog_wrap}>
                 {!props.activeCategory
                     ?

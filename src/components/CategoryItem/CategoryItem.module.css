@@ -1,14 +1,21 @@
 .category_item{
     margin: 10px 0;
     cursor: pointer;
+    padding: 10px 0;
+    border-bottom: 1px solid #d3d3d3;
+    text-transform: uppercase;
+    font-weight: 300;
 }
 
 .category_item:hover{
-    color: teal;
+    color: #5d5d5d;
 }
 
 .active {
+    margin: 10px 0;
     cursor: pointer;
-    color: teal;
-    font-weight: bold;
+    padding: 10px 0;
+    border-bottom: 1px solid #d3d3d3;
+    text-transform: uppercase;
+    font-weight: 500;
 }
