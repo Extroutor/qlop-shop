@@ -13,7 +13,9 @@
 .products{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
+    /*flex-grow: 1;*/
+    /*flex-basis: 16%;*/
 }
 
 .catalog_wrap{

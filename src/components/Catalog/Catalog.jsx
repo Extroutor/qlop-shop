@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import ProductItem from "../ProductItem/ProductItem";
 import style from './Catalog.module.css'
 import {connect} from 'react-redux'
-
-const axios = require("axios").default;
 
 const Catalog = (props) => {
     return (

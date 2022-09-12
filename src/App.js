@@ -1,9 +1,9 @@
 import './App.css';
-// import './style/style.scss';
-
 import Header from './components/Header/Header'
 import {BrowserRouter} from "react-router-dom";
 import AppRouter from "./components/AppRouter";
+import Footer from "./components/Footer/Footer";
+
 
 
 function App() {
@@ -35,6 +35,7 @@ function App() {
             <div className="app">
                 <Header />
                 <AppRouter />
+                <Footer />
             </div>
         </BrowserRouter>
     );

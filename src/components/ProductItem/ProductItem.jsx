@@ -8,10 +8,12 @@ const ProductItem = (props) => {
         <Link to={`/product/${props.item.id}`} style={{textDecoration: 'none'}}>
             <div className={style.product}>
                 <div className={style.product_wrap}>
-                    <img className={style.product_img} src={props.item.img} alt={props.item.name}/>
+                    <div className={style.product_img_wrap}>
+                        <img className={style.product_img} src={props.item.img} alt={props.item.name}/>
+                    </div>
                     <div className={style.product_info}>
-                        <div className={style.product_name}>{props.item.name}</div>
-                        <div>{props.item.price} руб.</div>
+                        <div>{props.item.name}</div>
+                        <div>{props.item.price} ₽</div>
                     </div>
                 </div>
             </div>
