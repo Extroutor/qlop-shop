@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ProductItem from "../ProductItem/ProductItem";
 import style from './Catalog.module.css'
 import {connect} from 'react-redux'
 
-const Catalog = (props) => {
+const axios = require("axios").default;
 
+const Catalog = (props) => {
     return (
         <div className={style.catalog}>
             <div className={style.catalog_wrap}>
