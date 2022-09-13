@@ -1,5 +1,5 @@
 import React from 'react';
-import {IoBasketOutline} from "react-icons/io5";
+import {IoBasketOutline, IoMenuSharp} from "react-icons/io5";
 import {Link} from "react-router-dom";
 import './Header.scss'
 import {changeCategory} from "../../redux/actions";
@@ -29,6 +29,9 @@ const Header = (props) => {
                     <Link to='/basket'>
                         <IoBasketOutline className='basket'/>
                     </Link>
+                </div>
+                <div className='burger-wrap'>
+                    <IoMenuSharp className='burger'/>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import ProductItem from "../ProductItem/ProductItem";
-import style from './Catalog.module.css'
+import style from './Catalog.module.scss'
 import {connect} from 'react-redux'
 
 const Catalog = (props) => {

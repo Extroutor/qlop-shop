@@ -3,11 +3,18 @@
     width: 25%;
     height: 100%;
     border-top: none;
-    padding: 0 10px;
+    padding: 0;
+
+    @media (max-width: 786px) {
+        width: 40%;
+    }
 }
 .category_list{
     padding-top: 10px;
     width: 100%;
+    @media (max-width: 496px) {
+        display: none;
+    }
 }
 .category_item{
     margin: 10px 0;
@@ -16,3 +23,5 @@
 .category_item:hover{
     color: teal;
 }
+
+
