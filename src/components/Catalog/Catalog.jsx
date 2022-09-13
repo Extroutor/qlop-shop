@@ -6,6 +6,16 @@ import {connect} from 'react-redux'
 const Catalog = (props) => {
     return (
         <div className={style.catalog}>
+            <div className={style.filter_full}>Сортировка по:
+                <select className={style.select}>
+                    <option>алфавиту (а-я)</option>
+                    <option>алфавиту (я-а)</option>
+                    <option>убыванию цены</option>
+                    <option>возрастанию цены</option>
+                </select>
+            </div>
+
+
             <div className={style.catalog_wrap}>
                 {!props.activeCategory
                     ?

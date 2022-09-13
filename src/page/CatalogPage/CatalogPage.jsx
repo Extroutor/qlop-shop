@@ -9,7 +9,7 @@ import {GiSettingsKnobs} from "react-icons/gi";
 const CatalogPage = (props) => {
     return (
         <div className='catalog_page'>
-            <div className='filter_full'>Filter</div>
+            {/*<div className='filter_full'>Сортировка</div>*/}
             {/*<div className='filter'>*/}
             {/*    <GiSettingsKnobs className={style.setting}/>*/}
             {/*</div>*/}

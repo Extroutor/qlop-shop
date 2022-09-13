@@ -1,8 +1,10 @@
 .catalog {
+    position: relative;
     width: 100%;
     @media (max-width: 786px) {
         display: flex;
         justify-content: center;
+        flex-direction: column;
     }
 
 }
@@ -35,3 +37,37 @@
     //display: flex;
     //justify-content: center;
 }
+
+.filter_full{
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #323232;
+}
+
+.for_popup{
+    position: relative;
+}
+
+.popup{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 0;
+    left: 0;
+    background-color: red;
+}
+
+.select{
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    outline: 0;
+    display: inline;
+    width: 150px;
+    padding-left: 10px;
+}
+option:hover{
+    outline-color: #3f3f3f;
+}
+

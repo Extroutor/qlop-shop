@@ -1,11 +1,6 @@
 .content {
   display: flex;
   justify-content: space-between;
-  //width: 100%;
-  //margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-
   @media (max-width: 496px) {
     flex-direction: column;
   }
@@ -14,11 +9,6 @@
 .filter{
   display: none;
 }
-
-.filter_full {
-
-}
-
 .catalog_page{
   width: 95%;
   margin: 0 auto;
@@ -30,3 +20,4 @@
   width: 20px;
   height: 20px;
 }
+
