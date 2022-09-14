@@ -1,11 +1,11 @@
 import React from 'react';
-import {useParams} from "react-router-dom";
 import './ProductItemPage.scss'
 import {connect} from "react-redux";
+import {addToBasket} from "../../redux/actions";
 
 const ProductItemPage = (props) => {
 
-    console.log('chosen', props.chosenProduct)
+    console.log('chosen', props.chosenProduct.name)
 
     return (
         <div className='product_page'>
@@ -18,7 +18,12 @@ const ProductItemPage = (props) => {
             <div className='right_part'>
                 <div className='title'>{props.chosenProduct.name}</div>
                 <div className='price'>{props.chosenProduct.price} ₽</div>
-                <button className='button'>В корзину</button>
+                <button
+                    className='button'
+                    onClick={() => props.addToBasket(props.chosenProduct)}
+                >
+                    В корзину
+                </button>
                 <button className='button fav'>В избранные</button>
             </div>
         </div>
@@ -31,4 +36,12 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(ProductItemPage);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addToBasket: (item) => {
+            return dispatch(addToBasket(item))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductItemPage);

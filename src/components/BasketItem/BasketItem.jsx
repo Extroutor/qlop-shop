@@ -4,14 +4,8 @@ import './BasketItem.scss'
 import {Link} from "react-router-dom";
 import {deleteProductInBasket, setChosenProduct, deleteAll, decrement, increment} from "../../redux/actions";
 import {connect} from "react-redux";
-import {mapStateToPropsFactory} from "react-redux/es/connect/mapStateToProps";
 
 const BasketItem = (props) => {
-
-    let count = props.basket.filter(item => item.id === props.item.id)
-    let s = count.map(i => i.count)
-    console.log(s)
-
     return (
         <div className='product_item'>
 
@@ -50,13 +44,6 @@ const BasketItem = (props) => {
             </div>
         </div>
     )
-};
-
-
-const mapStateToProps = (state) => {
-    return {
-        basket: state.user.basket
-    }
 }
 
 
@@ -77,4 +64,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BasketItem);
+export default connect(null, mapDispatchToProps)(BasketItem);

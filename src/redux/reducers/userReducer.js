@@ -1,6 +1,7 @@
 import {DECREMENT, DELETE_PRODUCT_IN_BASKET, INCREMENT} from "../type";
 import {CALCULATE_COST_OF_ORDER} from "../type";
 import {DELETE_ALL} from "../type";
+import {ADD_TO_BASKET} from "../type";
 
 const initialState = {
     favoriteProducts: [
@@ -87,6 +88,10 @@ export const userReducer = (state = initialState, action) => {
             return newState = {...state, basket: state.basket.map(item => item.count++)}
         case DECREMENT:
             newState = {...state, basket: state.basket.map(item => item.count--)}
+            return newState
+        case ADD_TO_BASKET:
+            newState = {...state, basket: [...state.basket, action.item]}
+            console.log('ns',newState)
             return newState
         default:
             return state

@@ -1,9 +1,14 @@
-import {CHANGE_TYPE, SET_CHOSEN_PRODUCT} from "./type";
-import {VIEW_ALL_PRODUCTS} from './type'
-import {DELETE_PRODUCT_IN_BASKET} from './type'
-import {DELETE_ALL} from './type'
-import {DECREMENT} from './type'
-import {INCREMENT} from './type'
+import {
+    ADD_TO_BASKET,
+    CHANGE_TYPE,
+    SET_CHOSEN_PRODUCT,
+    VIEW_ALL_PRODUCTS,
+    DELETE_PRODUCT_IN_BASKET,
+    DELETE_ALL,
+    DECREMENT,
+    INCREMENT
+} from "./type";
+
 
 export const changeCategory = (id) => {
     return {
@@ -47,5 +52,12 @@ export const decrement = (id) => {
     return {
         type: DECREMENT,
         id
+    }
+}
+
+export const addToBasket = (item) => {
+    return {
+        type: ADD_TO_BASKET,
+        item
     }
 }
