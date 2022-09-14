@@ -1,33 +1,80 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {AiOutlineClose} from "react-icons/ai";
+import './BasketItem.scss'
+import {Link} from "react-router-dom";
+import {deleteProductInBasket, setChosenProduct, deleteAll, decrement, increment} from "../../redux/actions";
+import {connect} from "react-redux";
+import {mapStateToPropsFactory} from "react-redux/es/connect/mapStateToProps";
 
-const BasketItem = () => {
+const BasketItem = (props) => {
+
+    let count = props.basket.filter(item => item.id === props.item.id)
+    let s = count.map(i => i.count)
+    console.log(s)
+
     return (
         <div className='product_item'>
+
             <div className='group1'>
-                <div className='img_wrapper'>
-                    <img className='img' src='https://static.diary.ru/userdir/6/8/7/6/687665/29160535.jpg' alt='img'/>
-                </div>
-                <div className='basket_item_title'>
-                    <p>НазваниеНазваниеНазваниеНазваниеНазваниеНазваниеНазваниеНазваниеНазвание</p>
-                </div>
+                <Link
+                    to={`/product/${props.item.id}`}
+                    onClick={() => {
+                        props.setChosenProduct(props.item)
+                    }}>
+                    <div className='img_wrapper'>
+                        <img className='img' src={props.item.img} alt={props.item.name}/>
+                    </div>
+                </Link>
+                <Link
+                    to={`/product/${props.item.id}`}
+                    onClick={() => {
+                        props.setChosenProduct(props.item)
+                    }}>
+                    <div className='basket_item_title'>
+                        <p>{props.item.name}</p>
+                    </div>
+                </Link>
             </div>
             <div className='group2'>
-                <div>price</div>
-                <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                </select>
-                <div>total price</div>
-                <AiOutlineClose style={{width: '30px', height:'30px', cursor:'pointer'}}/>
+                <div>{props.item.price} ₽</div>
+                <div className='counter'>
+                    <button onClick={() => props.decrement(props.item.id)}>-</button>
+                    <p>1</p>
+                    <button onClick={() => props.increment(props.item.id)}>+</button>
+                </div>
+                <div>{props.item.totalPrice} ₽</div>
+                <AiOutlineClose
+                    style={{width: '25px', height: '25px', cursor: 'pointer'}}
+                    onClick={() => props.deleteProductInBasket(props.item.id)}
+                />
             </div>
-            </div>
-
-    );
+        </div>
+    )
 };
 
-export default BasketItem;
+
+const mapStateToProps = (state) => {
+    return {
+        basket: state.user.basket
+    }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setChosenProduct: (item) => {
+            return dispatch(setChosenProduct(item))
+        },
+        deleteProductInBasket: (id) => {
+            return dispatch(deleteProductInBasket(id))
+        },
+        increment: (id) => {
+            return dispatch(increment(id))
+        },
+        decrement: (id) => {
+            return dispatch(decrement(id))
+        },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BasketItem);

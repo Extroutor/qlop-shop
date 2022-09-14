@@ -1,5 +1,5 @@
-footer{
-  width: 100%;/*на всю ширину*/
+footer {
+  width: 100%; /*на всю ширину*/
   display: flex;
   padding: 40px 0;
   justify-content: center;
@@ -10,45 +10,46 @@ footer{
   box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.social,
-.menu{
+.menu {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 10px 0;
-  flex-wrap: wrap;/*разрешен перенос на новую строку*/
+  flex-wrap: wrap; /*разрешен перенос на новую строку*/
+
+  li {
+    list-style: none; /*удалить черные маркеры*/
+
+    a {
+      font-size: 14px;
+      color: #363636;
+      opacity: 0.75;
+      margin: 0 15px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    a:hover {
+      opacity: 1;
+    }
+  }
 }
 
-.menu li{
-  list-style: none;/*удалить черные маркеры*/
-}
+footer {
+  .footer_title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
 
-.menu li a {
-  font-size: 14px;
-  color: #363636;
-  opacity: 0.75;
-  margin: 0 15px;
-  text-decoration: none;
-  display: inline-block;
-}
-.menu li a:hover {
-  opacity: 1;
-}
-footer p {
-  color: #b4b4b4;/*цвет ссылок меню*/
-  text-align: center;
-  margin-top: 15px;
-  font-size: 12px;
-  font-weight: 300;
+  p {
+    color: #b4b4b4; /*цвет ссылок меню*/
+    text-align: center;
+    margin-top: 15px;
+    font-size: 12px;
+    font-weight: 300;
 
-}
-.footer_title {
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  a {
-    text-decoration: none;
 
   }
 }

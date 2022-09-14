@@ -4,8 +4,12 @@ import {Link} from "react-router-dom";
 import './Header.scss'
 import {changeCategory} from "../../redux/actions";
 import {connect} from "react-redux";
+import {AiOutlineHeart} from "react-icons/ai";
 
 const Header = (props) => {
+
+    const isAuth = true
+
     return (
         <div className='header'>
             <div className='wrapper'>
@@ -25,11 +29,24 @@ const Header = (props) => {
                         })}
                     </ul>
                 </div>
-                <div className='right_side'>
-                    <Link to='/basket'>
-                        <IoBasketOutline className='basket'/>
-                    </Link>
-                </div>
+                {isAuth
+                ?
+                    <div className='right_side_auth'>
+                        <Link to='/favorite'>
+                            <AiOutlineHeart className='basket'/>
+                        </Link>
+                        <Link to='/basket'>
+                            <IoBasketOutline className='basket'/>
+                        </Link>
+                    </div>
+                :
+                    <div className='right_side'>
+                        <Link to='/basket'>
+                            <IoBasketOutline className='basket'/>
+                        </Link>
+                    </div>
+                }
+                {/* For mobile version: */}
                 <div className='burger-wrap'>
                     <IoMenuSharp className='burger'/>
                 </div>

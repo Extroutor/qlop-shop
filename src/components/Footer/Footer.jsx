@@ -7,11 +7,11 @@ const Footer = () => {
         <footer>
             <div className='footer_title'><Link to='./'>QLOP</Link></div>
             <ul className="menu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Team</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/">About</a></li>
+                <li><a href="/">Services</a></li>
+                <li><a href="/">Team</a></li>
+                <li><a href="/">Contact</a></li>
             </ul>
             <p>197101, Россия
                 г. Санкт-Петербург

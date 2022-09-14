@@ -1,5 +1,6 @@
 import {CHANGE_TYPE} from "../type";
 import {VIEW_ALL_PRODUCTS} from '../type'
+import {SET_CHOSEN_PRODUCT} from '../type'
 
 const initialState = {
     catalogList: [
@@ -89,9 +90,9 @@ const initialState = {
             name: 'Косметика'
         },
     ],
-
     activeCategory: null,
-    filteredCatalogList: ''
+    filteredCatalogList: '',
+    chosenProduct: {}
 }
 
 export const catalogReducer = (state = initialState, action) => {
@@ -100,6 +101,10 @@ export const catalogReducer = (state = initialState, action) => {
         case CHANGE_TYPE:
             let newArr = state.catalogList.filter(item => action.id === item.category)
             newState = {...state, activeCategory: action.id, filteredCatalogList: newArr}
+            return newState
+        case SET_CHOSEN_PRODUCT:
+            newState = {...state, chosenProduct: action.product}
+            console.log('reducer',newState)
             return newState
         case VIEW_ALL_PRODUCTS:
             newState = {...state, activeCategory: '', filteredCatalogList: null}

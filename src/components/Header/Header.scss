@@ -5,50 +5,52 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    .left_side{
+
+    .left_side {
       display: flex;
       align-items: center;
       width: 70%;
-    }
-    .header_title {
-      font-size: 28px;
-      font-weight: bold;
-      a {
-        text-decoration: none;
 
-      }
-    }
-    .header_category {
-      display: flex;
-      justify-content: space-between;
-      width: 70%;
-      @media (max-width: 786px) {
-        display: none;
+      .header_title {
+        font-size: 28px;
+        font-weight: bold;
       }
 
-      li {
-        border-bottom: 1.5px solid white;
-        padding: 0 10px;
-        list-style: none;
-        transition: 0.3s linear;
-        .header_category_item{
-          display: flex;
-          align-items: center;
-          text-decoration: none;
-          font-weight: 300;
-          text-transform: uppercase;
-          font-size: 14px;
+      .header_category {
+        display: flex;
+        justify-content: space-between;
+        width: 70%;
+        @media (max-width: 786px) {
+          display: none;
         }
-      }
 
-      li:hover{
-        transition: 0.3s linear;
-        border-bottom: 1.5px solid black;
+        li {
+          border-bottom: 1.5px solid white;
+          padding: 0 10px;
+          list-style: none;
+          transition: 0.3s linear;
+
+          .header_category_item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-weight: 300;
+            text-transform: uppercase;
+            font-size: 14px;
+          }
+        }
+
+        li:hover {
+          transition: 0.3s linear;
+          border-bottom: 1.5px solid black;
+        }
+
       }
 
     }
-    .right_side{
-      width: 10%;
+
+    .right_side {
+      width: 5%;
       display: flex;
       justify-content: right;
 
@@ -61,19 +63,35 @@
         }
       }
 
-      .basket:hover{
+      .basket:hover {
+        color: black;
+      }
+    }
+    .right_side_auth {
+      width: 5%;
+      display: flex;
+      justify-content: space-between;
+      .basket {
+        width: 25px;
+        height: 25px;
+        color: #3f3f3f;
+        @media (max-width: 786px) {
+          display: none;
+        }
+      }
+      .basket:hover {
         color: black;
       }
     }
   }
 }
 
-.burger-wrap{
+.burger-wrap {
   @media (min-width: 786px) {
     display: none;
   }
 
-  .burger{
+  .burger {
     width: 35px;
     height: 35px;
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductItem from "../ProductItem/ProductItem";
+import ProductItem from "./ProductItem/ProductItem";
 import style from './Catalog.module.scss'
 import {connect} from 'react-redux'
 
@@ -14,9 +14,7 @@ const Catalog = (props) => {
                     <option>возрастанию цены</option>
                 </select>
             </div>
-
-
-            <div className={style.catalog_wrap}>
+            <div>
                 {!props.activeCategory
                     ?
                     <div className={style.products}>
@@ -38,7 +36,6 @@ const Catalog = (props) => {
                     </div>
                 }
             </div>
-
         </div>
     );
 };
@@ -51,8 +48,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Catalog);
+export default connect(mapStateToProps)(Catalog);

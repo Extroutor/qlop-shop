@@ -1,11 +1,8 @@
 import React from 'react';
-import CategoryItem from "../CategoryItem/CategoryItem";
+import CategoryItem from "./CategoryItem/CategoryItem";
 import style from './Category.module.scss'
 import {connect} from 'react-redux'
-import {changeCategory, viewAllProducts} from "../../redux/actions";
-import {Link} from "react-router-dom";
-import {GiSettingsKnobs} from "react-icons/gi";
-
+import {changeCategory} from "../../redux/actions";
 
 const Category = (props) => {
     return (

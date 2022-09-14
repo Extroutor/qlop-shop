@@ -3,17 +3,12 @@
   height: 600px;
 
   .main_bg_img {
-    //overflow: hidden;
-    //display: flex;
-    //justify-content: center;
-    //align-items: center;
     height: 100%;
     width: 100%;
     object-fit: cover;
   }
 }
-
-.main_title{
+.main_title {
   margin-top: 20px;
   display: flex;
   justify-content: center;
