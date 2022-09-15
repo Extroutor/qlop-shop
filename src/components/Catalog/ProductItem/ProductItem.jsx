@@ -1,17 +1,20 @@
 import React from 'react';
 import style from './ProductItem.module.scss'
 import {Link} from "react-router-dom";
-import {connect} from "react-redux";
-import {setChosenProduct} from "../../../redux/actions";
+import {useDispatch} from "react-redux";
+import {setChosenProduct} from "../../../redux/slices/catalogSlice";
 
 const ProductItem = (props) => {
+
+    const dispatch = useDispatch()
+
     return (
         <div className={style.product}>
             <Link
                 className={style.product_link}
                 to={`/product/${props.item.id}`}
                 onClick={() => {
-                    props.setChosenProduct(props.item)
+                    dispatch(setChosenProduct(props.item))
                 }}
             >
                 <div className={style.product_img_wrap}>
@@ -26,12 +29,5 @@ const ProductItem = (props) => {
     );
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setChosenProduct: (item) => {
-            return dispatch(setChosenProduct(item))
-        }
-    }
-}
 
-export default connect(null, mapDispatchToProps)(ProductItem);
+export default ProductItem

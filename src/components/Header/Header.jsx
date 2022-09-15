@@ -2,12 +2,14 @@ import React from 'react';
 import {IoBasketOutline, IoMenuSharp} from "react-icons/io5";
 import {Link} from "react-router-dom";
 import './Header.scss'
-import {changeCategory} from "../../redux/actions";
-import {connect} from "react-redux";
+import {changeCategory} from "../../redux/slices/catalogSlice";
+import {useDispatch, useSelector} from "react-redux";
 import {AiOutlineHeart} from "react-icons/ai";
 
-const Header = (props) => {
+const Header = () => {
 
+    let categoryList = useSelector(state => state.catalog.categoryList)
+    let dispatch = useDispatch()
     const isAuth = true
 
     return (
@@ -16,12 +18,12 @@ const Header = (props) => {
                 <div className='left_side'>
                     <div className='header_title'><Link to='./'>QLOP</Link></div>
                     <ul className='header_category'>
-                        {props.categoryList.map(item => {
+                        {categoryList.map(item => {
                             return <li key={item.id}>
                                 <Link
                                     className='header_category_item'
                                     to={`/catalog/${item.id}`}
-                                    onClick={() => props.changeCategory(item.id)}
+                                    onClick={() => dispatch(changeCategory(item.id))}
                                 >
                                     {item.name}
                                 </Link>
@@ -55,18 +57,4 @@ const Header = (props) => {
     );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        categoryList: state.catalog.categoryList,
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        changeCategory: (id) => {
-            return dispatch(changeCategory(id))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default Header

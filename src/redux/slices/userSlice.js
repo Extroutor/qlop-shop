@@ -1,7 +1,4 @@
-import {DECREMENT, DELETE_PRODUCT_IN_BASKET, INCREMENT} from "../type";
-import {CALCULATE_COST_OF_ORDER} from "../type";
-import {DELETE_ALL} from "../type";
-import {ADD_TO_BASKET} from "../type";
+import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
     favoriteProducts: [
@@ -75,25 +72,50 @@ const initialState = {
     total: ''
 }
 
-export const userReducer = (state = initialState, action) => {
-    let newState;
-    switch (action.type) {
-        case DELETE_PRODUCT_IN_BASKET:
-            return newState = {...state, basket: state.basket.filter(i => i.id !== action.id)}
-        case CALCULATE_COST_OF_ORDER:
-            return newState = {...state, basket: state.basket.filter(i => i.id !== action.id)}
-        case DELETE_ALL:
-            return newState = {...state, basket: []}
-        case INCREMENT:
-            return newState = {...state, basket: state.basket.map(item => item.count++)}
-        case DECREMENT:
-            newState = {...state, basket: state.basket.map(item => item.count--)}
-            return newState
-        case ADD_TO_BASKET:
-            newState = {...state, basket: [...state.basket, action.item]}
-            console.log('ns',newState)
-            return newState
-        default:
-            return state
+export const userSlice = createSlice({
+        name: 'user',
+        initialState,
+        reducers: {
+            increment: (state, action) => {
+                const findItem = state.basket.find(item => item.id === action.payload)
+                if (findItem) {
+                    findItem.count++
+                }
+                console.log('Find item', findItem)
+            },
+            decrement: (state, action) => {
+                const findItem = state.basket.find(item => item.id === action.payload)
+                if (findItem) {
+                    findItem.count--
+                }
+                console.log('Find item', findItem)
+            },
+            deleteProductInBasket: (state, action) => {
+                state.basket = state.basket.filter((obj) => obj.id !== action.payload);
+                // state.totalPrice = calcTotalPrice(state.items);
+            },
+            deleteAll: (state, action) => {
+                state.basket = []
+                // state.totalPrice = calcTotalPrice(state.items);
+            },
+            addToBasket: (state, action) => {
+                const findItem = state.basket.find((obj) => obj.id === action.payload.id);
+
+                if (findItem) {
+                    findItem.count++;
+                } else {
+                    state.basket.push({
+                        ...action.payload,
+                        count: 1,
+                    });
+                }
+                // state.totalPrice = calcTotalPrice(state.items);
+            }
+        }
     }
-}
+)
+
+export const {increment, decrement, deleteProductInBasket, deleteAll, addToBasket} = userSlice.actions
+
+export default userSlice.reducer
+

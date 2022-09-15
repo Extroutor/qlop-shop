@@ -1,26 +1,27 @@
 import React from 'react';
 import './ProductItemPage.scss'
-import {connect} from "react-redux";
-import {addToBasket} from "../../redux/actions";
+import {useDispatch, useSelector} from "react-redux";
+import {addToBasket} from "../../redux/slices/userSlice";
 
-const ProductItemPage = (props) => {
+const ProductItemPage = () => {
 
-    console.log('chosen', props.chosenProduct.name)
-
+    const chosenProduct = useSelector(state => state.catalog.chosenProduct)
+    console.log(chosenProduct)
+    const dispatch = useDispatch()
     return (
         <div className='product_page'>
             <div className='left_part'>
                 <div className='img_wrap'>
-                    <img alt={props.chosenProduct.name}
-                         src={props.chosenProduct.img}/>
+                    <img alt={chosenProduct.name}
+                         src={chosenProduct.img}/>
                 </div>
             </div>
             <div className='right_part'>
-                <div className='title'>{props.chosenProduct.name}</div>
-                <div className='price'>{props.chosenProduct.price} ₽</div>
+                <div className='title'>{chosenProduct.name}</div>
+                <div className='price'>{chosenProduct.price} ₽</div>
                 <button
                     className='button'
-                    onClick={() => props.addToBasket(props.chosenProduct)}
+                    onClick={() => dispatch(addToBasket(chosenProduct))}
                 >
                     В корзину
                 </button>
@@ -30,18 +31,4 @@ const ProductItemPage = (props) => {
     );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        chosenProduct: state.catalog.chosenProduct,
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addToBasket: (item) => {
-            return dispatch(addToBasket(item))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductItemPage);
+export default ProductItemPage

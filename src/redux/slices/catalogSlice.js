@@ -1,6 +1,4 @@
-import {CHANGE_TYPE} from "../type";
-import {VIEW_ALL_PRODUCTS} from '../type'
-import {SET_CHOSEN_PRODUCT} from '../type'
+import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
     catalogList: [
@@ -95,21 +93,25 @@ const initialState = {
     chosenProduct: {}
 }
 
-export const catalogReducer = (state = initialState, action) => {
-    let newState;
-    switch (action.type) {
-        case CHANGE_TYPE:
-            let newArr = state.catalogList.filter(item => action.id === item.category)
-            newState = {...state, activeCategory: action.id, filteredCatalogList: newArr}
-            return newState
-        case SET_CHOSEN_PRODUCT:
-            newState = {...state, chosenProduct: action.product}
-            console.log('reducer',newState)
-            return newState
-        case VIEW_ALL_PRODUCTS:
-            newState = {...state, activeCategory: '', filteredCatalogList: null}
-            return newState
-        default:
-            return state
+export const catalogSlice = createSlice({
+        name: 'catalog',
+        initialState,
+        reducers: {
+            changeCategory: (state, action) => {
+                let newArr = state.catalogList.filter(item => action.payload === item.category)
+                state.activeCategory = action.payload
+                state.filteredCatalogList = newArr
+            },
+            setChosenProduct: (state, action) => {
+                state.chosenProduct = action.payload
+            },
+            viewAllProducts: (state, action) => {
+                state.activeCategory = ''
+                state.filteredCatalogList = null
+            }
+        },
     }
-}
+)
+
+export const {changeCategory, setChosenProduct, viewAllProducts} = catalogSlice.actions
+export default catalogSlice.reducer

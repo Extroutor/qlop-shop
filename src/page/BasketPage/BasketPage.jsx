@@ -1,14 +1,19 @@
 import React from 'react';
 import BasketItem from "../../components/BasketItem/BasketItem";
 import './BasketPage.scss'
-import {connect} from "react-redux";
-import {deleteProductInBasket, deleteAll} from "../../redux/actions";
+import {useDispatch, useSelector} from "react-redux";
+import {deleteAll} from "../../redux/slices/userSlice";
 
-const BasketPage = (props) => {
+const BasketPage = () => {
+
+    const basket = useSelector(state => state.user.basket)
+    const totalPrice = useSelector(state => state.user.totalPrice)
+    const dispatch = useDispatch();
+
     return (
         <div className='basket_wrapper'>
             <h1 className='bas'>Моя корзина</h1>
-            {props.basket.length < 1
+            {basket.length < 1
                 ?
                 <div>
                     <h4 className='bas'>Ваша корзина пустая :(</h4>
@@ -18,20 +23,20 @@ const BasketPage = (props) => {
                     <div className='clear_button'>
                         <button
                             className='clear_button_btn'
-                            onClick={props.deleteAll}
+                            onClick={() => dispatch(deleteAll())}
                         >
                             Очистить корзину
                         </button>
                     </div>
                     <div className='bas_products'>
-                        {props.basket.map(item => {
+                        {basket.map(item => {
                             return <BasketItem key={item.id} item={item}/>
                         })}
                     </div>
                     <div className='total_count'>
                         <div>
                             <b>Total count: </b>
-                            {props.totalPrice}$
+                            {totalPrice}$
                         </div>
                     </div>
                     <div className='order_button'>
@@ -43,21 +48,4 @@ const BasketPage = (props) => {
     );
 };
 
-
-const mapStateToProps = (state) => {
-    return {
-        basket: state.user.basket,
-        totalPrice: state.user.totalPrice
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        deleteAll: () => {
-            return dispatch(deleteAll())
-        }
-    }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(BasketPage);
+export default BasketPage

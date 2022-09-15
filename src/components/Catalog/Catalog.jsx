@@ -1,9 +1,14 @@
 import React from 'react';
 import ProductItem from "./ProductItem/ProductItem";
 import style from './Catalog.module.scss'
-import {connect} from 'react-redux'
+import {useSelector} from 'react-redux'
 
-const Catalog = (props) => {
+const Catalog = () => {
+
+    const catalogList = useSelector(state => state.catalog.catalogList)
+    const filteredCatalogList = useSelector(state => state.catalog.filteredCatalogList)
+    const activeCategory = useSelector(state => state.catalog.activeCategory)
+
     return (
         <div className={style.catalog}>
             <div className={style.filter_full}>Сортировка по:
@@ -15,10 +20,10 @@ const Catalog = (props) => {
                 </select>
             </div>
             <div>
-                {!props.activeCategory
+                {!activeCategory
                     ?
                     <div className={style.products}>
-                        {props.catalogList.map(item =>
+                        {catalogList.map(item =>
                             <ProductItem
                                 key={item.id}
                                 item={item}
@@ -27,7 +32,7 @@ const Catalog = (props) => {
                     </div>
                     :
                     <div className={style.products}>
-                        {props.filteredCatalogList.map(item =>
+                        {filteredCatalogList.map(item =>
                             <ProductItem
                                 key={item.id}
                                 item={item}
@@ -40,12 +45,4 @@ const Catalog = (props) => {
     );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        catalogList: state.catalog.catalogList,
-        filteredCatalogList: state.catalog.filteredCatalogList,
-        activeCategory: state.catalog.activeCategory
-    }
-}
-
-export default connect(mapStateToProps)(Catalog);
+export default Catalog
