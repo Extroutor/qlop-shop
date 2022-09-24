@@ -1,45 +1,17 @@
-.catalog {
-  position: relative;
-  width: 100%;
-  @media (max-width: 786px) {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
-
-  .filter_full {
-    padding-left: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #323232;
-
-    .select {
-      font-family: 'Montserrat', sans-serif;
-      border: none;
-      outline: 0;
-      display: inline;
-      width: 150px;
-      padding-left: 10px;
-    }
-  }
+.fav_list {
+  width: 95%;
+  margin: 30px auto 0;
 }
 
-.products {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(1, 1fr);
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
-
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 786px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
+.page{
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  color: #5d5d5d;
+  font-weight: 300;
 }
+
 .catalog {
   position: relative;
   width: 100%;

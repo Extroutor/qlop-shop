@@ -3,6 +3,7 @@
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  min-height: 500px;
 
   .left_part {
     width: 60%;
@@ -54,6 +55,14 @@
       background-color: #464646;
     }
 
+    .button_clicked {
+      background-color: #6c6c6c;
+      cursor: default;
+    }
+    .button_clicked:hover {
+      background-color: #6c6c6c;
+    }
+
     .fav {
       background-color: #ffffff;
       color: #323232;
@@ -62,6 +71,12 @@
     }
     .fav:hover{
       background-color: #ffe9e9;
+      border: 1px solid white;
+    }
+
+    .clicked {
+      background-color: #ffe9e9;
+      cursor: default;
       border: 1px solid white;
     }
   }

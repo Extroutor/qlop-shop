@@ -1,0 +1,82 @@
+// menu burger
+.menuu {
+  position: fixed;
+  z-index: 30;
+  width: 100vw;
+  height: 100vh;
+  top: 49px;
+  left: 60%;
+  transform: translateX(160%);
+  transition: all 0.4s;
+  border: 1px solid #000000;
+  border-top: 1px solid #ffffff;
+}
+
+.active_menu {
+  transform: translateX(0);
+}
+
+.blur {
+  width: 100vw;
+  height: 100vh;
+  right: 100%;
+  backdrop-filter: blur(3px);
+  position: absolute;
+}
+
+.menu_content {
+  width: 40%;
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.1s;
+}
+
+.ull {
+  margin: 10px 0 0;
+  padding: 0;
+
+  .lii {
+    border-bottom: 1.5px solid white;
+    list-style: none;
+    transition: 0.3s linear;
+
+    text-decoration: none;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin: 30px 0;
+  }
+}
+
+.basket {
+  width: 30px;
+  height: 30px;
+}
+
+.burger_box_auth {
+  width: 70px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.burger_box {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 425px) {
+  .menuu {
+    left: 0;
+    border: none;
+  }
+  .menu_content {
+    width: 100%;
+  }
+  .blur {
+    backdrop-filter: none;
+  }
+}

@@ -10,7 +10,6 @@ import {setChosenProduct} from '../../redux/slices/catalogSlice'
 const BasketItem = (props) => {
 
     const count = useSelector((state) => state.user.basket.find(item => item.id === props.item.id).count)
-    console.log('Количество товаров ', count)
     const dispatch = useDispatch()
 
     return (

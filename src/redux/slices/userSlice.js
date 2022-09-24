@@ -81,14 +81,12 @@ export const userSlice = createSlice({
                 if (findItem) {
                     findItem.count++
                 }
-                console.log('Find item', findItem)
             },
             decrement: (state, action) => {
                 const findItem = state.basket.find(item => item.id === action.payload)
                 if (findItem) {
                     findItem.count--
                 }
-                console.log('Find item', findItem)
             },
             deleteProductInBasket: (state, action) => {
                 state.basket = state.basket.filter((obj) => obj.id !== action.payload);
@@ -110,12 +108,37 @@ export const userSlice = createSlice({
                     });
                 }
                 // state.totalPrice = calcTotalPrice(state.items);
-            }
+            },
+            addToFav: (state, action) => {
+                const findItem = state.favoriteProducts.find((obj) => obj.id === action.payload.id);
+
+                if (!findItem) {
+                    state.favoriteProducts.push({
+                        ...action.payload,
+                        count: 1,
+                    });
+                }
+            },
+            deleteFromFav: (state, action) => {
+                const findItem = state.favoriteProducts.find((obj) => obj.id === action.payload.id);
+
+                if (!findItem) {
+                    state.baskfavoriteProductset = state.favoriteProducts.filter((obj) => obj.id !== action.payload.id);
+                }
+            },
         }
     }
 )
 
-export const {increment, decrement, deleteProductInBasket, deleteAll, addToBasket} = userSlice.actions
+export const {
+    increment,
+    decrement,
+    deleteProductInBasket,
+    deleteAll,
+    addToBasket,
+    addToFav,
+    deleteFromFav
+} = userSlice.actions
 
 export default userSlice.reducer
 

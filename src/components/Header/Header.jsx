@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {IoBasketOutline, IoMenuSharp} from "react-icons/io5";
 import {Link} from "react-router-dom";
 import './Header.scss'
 import {changeCategory} from "../../redux/slices/catalogSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {AiOutlineHeart} from "react-icons/ai";
+import MenuBurger from "./MenuBurger";
 
 const Header = () => {
 
+    const [menuActive, setMenuActive] = useState(false)
     let categoryList = useSelector(state => state.catalog.categoryList)
     let dispatch = useDispatch()
     const isAuth = true
@@ -16,7 +18,10 @@ const Header = () => {
         <div className='header'>
             <div className='wrapper'>
                 <div className='left_side'>
-                    <div className='header_title'><Link to='./'>QLOP</Link></div>
+                    <div className='header_title'>
+                        <Link onClick={() =>
+                            setMenuActive(false)}
+                              to='./'>QLOP</Link></div>
                     <ul className='header_category'>
                         {categoryList.map(item => {
                             return <li key={item.id}>
@@ -32,27 +37,42 @@ const Header = () => {
                     </ul>
                 </div>
                 {isAuth
-                ?
+                    ?
                     <div className='right_side_auth'>
-                        <Link to='/favorite'>
+                        <Link to='/favorite'
+                              onClick={() => setMenuActive(false)}
+                        >
                             <AiOutlineHeart className='basket'/>
                         </Link>
-                        <Link to='/basket'>
+                        <Link to='/basket'
+                              onClick={() => setMenuActive(false)}
+                        >
                             <IoBasketOutline className='basket'/>
                         </Link>
                     </div>
-                :
+                    :
                     <div className='right_side'>
-                        <Link to='/basket'>
+                        <Link to='/basket'
+                              onClick={() => setMenuActive(false)}
+                        >
                             <IoBasketOutline className='basket'/>
                         </Link>
                     </div>
                 }
                 {/* For mobile version: */}
                 <div className='burger-wrap'>
-                    <IoMenuSharp className='burger'/>
+                    <IoMenuSharp
+                        className='burger'
+                        onClick={() => setMenuActive(!menuActive)}
+                    />
                 </div>
             </div>
+            <MenuBurger
+                menuActive={menuActive}
+                setMenuActive={setMenuActive}
+                items={categoryList}
+                isAuth={isAuth}
+            />
         </div>
     );
 };

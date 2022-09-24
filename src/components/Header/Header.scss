@@ -1,7 +1,13 @@
 .header {
+  background-color: #fff;
+  padding: 10px 0;
+  position: sticky;
+  z-index: 30;
+  //height: 50px;
+  top: 0;
   .wrapper {
+    margin: 0 auto;
     width: 95%;
-    margin: 15px auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -68,15 +74,18 @@
       }
     }
     .right_side_auth {
-      width: 5%;
+      width: 70px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+
       .basket {
         width: 25px;
         height: 25px;
         color: #3f3f3f;
         @media (max-width: 786px) {
           display: none;
+
         }
       }
       .basket:hover {
@@ -94,6 +103,7 @@
   .burger {
     width: 35px;
     height: 35px;
+    cursor: pointer;
   }
-
 }
+

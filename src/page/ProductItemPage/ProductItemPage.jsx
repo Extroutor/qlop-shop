@@ -1,13 +1,28 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './ProductItemPage.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {addToBasket} from "../../redux/slices/userSlice";
+import {addToBasket, addToFav} from "../../redux/slices/userSlice";
+import {useParams} from "react-router-dom";
 
 const ProductItemPage = () => {
 
-    const chosenProduct = useSelector(state => state.catalog.chosenProduct)
-    console.log(chosenProduct)
+    const param = +useParams().id // convert to number
+    const productObj = useSelector(state => state.catalog.catalogList)
+    const chosenProduct = productObj.find(item => item.id === param)
     const dispatch = useDispatch()
+    const [isClicked, setIsClicked] = useState(false)
+    const [isFavClicked, setIsFavClicked] = useState(false)
+
+    const onClickedButton = () => {
+        dispatch(addToBasket(chosenProduct))
+        setIsClicked(true)
+    }
+
+    const onClickedFavButton = () => {
+        dispatch(addToFav(chosenProduct))
+        setIsFavClicked(true)
+    }
+
     return (
         <div className='product_page'>
             <div className='left_part'>
@@ -19,13 +34,25 @@ const ProductItemPage = () => {
             <div className='right_part'>
                 <div className='title'>{chosenProduct.name}</div>
                 <div className='price'>{chosenProduct.price} ₽</div>
-                <button
-                    className='button'
-                    onClick={() => dispatch(addToBasket(chosenProduct))}
-                >
-                    В корзину
-                </button>
-                <button className='button fav'>В избранные</button>
+                {isClicked
+                    ?
+                    <button className='button button_clicked' disabled={true}>
+                        В корзине
+                    </button>
+                    :
+                    <button
+                        className='button'
+                        onClick={onClickedButton}
+                    >
+                        В корзину
+                    </button>
+                }
+                {isFavClicked
+                    ?
+                    <button className='button fav clicked'>В избранных</button>
+                    :
+                    <button className='button fav' onClick={onClickedFavButton}>В избранные</button>
+                }
             </div>
         </div>
     );
