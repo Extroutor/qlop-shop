@@ -1,27 +1,30 @@
 import React from 'react';
 import {AiOutlineClose} from "react-icons/ai";
-import './BasketItem.scss'
+import st from './BasketItem.module.scss'
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {decrement, increment, deleteProductInBasket} from '../../redux/slices/userSlice'
 import {setChosenProduct} from '../../redux/slices/catalogSlice'
+import Modal from "../Modal/Modal";
+import {useState} from "react";
 
 
 const BasketItem = (props) => {
 
+    const [active, setActive] = useState(false);
     const count = useSelector((state) => state.user.basket.find(item => item.id === props.item.id).count)
     const dispatch = useDispatch()
 
     return (
-        <div className='product_item'>
-            <div className='group1'>
+        <div className={st.product_item}>
+            <div className={st.group1}>
                 <Link
                     to={`/product/${props.item.id}`}
                     onClick={() => {
                         setChosenProduct(props.item)
                     }}>
-                    <div className='img_wrapper'>
-                        <img className='img' src={props.item.img} alt={props.item.name}/>
+                    <div className={st.img_wrapper}>
+                        <img className={st.img} src={props.item.img} alt={props.item.name}/>
                     </div>
                 </Link>
                 <Link
@@ -29,14 +32,14 @@ const BasketItem = (props) => {
                     onClick={() => {
                         setChosenProduct(props.item)
                     }}>
-                    <div className='basket_item_title'>
+                    <div className={st.basket_item_title}>
                         <p>{props.item.name}</p>
                     </div>
                 </Link>
             </div>
-            <div className='group2'>
+            <div className={st.group2}>
                 <div>{props.item.price} ₽</div>
-                <div className='counter'>
+                <div className={st.counter}>
                     <button onClick={() => dispatch(decrement(props.item.id))}>-</button>
                     <p>{count}</p>
                     <button onClick={() => dispatch(increment(props.item.id))}>+</button>
@@ -44,9 +47,22 @@ const BasketItem = (props) => {
                 <div>{props.item.totalPrice} ₽</div>
                 <AiOutlineClose
                     style={{width: '25px', height: '25px', cursor: 'pointer'}}
-                    onClick={() => dispatch(deleteProductInBasket(props.item.id))}
+                    onClick={() => setActive(true)}
+                    // onClick={() => dispatch(deleteProductInBasket(props.item.id))}
                 />
             </div>
+            <Modal active={active} setActive={setActive}>
+                <div>Вы действительно хотите удалить этот товар?</div>
+                <button
+                    className={st.button}
+                    onClick={() => dispatch(deleteProductInBasket(props.item.id))}
+                >Да
+                </button>
+                <button
+                    className={[st.button, st.button_not].join(' ')}
+                    onClick={() => setActive(false)}
+                >Нет</button>
+            </Modal>
         </div>
     )
 }

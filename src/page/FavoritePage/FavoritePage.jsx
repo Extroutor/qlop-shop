@@ -3,6 +3,7 @@ import style from './FavoritePage.module.scss';
 import {useSelector} from "react-redux";
 import FavoriteItem from "../../components/FavoriteItem/FavoriteItem";
 
+
 const FavoritePage = () => {
     const favorites = useSelector(state => state.user.favoriteProducts)
     const favoriteProducts = useSelector(state => state.user.favoriteProducts)

@@ -16,7 +16,7 @@
 
     .heart {
       padding: 8px;
-      z-index: 5;
+      z-index: 2;
       position: absolute;
       top: 0;
       right: 1px;
@@ -59,3 +59,26 @@
     text-transform: uppercase;
   }
 }
+
+
+.button {
+  padding: 6px 10px;
+  background-color: #323232;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 50px;
+  font-weight: 300;
+  margin-right: 10px;
+  margin-top: 20px;
+}
+.button_not {
+  background-color: #9f1515;
+}
+.button:hover {
+  background-color: #464646;
+}
+.button_not:hover {
+  background-color: #d52121;
+}
+
