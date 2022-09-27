@@ -12,7 +12,8 @@ const ProductItem = (props) => {
         const dispatch = useDispatch()
 
         const onClick = (e) => {
-            e.stopPropagation()
+            e.stopPropagation();
+            e.preventDefault();
             if (onFavClicked) {
                 dispatch(deleteFromFav(props.item))
             }
@@ -31,24 +32,28 @@ const ProductItem = (props) => {
                 >
                     <div className={style.product_img_wrap}>
                         <img className={style.product_img_wrap_img} src={props.item.img} alt={props.item.name}/>
-                        {/*{onFavClicked*/}
-                        {/*    ?*/}
-                        {/*    <div className={style.heart} onClick={(e) => e.stopPropagation()}>*/}
-                        {/*        <AiFillHeart*/}
-                        {/*            className={style.her}*/}
-                        {/*            onClick={onClick}*/}
-                        {/*        />*/}
-                        {/*    </div>*/}
-                        {/*    :*/}
-                        {/*    <div className={style.heart}>*/}
-                        {/*        <AiOutlineHeart*/}
-                        {/*            className={style.her}*/}
-                        {/*            onClick={onClick}*/}
-                        {/*        />*/}
-                        {/*    </div>*/}
-                        {/*}*/}
+                        {onFavClicked
+                            ?
+                            <div className={style.heart}
+                            >
+                                <AiFillHeart
+                                    className={style.her}
+                                    onClick={(e) => onClick(e)}
+                                />
+                            </div>
+                            :
+                            <div className={style.heart}
+                            >
+                                <AiOutlineHeart
+                                    className={style.her}
+                                    onClick={(e) => onClick(e)}
+                                />
+                            </div>
+                        }
 
                     </div>
+
+
                     <div className={style.product_info}>
                         <div>{props.item.name}</div>
                         <div>{props.item.price} ₽</div>

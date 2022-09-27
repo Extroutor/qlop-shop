@@ -19,7 +19,7 @@
       z-index: 5;
       position: absolute;
       top: 0;
-      right: 6px;
+      right: 1px;
       cursor: pointer;
 
       .her {
@@ -29,15 +29,15 @@
         z-index: 2;
         //transform: scale(1);
         transition: .1s linear;
-        color: #ce9393;
-        transform: scale(1.2);
+        color: #363636;
+        transform: scale(1);
       }
 
       .her:hover {
         width: 20px;
         height: 20px;
         transition: .1s linear;
-        transform: scale(1.3);
+        transform: scale(1.1);
       }
     }
 
@@ -47,29 +47,6 @@
       object-fit: cover;
     }
   }
-
-  //&_img_wrap:hover {
-  //  .heart {
-  //    padding: 8px;
-  //    z-index: 5;
-  //    position: absolute;
-  //    top: 0;
-  //    right: 6px;
-  //    cursor: pointer;
-  //
-  //    .her {
-  //      display: flex;
-  //      align-items: center;
-  //      justify-content: center;
-  //      z-index: 2;
-  //      transition: transform .3s ease-in-out;
-  //    }
-  //
-  //    .her:hover{
-  //      transform: scale(2);
-  //    }
-  //  }
-  //}
 
   &_info {
     width: 100%;
@@ -82,5 +59,3 @@
     text-transform: uppercase;
   }
 }
-
-

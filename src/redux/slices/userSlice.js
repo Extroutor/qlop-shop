@@ -121,9 +121,8 @@ export const userSlice = createSlice({
             },
             deleteFromFav: (state, action) => {
                 const findItem = state.favoriteProducts.find((obj) => obj.id === action.payload.id);
-
-                if (!findItem) {
-                    state.baskfavoriteProductset = state.favoriteProducts.filter((obj) => obj.id !== action.payload.id);
+                if (findItem) {
+                    state.favoriteProducts = state.favoriteProducts.filter((obj) => obj.id !== action.payload.id);
                 }
             },
         }
