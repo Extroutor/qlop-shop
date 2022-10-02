@@ -9,10 +9,42 @@
   }
 }
 .main_title {
-  margin-top: 20px;
+  margin: 40px 0;
   display: flex;
   justify-content: center;
   font-size: 26px;
-  font-weight: 400;
+  font-weight: 600;
   text-transform: uppercase;
+  color: #646C54;
+  text-shadow: 1px 7px 4px rgba(100, 108, 84, 0.28);
+}
+.sec_text {
+  font-weight: 300;
+}
+
+.butt-div{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.butt-div button{
+  background-color: #fff;
+  padding: 13px 13px;
+  font-weight: 400;
+  border: 1px solid #646C54;
+  width: 300px;
+  transition: 0.2s;
+  letter-spacing: 3px;
+  word-spacing: 3px;
+  cursor: pointer;
+
+}
+
+.butt-div button:hover{
+  background-color: #646C54;
+  color: white;
+  border: 1px solid transparent;
+  box-shadow: 2px 5px 10px #646C54;
+  transition: 0.2s;
 }

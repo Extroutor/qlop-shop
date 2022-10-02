@@ -3,7 +3,7 @@ import style from './FavoriteItem.module.scss';
 import {Link} from "react-router-dom";
 import {setChosenProduct} from "../../redux/slices/catalogSlice";
 import {AiOutlineClose} from "react-icons/ai";
-import {deleteFromFav, deleteProductInBasket} from "../../redux/slices/userSlice";
+import {deleteFromFav} from "../../redux/slices/userSlice";
 import {useDispatch} from "react-redux";
 import Modal from "../Modal/Modal";
 import {useState} from "react";

@@ -34,7 +34,7 @@
           border-bottom: 1.5px solid white;
           padding: 0 10px;
           list-style: none;
-          transition: 0.3s linear;
+          transition: 0.1s linear;
 
           .header_category_item {
             display: flex;
@@ -43,16 +43,18 @@
             font-weight: 300;
             text-transform: uppercase;
             font-size: 14px;
+            box-sizing: unset;
+            transform: scale(1);
           }
         }
 
+
         li:hover {
-          transition: 0.3s linear;
-          border-bottom: 1.5px solid black;
+          transition: 0.1s linear;
+          //border-bottom: 1.5px solid #646C54;
+          transform: scale(1.1);
         }
-
       }
-
     }
 
     .right_side {
@@ -105,5 +107,6 @@
     height: 35px;
     cursor: pointer;
   }
+
 }
 

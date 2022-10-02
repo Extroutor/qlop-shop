@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import './Header.scss'
 import {changeCategory} from "../../redux/slices/catalogSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {AiOutlineHeart} from "react-icons/ai";
+import {AiOutlineClose, AiOutlineHeart} from "react-icons/ai";
 import MenuBurger from "./MenuBurger";
 
 const Header = () => {
@@ -61,10 +61,18 @@ const Header = () => {
                 }
                 {/* For mobile version: */}
                 <div className='burger-wrap'>
-                    <IoMenuSharp
-                        className='burger'
-                        onClick={() => setMenuActive(!menuActive)}
-                    />
+                    {menuActive
+                    ?
+                        <AiOutlineClose
+                            className='burger'
+                            onClick={() => setMenuActive(!menuActive)}
+                        />
+                    :
+                        <IoMenuSharp
+                            className='burger'
+                            onClick={() => setMenuActive(!menuActive)}
+                        />
+                    }
                 </div>
             </div>
             <MenuBurger

@@ -19,7 +19,7 @@ const Catalog = () => {
                     <option>возрастанию цены</option>
                 </select>
             </div>
-            <div>
+            <div className={style.wrap}>
                 {!activeCategory
                     ?
                     <div className={style.products}>

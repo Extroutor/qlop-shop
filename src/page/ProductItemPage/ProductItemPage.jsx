@@ -13,6 +13,10 @@ const ProductItemPage = () => {
     const [isClicked, setIsClicked] = useState(false)
     const [isFavClicked, setIsFavClicked] = useState(false)
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
     const onClickedButton = () => {
         dispatch(addToBasket(chosenProduct))
         setIsClicked(true)

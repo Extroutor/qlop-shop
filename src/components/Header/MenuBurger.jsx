@@ -3,7 +3,7 @@ import './MenuBurger.scss'
 import {Link} from "react-router-dom";
 import {changeCategory} from "../../redux/slices/catalogSlice";
 import {useDispatch} from "react-redux";
-import {AiOutlineHeart} from "react-icons/ai";
+import {AiOutlineClose, AiOutlineHeart} from "react-icons/ai";
 import {IoBasketOutline} from "react-icons/io5";
 
 const MenuBurger = (props) => {
@@ -12,8 +12,7 @@ const MenuBurger = (props) => {
         <div className={props.menuActive ? 'menuu active_menu' : 'menuu'}
              onClick={() => props.setMenuActive(false)}
         >
-            <div className='blur'/>
-
+                <div className='blur'/>
             <div className='menu_content' onClick={e => e.stopPropagation()}>
 
                 <ul className='ull'>

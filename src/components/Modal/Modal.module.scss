@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
   opacity: 0;
-  transition: 0.5s;
+  transition: 0.2s;
   pointer-events: none;
   z-index: 3;
 }
@@ -27,7 +27,7 @@
   background-color: #fff;
   width: 50vw;
   transform: scale(0.5);
-  transition: 0.4s all;
+  transition: 0.2s all;
 }
 
 .content.active {

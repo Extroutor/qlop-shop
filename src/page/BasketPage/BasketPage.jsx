@@ -4,12 +4,19 @@ import './BasketPage.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {deleteAll} from "../../redux/slices/userSlice";
 import Modal from "../../components/Modal/Modal";
+import {useEffect} from "react";
 
 const BasketPage = () => {
     const [active, setActive] = useState(false);
     const basket = useSelector(state => state.user.basket)
     const totalPrice = useSelector(state => state.user.totalPrice)
     const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
 
     return (
         <div className='basket_wrapper'>

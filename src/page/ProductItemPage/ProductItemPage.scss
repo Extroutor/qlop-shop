@@ -7,16 +7,16 @@
 
   .left_part {
     width: 60%;
-
+    height: 70%;
     .img_wrap {
-      width: 60%;
-      height: 100%;
+      width: 50%;
+      height: 450px;
       margin: 0 auto;
 
       img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
       }
     }
   }
