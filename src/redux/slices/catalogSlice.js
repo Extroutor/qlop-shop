@@ -104,10 +104,24 @@ export const catalogSlice = createSlice({
             viewAllProducts: (state, action) => {
                 state.activeCategory = ''
                 state.filteredCatalogList = null
+            },
+            setSortOption: (state, action) => {
+                let list = [...state.catalogList]
+                console.log('list is ', state.catalogList)
+                if (action.payload === 'titleAZ') {
+                    list.sort((a, b) => a['name'].localeCompare(b['name']))
+                } else if (action.payload === 'titleZA') {
+                    list.sort((a, b) => b['name'].localeCompare(a['name']))
+                } else if (action.payload === 'price91') {
+                    list.sort((a, b) => b['price'] - a['price'])
+                } else if (action.payload === 'price19') {
+                    list.sort((a, b) => a['price'] - b['price'])
+                }
+                state.catalogList = [...list]
             }
         },
     }
 )
 
-export const {changeCategory, setChosenProduct, viewAllProducts} = catalogSlice.actions
+export const {changeCategory, setChosenProduct, viewAllProducts, setSortOption} = catalogSlice.actions
 export default catalogSlice.reducer
