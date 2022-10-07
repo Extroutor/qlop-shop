@@ -1,1 +1,1 @@
-### Deploy: https://qlop-shop.herokuapp.com/
+### Deploy: https://qlop-shop.vercel.app/
