@@ -11,12 +11,10 @@ const BasketPage = () => {
     const basket = useSelector(state => state.user.basket)
     const totalPrice = useSelector(state => state.user.totalPrice)
     const dispatch = useDispatch();
-
-
+    
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [])
-
 
     return (
         <div className='basket_wrapper'>

@@ -94,9 +94,10 @@ export const catalogSlice = createSlice({
         initialState,
         reducers: {
             changeCategory: (state, action) => {
-                let newArr = state.catalogList.filter(item => action.payload === item.category)
+                // let newArr = state.catalogList.filter(item => action.payload === item.category)
                 state.activeCategory = action.payload
-                state.filteredCatalogList = newArr
+                // state.filteredCatalogList = newArr
+                // state.catalogList = newArr
             },
             setChosenProduct: (state, action) => {
                 state.chosenProduct = action.payload
@@ -117,7 +118,7 @@ export const catalogSlice = createSlice({
                     list.sort((a, b) => a['price'] - b['price'])
                 }
                 state.catalogList = [...list]
-                console.log('nenrgfjsnavsdkalvf')
+                // console.log('nenrgfjsnavsdkalvf')
             }
         },
     }

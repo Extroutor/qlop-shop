@@ -4,7 +4,6 @@ import {useSelector} from "react-redux";
 import FavoriteItem from "../../components/FavoriteItem/FavoriteItem";
 import {useEffect} from "react";
 
-
 const FavoritePage = () => {
     const favorites = useSelector(state => state.user.favoriteProducts)
     const favoriteProducts = useSelector(state => state.user.favoriteProducts)

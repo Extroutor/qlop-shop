@@ -2,11 +2,9 @@ import React from 'react';
 import bg from '../../assets/main-page-bg.jpg'
 import sec from '../../assets/bg.jpg'
 import thr from '../../assets/vesh.jpg'
-
 import './MainPage.scss'
 import {Link} from "react-router-dom";
 import {useEffect} from "react";
-
 
 const MainPage = () => {
     useEffect(() => {

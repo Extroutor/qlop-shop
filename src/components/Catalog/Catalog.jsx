@@ -3,23 +3,28 @@ import ProductItem from "./ProductItem/ProductItem";
 import style from './Catalog.module.scss'
 import {useDispatch, useSelector} from 'react-redux'
 import {setSortOption} from "../../redux/slices/catalogSlice";
+import {useParams} from "react-router-dom";
 
 const Catalog = () => {
 
-    console.log('rendering...')
-
-    const catalogList = useSelector(state => state.catalog.catalogList)
-    const filteredCatalogList = useSelector(state => state.catalog.filteredCatalogList)
-    const activeCategory = useSelector(state => state.catalog.activeCategory)
     const dispatch = useDispatch()
+    const param = +useParams().id // convert to number
+    const catalogList = useSelector(state => state.catalog.catalogList)
+    let filteredCatalogList = catalogList.filter(item => item.category === param)
+    let list;
 
     const [selectedOption, setSelectedOption] = useState('')
+
+    if (param) {
+        list = filteredCatalogList
+    } else {
+        list = catalogList
+    }
 
     const onchange = (sort) => {
         setSelectedOption(sort)
         dispatch(setSortOption(sort))
     }
-
 
     return (
         <div className={style.catalog}>
@@ -37,26 +42,14 @@ const Catalog = () => {
                 </select>
             </div>
             <div className={style.wrap}>
-                {!activeCategory
-                    ?
-                    <div className={style.products}>
-                        {catalogList.map(item =>
-                            <ProductItem
-                                key={item.id}
-                                item={item}
-                            />
-                        )}
-                    </div>
-                    :
-                    <div className={style.products}>
-                        {filteredCatalogList.map(item =>
-                            <ProductItem
-                                key={item.id}
-                                item={item}
-                            />
-                        )}
-                    </div>
-                }
+                <div className={style.products}>
+                    {list.map(item =>
+                        <ProductItem
+                            key={item.id}
+                            item={item}
+                        />
+                    )}
+                </div>
             </div>
         </div>
     );
