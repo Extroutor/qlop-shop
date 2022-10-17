@@ -107,7 +107,6 @@ export const catalogSlice = createSlice({
             },
             setSortOption: (state, action) => {
                 let list = [...state.catalogList]
-                console.log('list is ', state.catalogList)
                 if (action.payload === 'titleAZ') {
                     list.sort((a, b) => a['name'].localeCompare(b['name']))
                 } else if (action.payload === 'titleZA') {
