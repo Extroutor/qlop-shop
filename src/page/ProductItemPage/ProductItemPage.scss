@@ -1,6 +1,6 @@
 .product_page {
   width: 95%;
-  margin: 0 auto;
+  margin: 50px auto;
   display: flex;
   justify-content: space-between;
   min-height: 500px;
@@ -46,7 +46,7 @@
       color: white;
       border: none;
       cursor: pointer;
-      width: 120px;
+      min-width: 120px;
       font-weight: 300;
       margin-bottom: 20px;
     }
@@ -56,28 +56,26 @@
     }
 
     .button_clicked {
-      background-color: #6c6c6c;
-      cursor: default;
+      background-color: #646C54;;
+      //cursor: default;
     }
     .button_clicked:hover {
-      background-color: #6c6c6c;
+      background-color: #889478;;
     }
 
     .fav {
-      background-color: #ffffff;
+      background-color: rgba(255, 222, 222, 0.91);
       color: #323232;
-      border: 1px solid #cacaca;
+      //border: 1px solid #cacaca;
       padding: 13px 10px;
     }
     .fav:hover{
-      background-color: #ffe9e9;
-      border: 1px solid white;
+      background-color: #ffeeee;
+      //border: 1px solid white;
     }
-
     .clicked {
-      background-color: #ffe9e9;
-      cursor: default;
-      border: 1px solid white;
+      background-color: #ffe0e0;
+      //border: 1px solid white;
     }
   }
 }

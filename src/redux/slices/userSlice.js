@@ -1,75 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
-    favoriteProducts: [
-        {
-            id: 1,
-            category: 1,
-            name: 'Топ',
-            price: '100',
-            img: 'https://images.asos-media.com/products/krop-top-s-perekrestnymi-bretelyami-asos-design/13273762-1-stone?$n_960w$&wid=952&fit=constrain'
-        },
-        {
-            id: 2,
-            category: 1,
-            name: 'Кофта',
-            price: '100',
-            img: 'https://images.asos-media.com/products/ukorochennyj-svitshot-s-logotipom-asos-4505/13122102-1-grey?$XXL$'
-        },
-        {
-            id: 3,
-            category: 1,
-            name: 'Юбка',
-            price: '100',
-            img: 'https://images.asos-media.com/products/mini-yubka-asos-design/12560666-1-nude?$XXL$'
-        },
-        {
-            id: 4,
-            category: 2,
-            name: 'Кросовки',
-            price: '100',
-            img: 'https://images.asos-media.com/products/svetlo-bezhevye-krossovki-na-massivnoj-podoshve-asos-design/22883181-1-stone?$XXL$'
-        },
-    ],
+    favoriteProducts: [],
     basket: [],
-    // basket: [
-    //     {
-    //         id: 1,
-    //         category: 1,
-    //         name: 'Топ',
-    //         count: 1,
-    //         price: 100,
-    //         totalPrice: 100,
-    //         img: 'https://images.asos-media.com/products/krop-top-s-perekrestnymi-bretelyami-asos-design/13273762-1-stone?$n_960w$&wid=952&fit=constrain'
-    //     },
-    //     {
-    //         id: 2,
-    //         category: 1,
-    //         name: 'Кофта',
-    //         count: 1,
-    //         price: '100',
-    //         totalPrice: '100',
-    //         img: 'https://images.asos-media.com/products/ukorochennyj-svitshot-s-logotipom-asos-4505/13122102-1-grey?$XXL$'
-    //     },
-    //     {
-    //         id: 3,
-    //         category: 1,
-    //         name: 'Юбка',
-    //         count: 1,
-    //         price: '100',
-    //         totalPrice: '100',
-    //         img: 'https://images.asos-media.com/products/mini-yubka-asos-design/12560666-1-nude?$XXL$'
-    //     },
-    //     {
-    //         id: 4,
-    //         category: 2,
-    //         name: 'Кросовки',
-    //         count: 1,
-    //         price: '100',
-    //         totalPrice: '100',
-    //         img: 'https://images.asos-media.com/products/svetlo-bezhevye-krossovki-na-massivnoj-podoshve-asos-design/22883181-1-stone?$XXL$'
-    //     },
-    // ],
     totalPrice: 0
 }
 

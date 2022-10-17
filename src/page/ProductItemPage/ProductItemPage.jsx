@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './ProductItemPage.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {addToBasket, addToFav} from "../../redux/slices/userSlice";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 const ProductItemPage = () => {
 
@@ -40,9 +40,11 @@ const ProductItemPage = () => {
                 <div className='price'>{chosenProduct.price} ₽</div>
                 {isClicked
                     ?
-                    <button className='button button_clicked' disabled={true}>
-                        В корзине
-                    </button>
+                    <Link to='/basket'>
+                        <button className='button button_clicked'>
+                            Перейти в корзину
+                        </button>
+                    </Link>
                     :
                     <button
                         className='button'
@@ -53,7 +55,9 @@ const ProductItemPage = () => {
                 }
                 {isFavClicked
                     ?
-                    <button className='button fav clicked'>В избранных</button>
+                    <Link to='/favorite'>
+                        <button className='button fav clicked'>Перейти в избранные</button>
+                    </Link>
                     :
                     <button className='button fav' onClick={onClickedFavButton}>В избранные</button>
                 }

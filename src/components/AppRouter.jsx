@@ -9,7 +9,6 @@ import BasketPage from "../page/BasketPage/BasketPage";
 
 const AppRouter = () => {
     return (
-        <div>
             <Routes>
                 <Route path='/' element={<MainPage/>}/>
                 <Route path='/catalog/:id' element={<CatalogPage />}/>
@@ -20,7 +19,6 @@ const AppRouter = () => {
                 <Route path='/product/:id' element={<ProductItemPage/>}/>
                 <Route path='/*' element={<NotFoundPage/>}/>
             </Routes>
-        </div>
     );
 };
 
