@@ -6,6 +6,8 @@ import {setSortOption} from "../../redux/slices/catalogSlice";
 
 const Catalog = () => {
 
+    console.log('rendering...')
+
     const catalogList = useSelector(state => state.catalog.catalogList)
     const filteredCatalogList = useSelector(state => state.catalog.filteredCatalogList)
     const activeCategory = useSelector(state => state.catalog.activeCategory)

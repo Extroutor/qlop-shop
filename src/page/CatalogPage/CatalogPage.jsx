@@ -10,6 +10,7 @@ const CatalogPage = () => {
     }, [])
 
     return (
+
         <div className='catalog_page'>
             <div className='content'>
                 <Category/>
