@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="a7e581e6-d198-416d-82a7-39c8df955688" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/client/src/page/UserPage/AuthPage.jsx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/client/src/page/UserPage/AuthPage.scss" afterDir="false" />
@@ -11,22 +12,29 @@
       <change beforePath="$PROJECT_DIR$/client/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header/Header.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Header/Header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header/Header.scss" afterDir="false" />
     </list>
+=======
+    <list default="true" id="eb845006-088b-4021-b246-8889d9076e2b" name="Changes" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+<<<<<<< Updated upstream
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="server" />
       </map>
     </option>
+=======
+>>>>>>> Stashed changes
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+<<<<<<< Updated upstream
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "node.js.detected.package.eslint": "true",
@@ -65,5 +73,37 @@
         </entry>
       </map>
     </option>
+=======
+  <component name="ProjectId" id="2GGQgp6Z53WTZpgUHjoyA9fWHPt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eb845006-088b-4021-b246-8889d9076e2b" name="Changes" comment="" />
+      <created>1666012557962</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1666012557962</updated>
+      <workItem from="1666012561290" duration="652000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+>>>>>>> Stashed changes
   </component>
 </project>
