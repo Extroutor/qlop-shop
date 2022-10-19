@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7e581e6-d198-416d-82a7-39c8df955688" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/db.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/models/models.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/controllers/userController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/error/ApiError.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/middleware/ErrorHandlingMiddleware.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/basketRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/categoryRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/favoriteRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/productRouter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/userRouter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
     </list>
@@ -67,7 +73,7 @@
       <option name="presentableId" value="Default" />
       <updated>1666186506757</updated>
       <workItem from="1666186509981" duration="483000" />
-      <workItem from="1666187011704" duration="3515000" />
+      <workItem from="1666187011704" duration="5537000" />
     </task>
     <servers />
   </component>
