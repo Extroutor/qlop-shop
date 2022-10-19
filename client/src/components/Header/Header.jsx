@@ -4,15 +4,16 @@ import {Link} from "react-router-dom";
 import './Header.scss'
 import {changeCategory} from "../../redux/slices/catalogSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {AiOutlineClose, AiOutlineHeart} from "react-icons/ai";
+import {AiOutlineClose} from "react-icons/ai";
 import MenuBurger from "./MenuBurger";
+import {CgProfile} from "react-icons/cg";
 
 const Header = () => {
 
     const [menuActive, setMenuActive] = useState(false)
     let categoryList = useSelector(state => state.catalog.categoryList)
     let dispatch = useDispatch()
-    const isAuth = true
+    const isAuth = false
 
     return (
         <div className='header'>
@@ -36,44 +37,47 @@ const Header = () => {
                         })}
                     </ul>
                 </div>
-                {isAuth
-                    ?
-                    <div className='right_side_auth'>
-                        <Link to='/favorite'
-                              onClick={() => setMenuActive(false)}
-                        >
-                            <AiOutlineHeart className='basket'/>
-                        </Link>
-                        <Link to='/basket'
-                              onClick={() => setMenuActive(false)}
-                        >
-                            <IoBasketOutline className='basket'/>
-                        </Link>
-                    </div>
-                    :
-                    <div className='right_side'>
-                        <Link to='/basket'
-                              onClick={() => setMenuActive(false)}
-                        >
-                            <IoBasketOutline className='basket'/>
-                        </Link>
-                    </div>
-                }
-                {/* For mobile version: */}
-                <div className='burger-wrap'>
-                    {menuActive
-                    ?
-                        <AiOutlineClose
-                            className='burger'
-                            onClick={() => setMenuActive(!menuActive)}
-                        />
-                    :
-                        <IoMenuSharp
-                            className='burger'
-                            onClick={() => setMenuActive(!menuActive)}
-                        />
+                <div className='right_side_auth'>
+                    {isAuth
+                        ?
+                        <div className='right_wrapper auth'>
+                            <Link to='/user'>
+                                <CgProfile className='icon'/>
+                            </Link>
+                            <Link to='/basket'
+                                  onClick={() => setMenuActive(false)}
+                            >
+                                <IoBasketOutline className='icon'/>
+                            </Link>
+                        </div>
+                        :
+                        <div className='right_wrapper'>
+                            <Link to='/auth'>
+                                <div className='icon'>ВОЙТИ</div>
+                            </Link>
+                            <Link to='/basket'
+                                  onClick={() => setMenuActive(false)}
+                            >
+                                <IoBasketOutline className='icon'/>
+                            </Link>
+                        </div>
                     }
                 </div>
+            </div>
+            {/* For mobile version: */}
+            <div className='burger-wrap'>
+                {menuActive
+                    ?
+                    <AiOutlineClose
+                        className='icon'
+                        onClick={() => setMenuActive(!menuActive)}
+                    />
+                    :
+                    <IoMenuSharp
+                        className='icon'
+                        onClick={() => setMenuActive(!menuActive)}
+                    />
+                }
             </div>
             <MenuBurger
                 menuActive={menuActive}
@@ -82,7 +86,7 @@ const Header = () => {
                 isAuth={isAuth}
             />
         </div>
-    );
-};
+    )
+}
 
 export default Header

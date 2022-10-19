@@ -5,6 +5,7 @@
   z-index: 30;
   //height: 50px;
   top: 0;
+
   .wrapper {
     margin: 0 auto;
     width: 95%;
@@ -62,7 +63,7 @@
       display: flex;
       justify-content: right;
 
-      .basket {
+      .icon {
         width: 25px;
         height: 25px;
         color: #3f3f3f;
@@ -71,26 +72,30 @@
         }
       }
 
-      .basket:hover {
+      .icon:hover {
         color: black;
       }
     }
-    .right_side_auth {
-      width: 70px;
+
+    .right_wrapper {
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
 
-      .basket {
+    .right_side_auth {
+      width: 110px;
+
+      .icon {
         width: 25px;
         height: 25px;
         color: #3f3f3f;
         @media (max-width: 786px) {
           display: none;
-
         }
       }
-      .basket:hover {
+
+      .icon:hover {
         color: black;
       }
     }
@@ -102,7 +107,7 @@
     display: none;
   }
 
-  .burger {
+  .icon {
     width: 35px;
     height: 35px;
     cursor: pointer;
