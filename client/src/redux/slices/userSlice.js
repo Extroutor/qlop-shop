@@ -5,7 +5,10 @@ const initialState = {
     basket: [],
     totalPrice: 0,
     isAuth: false,
-    info: {}
+    data: {
+        email: 'mail@mail.ru',
+        password: 'qwerty'
+    }
 }
 
 const calcTotalPrice = (basket) => {
@@ -72,9 +75,20 @@ export const userSlice = createSlice({
                 }
             },
             signIn: (state, action) => {
-                state.isAuth = true
+                if (action.payload.email === state.data.email) {
+                    if (action.payload.password === state.data.password) {
+                        state.isAuth = true
+                    } else {
+                        state.isAuth = false
+                        console.log('Неверный логин или пароль')
+                    }
+                } else {
+                    state.isAuth = false
+                    console.log('Неверный логин или пароль')
+                }
             },
             registration: (state, action) => {
+                state.data = action.payload
                 state.isAuth = true
             },
             exit: (state, action) => {

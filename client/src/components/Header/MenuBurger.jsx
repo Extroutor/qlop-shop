@@ -34,7 +34,12 @@ const MenuBurger = (props) => {
                         ?
                         <div className='right_wrapper_bottom_auth drop_main'>
                             <Link to='/user'>
-                                <CgProfile className='icon'/>
+                                <CgProfile
+                                    className='icon'
+                                    onClick={() => {
+                                        props.setMenuActive(!props.menuActive)
+                                    }}
+                                />
                             </Link>
                             <div className='drop'>
                                 <ul>

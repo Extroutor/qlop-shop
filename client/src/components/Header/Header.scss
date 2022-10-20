@@ -128,7 +128,7 @@
   position: absolute;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   z-index: 4;
-  margin-top: 220px;
+  //margin-top: 220px;
   //width: 100px;
   left: -50px;
   //padding: 10px;
@@ -141,13 +141,13 @@
 
     li {
       font-weight: 300;
-      padding: 15px;
+      padding: 15px 15px;
     }
   }
 }
 
 .drop_main:hover {
-  @media (min-width: 768px) {
+  @media (min-width: 786px) {
     .drop {
       display: block;
       ul {

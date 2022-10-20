@@ -2,7 +2,9 @@ import React, {useEffect, useState} from 'react';
 import './ProductItemPage.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {addToBasket, addToFav} from "../../redux/slices/userSlice";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
+import st from "../../components/BasketItem/BasketItem.module.scss";
+import Modal from "../../components/Modal/Modal";
 
 const ProductItemPage = () => {
 
@@ -10,8 +12,11 @@ const ProductItemPage = () => {
     const productObj = useSelector(state => state.catalog.catalogList)
     const chosenProduct = productObj.find(item => item.id === param)
     const dispatch = useDispatch()
+    const [active, setActive] = useState(false);
     const [isClicked, setIsClicked] = useState(false)
     const [isFavClicked, setIsFavClicked] = useState(false)
+    const isAuth = useSelector(state => state.user.isAuth)
+    const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -21,7 +26,9 @@ const ProductItemPage = () => {
         dispatch(addToBasket(chosenProduct))
         setIsClicked(true)
     }
-
+    const toAuthPage = () => {
+        navigate('/auth')
+    }
     const onClickedFavButton = () => {
         dispatch(addToFav(chosenProduct))
         setIsFavClicked(true)
@@ -53,15 +60,42 @@ const ProductItemPage = () => {
                         В корзину
                     </button>
                 }
-                {isFavClicked
+                {!isFavClicked
                     ?
-                    <Link to='/favorite'>
-                        <button className='button fav clicked'>Перейти в избранные</button>
-                    </Link>
+                    !isAuth
+                        ?
+
+                        <button className='button fav clicked'
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    e.preventDefault();
+                                    setActive(true)
+                                }}>В избранные
+                        </button>
+                        :
+                        <button className='button fav' onClick={onClickedFavButton}>В избранные</button>
                     :
-                    <button className='button fav' onClick={onClickedFavButton}>В избранные</button>
+
+                    // TODO useHistory
+
+                    <Link to='/favorite'>
+                        <button className='button fav' onClick={onClickedFavButton}>Перейти в избранные</button>
+                    </Link>
                 }
             </div>
+            <Modal active={active} setActive={setActive}>
+                <div>Вы не вошли в систему</div>
+                <button
+                    className={st.button}
+                    onClick={() => toAuthPage()}
+                >Войти
+                </button>
+                <button
+                    className={[st.button, st.button_not].join(' ')}
+                    onClick={() => setActive(false)}
+                >Закрыть
+                </button>
+            </Modal>
         </div>
     );
 };
