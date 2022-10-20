@@ -3,8 +3,8 @@ import './MenuBurger.scss'
 import {Link} from "react-router-dom";
 import {changeCategory} from "../../redux/slices/catalogSlice";
 import {useDispatch} from "react-redux";
-import {AiOutlineClose, AiOutlineHeart} from "react-icons/ai";
 import {IoBasketOutline} from "react-icons/io5";
+import {CgProfile} from "react-icons/cg";
 
 const MenuBurger = (props) => {
     const dispatch = useDispatch()
@@ -12,48 +12,74 @@ const MenuBurger = (props) => {
         <div className={props.menuActive ? 'menuu active_menu' : 'menuu'}
              onClick={() => props.setMenuActive(false)}
         >
-                <div className='blur'/>
+            <div className='blur'/>
             <div className='menu_content' onClick={e => e.stopPropagation()}>
-
-                <ul className='ull'>
-                    {props.items.map(item =>
-                        <li key={item.id} className='lii'>
-                            <Link
-                                to={`/catalog/${item.id}`}
-                                onClick={() => {
-                                    dispatch(changeCategory(item.id))
-                                    props.setMenuActive(!props.menuActive)
-                                }}
-                            >
-                                {item.name}
+                <div className='menu_wrap_mobile'>
+                    <ul className='ull'>
+                        {props.items.map(item =>
+                            <li key={item.id} className='lii'>
+                                <Link
+                                    to={`/catalog/${item.id}`}
+                                    onClick={() => {
+                                        dispatch(changeCategory(item.id))
+                                        props.setMenuActive(!props.menuActive)
+                                    }}
+                                >
+                                    {item.name}
+                                </Link>
+                            </li>
+                        )}
+                    </ul>
+                    {props.isAuth
+                        ?
+                        <div className='right_wrapper_bottom_auth drop_main'>
+                            <Link to='/user'>
+                                <CgProfile className='icon'/>
                             </Link>
-                        </li>
-                    )}
-                </ul>
-                {props.isAuth
-                    ?
-                    <div className='burger_box_auth'>
-                        <Link to='/favorite'
-                              onClick={() => props.setMenuActive(!props.menuActive)}
-                        >
-                            <AiOutlineHeart className='basket'/>
-                        </Link>
-                        <Link to='/basket'
-                              onClick={() => props.setMenuActive(!props.menuActive)}
-                        >
-                            <IoBasketOutline className='basket'/>
-                        </Link>
-                    </div>
-                    :
-                    <div className='burger_box'>
-                        <Link to='/basket'
-                              onClick={() => props.setMenuActive(!props.menuActive)}
-                        >
-                            <IoBasketOutline className='basket'/>
-                        </Link>
-                    </div>
-                }
+                            <div className='drop'>
+                                <ul>
+                                    <li><Link onClick={() => {
+                                        props.setMenuActive(!props.menuActive)
+                                    }} to='/'>Профиль</Link></li>
+                                    <li><Link onClick={() => {
+                                        props.setMenuActive(!props.menuActive)
+                                    }} to='/'>Мои заказы</Link></li>
+                                    <li><Link onClick={() => {
+                                        props.setMenuActive(!props.menuActive)
+                                    }} to='/favorite'>Избранные</Link></li>
+                                    <li><Link onClick={() => {
+                                        props.setMenuActive(!props.menuActive)
+                                    }} to='/'>Выйти</Link></li>
+                                </ul>
+                            </div>
+                            <Link to='/basket'
+                                  onClick={() => {
+                                      props.setMenuActive(!props.menuActive)
+                                  }}
+                            >
+                                <IoBasketOutline className='icon'/>
+                            </Link>
+                        </div>
+                        :
+                        <div className='right_wrapper_bottom'>
+                            <Link to='/auth'>
+                                <div onClick={() => {
+                                    props.setMenuActive(!props.menuActive)
+                                }} className='sign'>ВОЙТИ
+                                </div>
+                            </Link>
+                            <Link to='/basket'
+                                  onClick={() => {
+                                      props.setMenuActive(!props.menuActive)
+                                  }}
+                            >
+                                <IoBasketOutline className='icon'/>
+                            </Link>
+                        </div>
+                    }
+                </div>
             </div>
+
 
         </div>
     );

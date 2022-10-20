@@ -5,6 +5,7 @@
   z-index: 30;
   //height: 50px;
   top: 0;
+  display: flex;
 
   .wrapper {
     margin: 0 auto;
@@ -85,7 +86,6 @@
 
     .right_side_auth {
       width: 110px;
-
       .icon {
         width: 25px;
         height: 25px;
@@ -115,3 +115,42 @@
 
 }
 
+
+.drop_main {
+  position: relative;
+}
+
+.drop {
+  display: none;
+  position: absolute;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 4;
+  margin-top: 220px;
+  //width: 100px;
+  left: -50px;
+  //padding: 10px;
+  background-color: #fff;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      font-weight: 300;
+      padding: 15px;
+    }
+  }
+}
+
+.drop_main:hover {
+  .drop {
+    display: block;
+    ul {
+
+      li:hover {
+        background-color: rgb(240, 250, 231);
+      }
+    }
+  }
+}

@@ -7,13 +7,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {AiOutlineClose} from "react-icons/ai";
 import MenuBurger from "./MenuBurger";
 import {CgProfile} from "react-icons/cg";
+import {exit} from "../../redux/slices/userSlice";
 
 const Header = () => {
 
     const [menuActive, setMenuActive] = useState(false)
     let categoryList = useSelector(state => state.catalog.categoryList)
     let dispatch = useDispatch()
-    const isAuth = false
+    const isAuth = useSelector(state => state.user.isAuth)
 
     return (
         <div className='header'>
@@ -40,10 +41,18 @@ const Header = () => {
                 <div className='right_side_auth'>
                     {isAuth
                         ?
-                        <div className='right_wrapper auth'>
+                        <div className='right_wrapper auth drop_main'>
                             <Link to='/user'>
                                 <CgProfile className='icon'/>
                             </Link>
+                            <div className='drop'>
+                                <ul>
+                                    <Link to='/'><li>Профиль</li></Link>
+                                    <Link to='/'><li>Мои заказы</li></Link>
+                                    <Link to='/favorite'><li>Избранные</li></Link>
+                                    <div onClick={() => dispatch(exit())}><li>Выйти</li></div>
+                                </ul>
+                            </div>
                             <Link to='/basket'
                                   onClick={() => setMenuActive(false)}
                             >
@@ -63,22 +72,23 @@ const Header = () => {
                         </div>
                     }
                 </div>
+                {/* For mobile version: */}
+                <div className='burger-wrap'>
+                    {menuActive
+                        ?
+                        <AiOutlineClose
+                            className='icon'
+                            onClick={() => setMenuActive(!menuActive)}
+                        />
+                        :
+                        <IoMenuSharp
+                            className='icon'
+                            onClick={() => setMenuActive(!menuActive)}
+                        />
+                    }
+                </div>
             </div>
-            {/* For mobile version: */}
-            <div className='burger-wrap'>
-                {menuActive
-                    ?
-                    <AiOutlineClose
-                        className='icon'
-                        onClick={() => setMenuActive(!menuActive)}
-                    />
-                    :
-                    <IoMenuSharp
-                        className='icon'
-                        onClick={() => setMenuActive(!menuActive)}
-                    />
-                }
-            </div>
+
             <MenuBurger
                 menuActive={menuActive}
                 setMenuActive={setMenuActive}

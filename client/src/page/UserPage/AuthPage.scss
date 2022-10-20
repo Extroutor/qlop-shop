@@ -16,6 +16,12 @@
   padding: 15px 15px;
   border: 1px solid #646C54;
   margin-bottom: 10px;
+  outline: none;
+
+  @media (max-width: 768px) {
+      width: 60%;
+
+  }
 }
 
 .main-title {
@@ -36,7 +42,6 @@
   padding: 13px 13px;
   font-weight: 400;
   border: 1px solid #646C54;
-  width: 300px;
   transition: 0.2s;
   letter-spacing: 3px;
   word-spacing: 3px;

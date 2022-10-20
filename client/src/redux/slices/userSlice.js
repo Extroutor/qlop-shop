@@ -3,7 +3,9 @@ import {createSlice} from '@reduxjs/toolkit'
 const initialState = {
     favoriteProducts: [],
     basket: [],
-    totalPrice: 0
+    totalPrice: 0,
+    isAuth: false,
+    info: {}
 }
 
 const calcTotalPrice = (basket) => {
@@ -69,6 +71,15 @@ export const userSlice = createSlice({
                     state.favoriteProducts = state.favoriteProducts.filter((obj) => obj.id !== action.payload.id);
                 }
             },
+            signIn: (state, action) => {
+                state.isAuth = true
+            },
+            registration: (state, action) => {
+                state.isAuth = true
+            },
+            exit: (state, action) => {
+                state.isAuth = false
+            }
         }
     }
 )
@@ -80,7 +91,10 @@ export const {
     deleteAll,
     addToBasket,
     addToFav,
-    deleteFromFav
+    deleteFromFav,
+    registration,
+    signIn,
+    exit
 } = userSlice.actions
 
 export default userSlice.reducer

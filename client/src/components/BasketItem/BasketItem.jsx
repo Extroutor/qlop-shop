@@ -48,7 +48,6 @@ const BasketItem = (props) => {
                 <AiOutlineClose
                     style={{width: '25px', height: '25px', cursor: 'pointer'}}
                     onClick={() => setActive(true)}
-                    // onClick={() => dispatch(deleteProductInBasket(props.item.id))}
                 />
             </div>
             <Modal active={active} setActive={setActive}>
