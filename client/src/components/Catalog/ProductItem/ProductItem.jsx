@@ -4,7 +4,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {setChosenProduct} from "../../../redux/slices/catalogSlice";
 import {AiFillHeart, AiOutlineHeart} from "react-icons/ai";
-import {addToFav, deleteFromFav, deleteProductInBasket} from "../../../redux/slices/userSlice";
+import {addToFav, deleteFromFav} from "../../../redux/slices/userSlice";
 import Modal from "../../Modal/Modal";
 import st from "../../BasketItem/BasketItem.module.scss";
 

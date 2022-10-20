@@ -118,6 +118,9 @@
 
 .drop_main {
   position: relative;
+  @media (max-width: 768px) {
+    position: static;
+  }
 }
 
 .drop {
@@ -144,12 +147,13 @@
 }
 
 .drop_main:hover {
-  .drop {
-    display: block;
-    ul {
-
-      li:hover {
-        background-color: rgb(240, 250, 231);
+  @media (min-width: 768px) {
+    .drop {
+      display: block;
+      ul {
+        li:hover {
+          background-color: rgb(240, 250, 231);
+        }
       }
     }
   }
