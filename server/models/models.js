@@ -59,6 +59,15 @@ const OrderItemProduct = sequelize.define('order_item_product', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
 })
 
+const Size = sequelize.define('size', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING, unique: true, allowNull: false},
+b})
+const ProductSize = sequelize.define('product_size', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+})
+
+
 User.hasOne(Basket)
 Basket.belongsTo(User)
 
@@ -92,6 +101,9 @@ OrderItemProduct.belongsTo(OrderItem)
 OrderItemProduct.hasOne(Product)
 Product.belongsTo(OrderItemProduct)
 
+Size.belongsToMany(Product, {through: ProductSize})
+Product.belongsToMany(Size, {through: ProductSize})
+
 module.exports = {
     User,
     Basket,
@@ -102,5 +114,7 @@ module.exports = {
     Product,
     Order,
     OrderItem,
-    OrderItemProduct
+    OrderItemProduct,
+    Size,
+    ProductSize
 }
