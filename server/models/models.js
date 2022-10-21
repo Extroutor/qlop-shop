@@ -32,7 +32,6 @@ const Product = sequelize.define('product', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, unique: true, allowNull: false},
     price: {type: DataTypes.INTEGER, allowNull: false},
-    size: {type: DataTypes.INTEGER},
     img: {type: DataTypes.STRING, allowNull: false},
     // внешние ключи sequelize подставит сам, когда будем делать связи
 })
