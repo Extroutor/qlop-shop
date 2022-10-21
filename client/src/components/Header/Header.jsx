@@ -8,7 +8,7 @@ import {AiOutlineClose} from "react-icons/ai";
 import MenuBurger from "./MenuBurger";
 import {CgProfile} from "react-icons/cg";
 import {exit} from "../../redux/slices/userSlice";
-import st from "../BasketItem/BasketItem.module.scss";
+import st from "../Modal/Modal.module.scss";
 import Modal from "../Modal/Modal";
 
 const Header = () => {
@@ -105,30 +105,34 @@ const Header = () => {
                     }
                 </div>
             </div>
-
             <MenuBurger
                 menuActive={menuActive}
                 setMenuActive={setMenuActive}
                 items={categoryList}
                 isAuth={isAuth}
             />
+            {/* todo ОБЩИЕ СТИЛИ ДЛЯ КНОПОК И ТД*/}
             <Modal active={active} setActive={setActive}>
-                <div>Вы действительно хотите выйти из системы?</div>
-                <button
-                    className={st.button}
-                    onClick={() => {
-                        dispatch(exit())
-                        navigate('/')
-                        setActive(false)
-                    }
-                    }
-                >Да
-                </button>
-                <button
-                    className={[st.button, st.button_not].join(' ')}
-                    onClick={() => setActive(false)}
-                >Нет
-                </button>
+                <div className={st.text}>Вы действительно хотите выйти из системы?</div>
+                <div className={st.button_wrapper}>
+                    <button
+                        className={st.button}
+                        onClick={() => {
+                            dispatch(exit())
+                            navigate('/')
+                            setActive(false)
+                        }
+                        }
+                    >Да
+                    </button>
+
+                    <button
+                        className={[st.button, st.button_not].join(' ')}
+                        onClick={() => setActive(false)}
+                    >Нет
+                    </button>
+                </div>
+
             </Modal>
         </div>
     )

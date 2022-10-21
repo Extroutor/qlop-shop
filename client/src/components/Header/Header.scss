@@ -133,6 +133,7 @@
   left: -50px;
   //padding: 10px;
   background-color: #fff;
+  width: 120px;
 
   ul {
     list-style: none;
@@ -140,7 +141,8 @@
     margin: 0;
 
     li {
-      font-weight: 300;
+      font-weight: 400;
+      font-size: 12px;
       padding: 15px 15px;
     }
   }
@@ -152,7 +154,7 @@
       display: block;
       ul {
         li:hover {
-          background-color: rgb(240, 250, 231);
+          background-color: rgb(245, 243, 243);
         }
       }
     }

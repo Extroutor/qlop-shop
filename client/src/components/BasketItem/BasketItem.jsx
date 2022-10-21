@@ -1,6 +1,7 @@
 import React from 'react';
 import {AiOutlineClose} from "react-icons/ai";
 import st from './BasketItem.module.scss'
+import style from '../Modal/Modal.module.scss'
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {decrement, increment, deleteProductInBasket} from '../../redux/slices/userSlice'
@@ -51,16 +52,19 @@ const BasketItem = (props) => {
                 />
             </div>
             <Modal active={active} setActive={setActive}>
-                <div>Вы действительно хотите удалить этот товар?</div>
-                <button
-                    className={st.button}
-                    onClick={() => dispatch(deleteProductInBasket(props.item.id))}
-                >Да
-                </button>
-                <button
-                    className={[st.button, st.button_not].join(' ')}
-                    onClick={() => setActive(false)}
-                >Нет</button>
+                <div className={style.text}>Вы действительно хотите удалить этот товар?</div>
+                <div className={style.button_wrapper}>
+                    <button
+                        className={style.button}
+                        onClick={() => dispatch(deleteProductInBasket(props.item.id))}
+                    >Да
+                    </button>
+                    <button
+                        className={[style.button, style.button_not].join(' ')}
+                        onClick={() => setActive(false)}
+                    >Нет
+                    </button>
+                </div>
             </Modal>
         </div>
     )

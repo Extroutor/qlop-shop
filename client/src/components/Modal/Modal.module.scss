@@ -14,6 +14,8 @@
   transition: 0.2s;
   pointer-events: none;
   z-index: 5;
+
+
 }
 
 .modal.active {
@@ -22,14 +24,55 @@
 }
 
 .content {
-  padding: 20px;
+  padding: 30px;
   //border-radius: 20px;
   background-color: #fff;
   width: 50vw;
   transform: scale(0.5);
   transition: 0.2s all;
+
+  .button_wrapper {
+
+    display: flex;
+    justify-content: center;
+    .button {
+      padding: 8px 15px;
+      background-color: #323232;
+      color: white;
+      border: none;
+      cursor: pointer;
+      //width: 50px;
+      font-weight: 500;
+      font-size: 14px;
+      margin-right: 10px;
+      margin-top: 20px;
+      letter-spacing: 1px;
+    }
+
+    .button_not {
+      background-color: #d9d9d9;
+      color: #000000;
+    }
+
+    .button:hover {
+      background-color: #464646;
+    }
+
+    .button_not:hover {
+      background-color: #e3e3e3;
+    }
+  }
+
+  .text {
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    word-spacing: 1px;
+    text-align: center;
+  }
 }
 
 .content.active {
   transform: scale(1);
 }
+

@@ -6,7 +6,7 @@ import {setChosenProduct} from "../../../redux/slices/catalogSlice";
 import {AiFillHeart, AiOutlineHeart} from "react-icons/ai";
 import {addToFav, deleteFromFav} from "../../../redux/slices/userSlice";
 import Modal from "../../Modal/Modal";
-import st from "../../BasketItem/BasketItem.module.scss";
+import st from "../../Modal/Modal.module.scss";
 
 const ProductItem = (props) => {
     const [onFavClicked, setOnFavClicked] = useState(false)
@@ -79,17 +79,21 @@ const ProductItem = (props) => {
                 </div>
             </Link>
             <Modal active={active} setActive={setActive}>
-                <div>Вы не вошли в систему</div>
-                <button
-                    className={st.button}
-                    onClick={() => toAuthPage()}
-                >Войти
-                </button>
-                <button
-                    className={[st.button, st.button_not].join(' ')}
-                    onClick={() => setActive(false)}
-                >Закрыть
-                </button>
+                <div className={st.text}>Вы не вошли в систему</div>
+                <div className={st.button_wrapper}>
+
+                    <button
+                        className={st.button}
+                        onClick={() => toAuthPage()}
+                    >Войти
+                    </button>
+                    <button
+                        className={[st.button, st.button_not].join(' ')}
+                        onClick={() => setActive(false)}
+                    >Закрыть
+                    </button>
+                </div>
+
             </Modal>
         </div>
     )

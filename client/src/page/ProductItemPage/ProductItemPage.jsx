@@ -3,7 +3,7 @@ import './ProductItemPage.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {addToBasket, addToFav} from "../../redux/slices/userSlice";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import st from "../../components/BasketItem/BasketItem.module.scss";
+import st from "../../components/Modal/Modal.module.scss";
 import Modal from "../../components/Modal/Modal";
 
 const ProductItemPage = () => {
@@ -84,17 +84,19 @@ const ProductItemPage = () => {
                 }
             </div>
             <Modal active={active} setActive={setActive}>
-                <div>Вы не вошли в систему</div>
-                <button
-                    className={st.button}
-                    onClick={() => toAuthPage()}
-                >Войти
-                </button>
-                <button
-                    className={[st.button, st.button_not].join(' ')}
-                    onClick={() => setActive(false)}
-                >Закрыть
-                </button>
+                <div className={st.text}>Вы не вошли в систему</div>
+                <div className={st.button_wrapper}>
+                    <button
+                        className={st.button}
+                        onClick={() => toAuthPage()}
+                    >Войти
+                    </button>
+                    <button
+                        className={[st.button, st.button_not].join(' ')}
+                        onClick={() => setActive(false)}
+                    >Закрыть
+                    </button>
+                </div>
             </Modal>
         </div>
     );
