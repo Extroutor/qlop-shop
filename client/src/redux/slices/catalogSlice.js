@@ -118,7 +118,6 @@ export const catalogSlice = createSlice({
                     list.sort((a, b) => a['price'] - b['price'])
                 }
                 state.catalogList = [...list]
-                // console.log('nenrgfjsnavsdkalvf')
             }
         },
     }

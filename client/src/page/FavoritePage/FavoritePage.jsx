@@ -8,6 +8,7 @@ const FavoritePage = () => {
     const favorites = useSelector(state => state.user.favoriteProducts)
     const favoriteProducts = useSelector(state => state.user.favoriteProducts)
     useEffect(() => {
+        document.title = "Избранные | Qlop"
         window.scrollTo(0, 0);
     }, [])
     return (

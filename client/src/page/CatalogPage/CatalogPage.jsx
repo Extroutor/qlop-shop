@@ -6,6 +6,7 @@ import './CatalogPage.scss'
 const CatalogPage = () => {
 
     useEffect(() => {
+        document.title = "Каталог | Qlop"
         window.scrollTo(0, 0);
     }, [])
 

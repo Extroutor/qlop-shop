@@ -7,7 +7,12 @@ import {registration, signIn} from "../../redux/slices/userSlice";
 import {useEffect} from "react";
 
 const AuthPage = () => {
-    console.log('render')
+
+    useEffect(() => {
+        document.title = 'Авторизация | QLOP'
+        window.scrollTo(0, 0);
+    }, [])
+
     const [data, setData] = useState({
         name: '',
         surname: '',
@@ -53,9 +58,10 @@ const AuthPage = () => {
                     <h1 className={st.main_title}>Вход</h1>
                     {err
                         ?
-                        <p style={{color: 'red'}}>Неправильный логин или пароль</p>
+                        <p className={st.wrong__text}>Неправильный логин или пароль</p>
                         :
-                        <p style={{color: 'transparent'}}>Неправильный логин или пароль</p>
+                        <p className={st.wrong__text}
+                           style={{color: "transparent"}}>Неправильный логин или пароль</p>
                     }
                     <div className={st.form}>
                         <input
@@ -76,9 +82,9 @@ const AuthPage = () => {
                             onChange={e => setData({...data, password: e.target.value})}
                         />
                     </div>
-                    <p>Нет аккаунта? <br/><Link
+                    <p className={st.question}>Нет аккаунта? <Link
                         style={{color: '#646C54'}}
-                        to='/registration'>Зарегистрируйтесь</Link></p>
+                        to='/registration'> Зарегистрируйтесь</Link></p>
                     <div className={st.butt}>
                         <button className={st.button} onClick={onAuthClick}>Войти</button>
                     </div>
@@ -86,7 +92,7 @@ const AuthPage = () => {
                 :
                 <div className={st.main_wrapper}>
                     <h1 className={st.main_title}>Регистрация</h1>
-                    <div className={st.form}>
+                    <div className={st.form_reg}>
                         <input
                             className={st.main_input}
                             type='text'
@@ -116,7 +122,7 @@ const AuthPage = () => {
                             onChange={e => setData({...data, password: e.target.value})}
                         />
                     </div>
-                    <p>Есть аккаунт? <Link
+                    <p className={st.question}>Есть аккаунт? <Link
                         style={{color: '#646C54'}}
                         to='/auth'>Войдите</Link></p>
                     <div className={st.butt}>

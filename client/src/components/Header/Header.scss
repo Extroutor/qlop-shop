@@ -84,8 +84,10 @@
       align-items: center;
     }
 
+
     .right_side_auth {
-      width: 110px;
+      width: 90px;
+
       .icon {
         width: 25px;
         height: 25px;
@@ -99,7 +101,26 @@
         color: black;
       }
     }
+
+    .right_side_authh {
+      width: 110px;
+
+      .icon {
+        width: 25px;
+        height: 25px;
+        color: #3f3f3f;
+        @media (max-width: 786px) {
+          display: none;
+        }
+      }
+
+      .icon:hover {
+        color: black;
+      }
+
+    }
   }
+
 }
 
 .burger-wrap {
@@ -152,6 +173,7 @@
   @media (min-width: 786px) {
     .drop {
       display: block;
+
       ul {
         li:hover {
           background-color: rgb(245, 243, 243);
@@ -159,4 +181,9 @@
       }
     }
   }
+}
+
+.basket_wr {
+  display: flex;
+  align-items: center;
 }

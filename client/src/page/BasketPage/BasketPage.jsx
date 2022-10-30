@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import BasketItem from "../../components/BasketItem/BasketItem";
 import './BasketPage.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {deleteAll} from "../../redux/slices/userSlice";
+import {deleteAll, deleteProductInBasket} from "../../redux/slices/userSlice";
 import Modal from "../../components/Modal/Modal";
 import {useEffect} from "react";
+import style from "../../components/Modal/Modal.module.scss";
 
 const BasketPage = () => {
     const [active, setActive] = useState(false);
@@ -13,6 +14,7 @@ const BasketPage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        document.title = "Корзина | Qlop"
         window.scrollTo(0, 0);
     }, [])
 
@@ -29,7 +31,8 @@ const BasketPage = () => {
                     <div className='clear_button'>
                         <button
                             className='clear_button_btn'
-                            onClick={() => dispatch(deleteAll())}
+                            onClick={() => setActive(true)}
+
                         >
                             Очистить корзину
                         </button>
@@ -58,6 +61,24 @@ const BasketPage = () => {
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium consectetur, cupiditate
                 dolore eum ipsum? Blanditiis, deserunt, dolore excepturi harum id illo ipsam nihil nostrum praesentium
                 quia, quis soluta vitae?
+            </Modal>
+            <Modal active={active} setActive={setActive}>
+                <div className={style.text}>Вы действительно хотите удалить этот товар?</div>
+                <div className={style.button_wrapper}>
+                    <button
+                        className={style.button}
+                        onClick={() => {
+                            dispatch(deleteAll())
+                            setActive(false)
+                        }}
+                    >Да
+                    </button>
+                    <button
+                        className={[style.button, style.button_not].join(' ')}
+                        onClick={() => setActive(false)}
+                    >Нет
+                    </button>
+                </div>
             </Modal>
         </div>
     );

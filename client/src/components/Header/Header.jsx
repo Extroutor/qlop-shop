@@ -18,6 +18,7 @@ const Header = () => {
     let categoryList = useSelector(state => state.catalog.categoryList)
     let dispatch = useDispatch()
     const isAuth = useSelector(state => state.user.isAuth)
+    const count = useSelector(state => state.user.basket.length)
     const navigate = useNavigate();
 
     return (
@@ -42,7 +43,7 @@ const Header = () => {
                         })}
                     </ul>
                 </div>
-                <div className='right_side_auth'>
+                <div className={isAuth ? 'right_side_auth' : 'right_side_authh'}>
                     {isAuth
                         ?
                         <div className='right_wrapper auth'>
@@ -69,22 +70,27 @@ const Header = () => {
                                 </ul>
                             </div>
                             </span>
+                            <div className='right_wrapper'>
+                                <Link to='/basket'
+                                      onClick={() => setMenuActive(false)}
+                                >
+                                    <IoBasketOutline className='icon'/>
+                                </Link>
+                                <div> :{count}</div>
 
-                            <Link to='/basket'
-                                  onClick={() => setMenuActive(false)}
-                            >
-                                <IoBasketOutline className='icon'/>
-                            </Link>
+                            </div>
                         </div>
                         :
                         <div className='right_wrapper'>
                             <Link to='/auth'>
-                                <div className='icon'>ВОЙТИ</div>
+                                <div >ВОЙТИ</div>
                             </Link>
                             <Link to='/basket'
                                   onClick={() => setMenuActive(false)}
+                                  className='basket_wr'
                             >
                                 <IoBasketOutline className='icon'/>
+                                <div> :1</div>
                             </Link>
                         </div>
                     }

@@ -1,15 +1,15 @@
 .product_page {
-  width: 95%;
+  width: 80%;
   margin: 50px auto;
   display: flex;
   justify-content: space-between;
-  min-height: 500px;
 
   .left_part {
-    width: 60%;
+    width: 50%;
     height: 70%;
+
     .img_wrap {
-      width: 50%;
+      //width: 50%;
       height: 450px;
       margin: 0 auto;
 
@@ -22,52 +22,64 @@
   }
 
   .right_part {
-    width: 38%;
-    height: 100px;
+    width: 50%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
+    position: relative;
+
 
     .title {
       font-weight: 600;
-      font-size: 20px;
-      padding-top: 100px;
+      font-size: 40px;
     }
-    .price{
+
+    .price {
       font-weight: 400;
       font-size: 20px;
-      padding: 50px 0 20px;
+      padding: 10px 0 20px;
+      color: #505050;
     }
 
 
     .button {
-      padding: 13px 20px;
-      background-color: #323232;
-      color: white;
-      border: none;
+      padding: 10px 20px;
+      background-color: #ffffff;
+      color: #323232;
+      border: 1px solid #323232;
       cursor: pointer;
       min-width: 120px;
-      font-weight: 300;
+      font-weight: 400;
       margin-bottom: 20px;
       transition: 0.1s linear;
       text-transform: uppercase;
       word-spacing: 1px;
-
     }
 
     .button:hover {
-      transition: 0.1s linear;
-      background-color: #464646;
+      font-weight: 500;
+    }
+
+    .button_basket {
+      padding: 10px 16px;
+      text-transform: none;
+      font-size: 12px;
+      border: 1px solid grey;
     }
 
     .button_clicked {
       transition: 0.1s linear;
-      background-color: #646C54;;
-      //cursor: default;
+      background-color: #323232;
+      color: white;
+      cursor: default;
     }
     .button_clicked:hover {
-      transition: 0.1s linear;
-      background-color: #6e775c;;
+      font-weight: 400;
+    }
+
+    .button_basket:hover {
+      font-weight: 400;
+      transform: scale(1.05);
     }
 
     .fav {
@@ -78,12 +90,14 @@
       transition: 0.1s linear;
 
     }
-    .fav:hover{
+
+    .fav:hover {
       background-color: rgba(243, 243, 243, 0.58);
       //border: 1px solid white;
       transition: 0.1s linear;
 
     }
+
     .clicked {
       background-color: rgba(238, 237, 237, 0.58);
       //border: 1px solid white;
@@ -91,4 +105,43 @@
 
     }
   }
+}
+
+.big_heart {
+  display: flex;
+  justify-content: flex-end;
+
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  margin-top: 10px;
+
+  .big_her {
+    display: flex;
+    justify-content: flex-end;
+    transition: .1s linear;
+    color: #646C54;
+    transform: scale(1.5);
+    text-align: right;
+  }
+
+  .big_her:hover {
+    transition: .1s linear;
+    transform: scale(2);
+  }
+}
+
+.button_wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  //margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+
+  text-align: left;
+
+  justify-content: flex-end;
+  cursor: pointer;
+  width: 100%;
 }
