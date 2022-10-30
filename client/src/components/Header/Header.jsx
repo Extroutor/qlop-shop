@@ -90,7 +90,7 @@ const Header = () => {
                                   className='basket_wr'
                             >
                                 <IoBasketOutline className='icon'/>
-                                <div> :1</div>
+                                <div> :{count}</div>
                             </Link>
                         </div>
                     }

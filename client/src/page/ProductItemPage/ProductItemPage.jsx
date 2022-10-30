@@ -14,11 +14,15 @@ const ProductItemPage = () => {
     const chosenProduct = productObj.find(item => item.id === param)
     const dispatch = useDispatch()
     const [active, setActive] = useState(false);
+
     const [isClicked, setIsClicked] = useState(false)
+    const [size, setSize] = useState('')
+
     const isAuth = useSelector(state => state.user.isAuth)
     const navigate = useNavigate();
     const [onFavClicked, setOnFavClicked] = useState(false)
 
+    let sizes = chosenProduct.sizes
 
     useEffect(() => {
         document.title = chosenProduct.name + ' | QLOP'
@@ -26,8 +30,17 @@ const ProductItemPage = () => {
     }, [])
 
     const onClickedButton = () => {
-        dispatch(addToBasket(chosenProduct))
-        setIsClicked(true)
+        if (sizes.length > 0) {
+            if (!size){
+                setActive(true)
+            } else {
+                dispatch(addToBasket(chosenProduct))
+                setIsClicked(true)
+            }
+        } else {
+            dispatch(addToBasket(chosenProduct))
+            setIsClicked(true)
+        }
     }
     const toAuthPage = () => {
         navigate('/auth')
@@ -84,6 +97,12 @@ const ProductItemPage = () => {
                 }
                 <div className='title'>{chosenProduct.name}</div>
                 <div className='price'>{chosenProduct.price} ₽</div>
+                <div className='size_wrapper'>
+                    {sizes.map(item =>
+                        <div key={item.id} className={size === item.id ? 'size_item active' : 'size_item'}
+                             onClick={() => setSize(item.id)}>{item.name}</div>
+                    )}
+                </div>
                 <div className='button_wrap'>
                     {isClicked
                         ?
@@ -122,6 +141,16 @@ const ProductItemPage = () => {
                         className={[st.button, st.button_not].join(' ')}
                         onClick={() => setActive(false)}
                     >Закрыть
+                    </button>
+                </div>
+            </Modal>
+            <Modal active={active} setActive={setActive}>
+                <div className={st.text}>Выберите размер, чтобы добавить в корзину</div>
+                <div className={st.button_wrapper}>
+                    <button
+                        className={[st.button, st.button_not].join(' ')}
+                        onClick={() => setActive(false)}
+                    >Ок
                     </button>
                 </div>
             </Modal>
