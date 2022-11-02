@@ -3,7 +3,7 @@ import style from './FavoriteItem.module.scss';
 import {Link} from "react-router-dom";
 import {setChosenProduct} from "../../redux/slices/catalogSlice";
 import {AiOutlineClose} from "react-icons/ai";
-import {deleteFromFav} from "../../redux/slices/userSlice";
+import {deleteFromFav, deleteProductInBasket} from "../../redux/slices/userSlice";
 import {useDispatch} from "react-redux";
 import Modal from "../Modal/Modal";
 import {useState} from "react";
@@ -49,17 +49,19 @@ const FavoriteItem = (props) => {
                 </div>
             </Link>
             <Modal active={active} setActive={setActive}>
-                <div>Вы действительно хотите удалить этот товар?</div>
-                <button
-                    className={style.button}
-                    onClick={(e) => onClick(e)}
-                >Да
-                </button>
-                <button
-                    className={[style.button, style.button_not].join(' ')}
-                    onClick={() => setActive(false)}
-                >Нет
-                </button>
+                <div className={style.text}>Вы действительно хотите удалить этот товар?</div>
+                <div className={style.button_wrapper}>
+                    <button
+                        className={style.button}
+                        onClick={(e) => onClick(e)}
+                    >Да
+                    </button>
+                    <button
+                        className={[style.button, style.button_not].join(' ')}
+                        onClick={() => setActive(false)}
+                    >Нет
+                    </button>
+                </div>
             </Modal>
         </div>
     );

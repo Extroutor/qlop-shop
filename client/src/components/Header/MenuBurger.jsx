@@ -2,12 +2,14 @@ import React from 'react';
 import './MenuBurger.scss'
 import {Link} from "react-router-dom";
 import {changeCategory} from "../../redux/slices/catalogSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {IoBasketOutline} from "react-icons/io5";
 import {CgProfile} from "react-icons/cg";
 
 const MenuBurger = (props) => {
     const dispatch = useDispatch()
+    const count = useSelector(state => state.user.basket.length)
+
     return (
         <div className={props.menuActive ? 'menuu active_menu' : 'menuu'}
              onClick={() => props.setMenuActive(false)}
@@ -64,6 +66,7 @@ const MenuBurger = (props) => {
                             >
                                 <IoBasketOutline className='icon'/>
                             </Link>
+                            <div> :{count}</div>
                         </div>
                         :
                         <div className='right_wrapper_bottom'>
@@ -77,8 +80,10 @@ const MenuBurger = (props) => {
                                   onClick={() => {
                                       props.setMenuActive(!props.menuActive)
                                   }}
+                                  className='count_burger'
                             >
                                 <IoBasketOutline className='icon'/>
+                                <div> :{count}</div>
                             </Link>
                         </div>
                     }

@@ -194,7 +194,7 @@ const initialState = {
             article: 10002811,
             price: 20993,
             sizes: [{id: 1, name: '35'}, {id: 2, name: '36'}, {id: 3, name: '37'}, {id: 4, name: '38'}, {id: 5, name: '39'}, {id: 6, name: '40'}, {id: 7, name: '41'}],
-            img: ''
+            img: 'https://cdn.ekonika.ru/upload/iblock/637/US6310_22_black_21Z_2.jpg'
         },
         {
             id: 13,

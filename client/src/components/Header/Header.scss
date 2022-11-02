@@ -183,6 +183,15 @@
   }
 }
 
+@media (max-width: 786px) {
+  .count {
+    display: none;
+  }
+  .login {
+    display: none;
+  }
+}
+
 .basket_wr {
   display: flex;
   align-items: center;

@@ -81,7 +81,6 @@ const ProductItem = (props) => {
             <Modal active={active} setActive={setActive}>
                 <div className={st.text}>Вы не вошли в систему</div>
                 <div className={st.button_wrapper}>
-
                     <button
                         className={st.button}
                         onClick={() => toAuthPage()}
@@ -93,7 +92,6 @@ const ProductItem = (props) => {
                     >Закрыть
                     </button>
                 </div>
-
             </Modal>
         </div>
     )

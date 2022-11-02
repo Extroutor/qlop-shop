@@ -9,8 +9,8 @@
     height: 70%;
 
     .img_wrap {
-      width: 50%;
-      height: 450px;
+      width: 80%;
+      height: 50%;
       margin: 0 auto;
 
       img {
@@ -31,7 +31,8 @@
 
     .title {
       font-weight: 600;
-      font-size: 40px;
+      //font-size: 40px;
+      font-size: 3vw;
     }
 
     .price {
@@ -149,7 +150,7 @@
 .size_wrapper{
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  margin-top: 0px;
 }
 
 .size_item {
@@ -186,4 +187,36 @@
 
 .desct_item{
   margin-bottom: 20px;
+}
+
+@media (max-width: 426px) {
+  .product_page {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    .left_part {
+      width: 100%;
+
+      .img_wrap {
+        width: 100%;
+        height: 90%;
+      }
+    }
+
+    .right_part{
+      width: 100%;
+      //height: 260px;
+
+      .title{
+        font-size: 6vw;
+      }
+      .size_wrapper{
+        margin-bottom: 100px;
+      }
+    }
+  }
+
 }

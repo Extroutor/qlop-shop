@@ -36,9 +36,6 @@ const BasketItem = (props) => {
                         <p>{props.item.name}</p>
                     </div>
                 </Link>
-                <div className={st.basket_item_title}>
-                    <p>j{props.item.size}</p>
-                </div>
             </div>
             <div className={st.group2}>
                 <div>{props.item.price} ₽</div>

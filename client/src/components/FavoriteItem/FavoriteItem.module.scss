@@ -66,17 +66,17 @@
     }
   }
 
-  .button {
-    padding: 6px 10px;
-    background-color: #323232;
-    color: white;
-    border: none;
-    cursor: pointer;
-    width: 50px;
-    font-weight: 300;
-    margin-right: 10px;
-    margin-top: 20px;
-  }
+  //.button {
+  //  padding: 6px 10px;
+  //  background-color: #323232;
+  //  color: white;
+  //  border: none;
+  //  cursor: pointer;
+  //  width: 50px;
+  //  font-weight: 300;
+  //  margin-right: 10px;
+  //  margin-top: 20px;
+  //}
 
   .button_not {
     background-color: #9f1515;
@@ -88,6 +88,45 @@
 
   .button_not:hover {
     background-color: #d52121;
+  }
+}
+
+.text {
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  word-spacing: 1px;
+  text-align: center;
+}
+
+.button_wrapper{
+  display: flex;
+  justify-content: center;
+  .button {
+    padding: 8px 15px;
+    background-color: #323232;
+    color: white;
+    border: none;
+    cursor: pointer;
+    //width: 50px;
+    font-weight: 500;
+    font-size: 14px;
+    margin-right: 10px;
+    margin-top: 20px;
+    letter-spacing: 1px;
+  }
+
+  .button_not {
+    background-color: #d9d9d9;
+    color: #000000;
+  }
+
+  .button:hover {
+    background-color: #464646;
+  }
+
+  .button_not:hover {
+    background-color: #e3e3e3;
   }
 }
 

@@ -76,21 +76,20 @@ const Header = () => {
                                 >
                                     <IoBasketOutline className='icon'/>
                                 </Link>
-                                <div> :{count}</div>
-
+                                <div className='count'> :{count}</div>
                             </div>
                         </div>
                         :
                         <div className='right_wrapper'>
                             <Link to='/auth'>
-                                <div >ВОЙТИ</div>
+                                <div className='login'>ВОЙТИ</div>
                             </Link>
                             <Link to='/basket'
                                   onClick={() => setMenuActive(false)}
                                   className='basket_wr'
                             >
                                 <IoBasketOutline className='icon'/>
-                                <div> :{count}</div>
+                                <div className='count'> :{count}</div>
                             </Link>
                         </div>
                     }
