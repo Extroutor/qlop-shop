@@ -62,6 +62,13 @@
     color: #3f3f3f;
     padding-top: 10px;
     text-transform: uppercase;
+
+    .product_name{
+      width: 75%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 }
 
