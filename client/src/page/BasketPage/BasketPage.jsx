@@ -57,11 +57,11 @@ const BasketPage = () => {
                     </div>
                 </div>
             }
-            <Modal active={active} setActive={setActive}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium consectetur, cupiditate
-                dolore eum ipsum? Blanditiis, deserunt, dolore excepturi harum id illo ipsam nihil nostrum praesentium
-                quia, quis soluta vitae?
-            </Modal>
+            {/*<Modal active={active} setActive={setActive}>*/}
+            {/*    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium consectetur, cupiditate*/}
+            {/*    dolore eum ipsum? Blanditiis, deserunt, dolore excepturi harum id illo ipsam nihil nostrum praesentium*/}
+            {/*    quia, quis soluta vitae?*/}
+            {/*</Modal>*/}
             <Modal active={active} setActive={setActive}>
                 <div className={style.text}>Вы действительно хотите удалить этот товар?</div>
                 <div className={style.button_wrapper}>

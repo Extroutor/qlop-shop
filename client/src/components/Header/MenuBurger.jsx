@@ -63,10 +63,11 @@ const MenuBurger = (props) => {
                                   onClick={() => {
                                       props.setMenuActive(!props.menuActive)
                                   }}
+                                  className='count_burger'
                             >
                                 <IoBasketOutline className='icon'/>
+                                <div> :{count}</div>
                             </Link>
-                            <div> :{count}</div>
                         </div>
                         :
                         <div className='right_wrapper_bottom'>
