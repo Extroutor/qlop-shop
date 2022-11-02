@@ -44,7 +44,7 @@ const FavoriteItem = (props) => {
                     </div>
                 </div>
                 <div className={style.product_info}>
-                    <div>{props.item.name}</div>
+                    <div className={style.product_name}>{props.item.name}</div>
                     <div>{props.item.price} ₽</div>
                 </div>
             </Link>
