@@ -31,7 +31,7 @@ const ProductItemPage = () => {
 
     const onClickedButton = () => {
         if (sizes.length > 0) {
-            if (!size){
+            if (!size) {
                 setActive(true)
             } else {
                 dispatch(addToBasket(chosenProduct))
@@ -56,79 +56,92 @@ const ProductItemPage = () => {
     }
 
     return (
-        <div className='product_page'>
-            <div className='left_part'>
-                <div className='img_wrap'>
-                    <img alt={chosenProduct.name}
-                         src={chosenProduct.img}/>
-                </div>
-            </div>
-            <div className='right_part'>
-                {onFavClicked
-                    ?
-                    <div className='big_heart'>
-                        <AiFillHeart
-                            className='big_her'
-                            onClick={(e) => onClickedFavButton(e)}
-                        />
+        <div>
+            <div className='product_page'>
+                <div className='left_part'>
+                    <div className='img_wrap'>
+                        <img alt={chosenProduct.name}
+                             src={chosenProduct.img}/>
                     </div>
-                    :
-                    isAuth
-                        ?
-                        <div className='big_heart'>
-                            <AiOutlineHeart
-                                className='big_her'
-                                onClick={(e) => {
-                                    onClickedFavButton(e)
-                                }}
-                            />
-                        </div>
-                        :
-                        <div className='big_heart'>
-                            <AiOutlineHeart
-                                className='big_her'
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    e.preventDefault();
-                                    setActive(true)
-                                }}
-                            />
-                        </div>
-                }
-                <div className='title'>{chosenProduct.name}</div>
-                <div className='price'>{chosenProduct.price} ₽</div>
-                <div className='size_wrapper'>
-                    {sizes.map(item =>
-                        <div key={item.id} className={size === item.id ? 'size_item active' : 'size_item'}
-                             onClick={() => setSize(item.id)}>{item.name}</div>
-                    )}
                 </div>
-                <div className='button_wrap'>
-                    {isClicked
+                <div className='right_part'>
+                    {onFavClicked
                         ?
-                        <button className='button button_clicked'>
-                            В корзине
-                        </button>
+                        <div className='big_heart'>
+                            <AiFillHeart
+                                className='big_her'
+                                onClick={(e) => onClickedFavButton(e)}
+                            />
+                        </div>
                         :
-                        <button
-                            className='button'
-                            onClick={onClickedButton}
-                        >
-                            В корзину
-                        </button>
+                        isAuth
+                            ?
+                            <div className='big_heart'>
+                                <AiOutlineHeart
+                                    className='big_her'
+                                    onClick={(e) => {
+                                        onClickedFavButton(e)
+                                    }}
+                                />
+                            </div>
+                            :
+                            <div className='big_heart'>
+                                <AiOutlineHeart
+                                    className='big_her'
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        e.preventDefault();
+                                        setActive(true)
+                                    }}
+                                />
+                            </div>
                     }
-                    {isClicked
-                        ?
-                        <Link to='/basket'>
-                            <button className='button button_basket'>
-                                Оформить заказ
+                    <div className='title'>{chosenProduct.name}</div>
+                    <div className='price'>{chosenProduct.price} ₽</div>
+                    <div className='size_wrapper'>
+                        {sizes.map(item =>
+                            <div key={item.id} className={size === item.id ? 'size_item active' : 'size_item'}
+                                 onClick={() => setSize(item.id)}>{item.name}</div>
+                        )}
+                    </div>
+                    <div className='button_wrap'>
+                        {isClicked
+                            ?
+                            <button className='button button_clicked'>
+                                В корзине
                             </button>
-                        </Link>
-                        :
-                        <></>
-                    }
+                            :
+                            <button
+                                className='button'
+                                onClick={onClickedButton}
+                            >
+                                В корзину
+                            </button>
+                        }
+                        {isClicked
+                            ?
+                            <Link to='/basket'>
+                                <button className='button button_basket'>
+                                    Оформить заказ
+                                </button>
+                            </Link>
+                            :
+                            <></>
+                        }
+                    </div>
                 </div>
             </div>
+            <div className='description'>
+                <div className='desct_item'>
+                    <div className='desct_title'>Описание:</div>
+                    <div className='descr_text'>{chosenProduct.description}</div>
+                </div>
+                <div className='desct_item'>
+                    <div className='desct_title'>Артикул:</div>
+                    <div className='descr_text'>{chosenProduct.article}</div>
+                </div>
+            </div>
+
             <Modal active={active} setActive={setActive}>
                 <div className={st.text}>Вы не вошли в систему</div>
                 <div className={st.button_wrapper}>
