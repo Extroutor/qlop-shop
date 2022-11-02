@@ -1,6 +1,6 @@
 .product_page {
   width: 80%;
-  margin: 50px auto;
+  margin: 20px auto;
   display: flex;
   justify-content: space-between;
 
@@ -150,7 +150,7 @@
 .size_wrapper{
   display: flex;
   justify-content: space-between;
-  margin-top: 0px;
+  margin-top: 20px;
 }
 
 .size_item {
@@ -212,6 +212,7 @@
 
       .title{
         font-size: 6vw;
+        margin-bottom: 30px;
       }
       .size_wrapper{
         margin-bottom: 100px;
