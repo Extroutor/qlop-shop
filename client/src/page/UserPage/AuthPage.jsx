@@ -7,12 +7,6 @@ import {registration, signIn} from "../../redux/slices/userSlice";
 import {useEffect} from "react";
 
 const AuthPage = () => {
-
-    useEffect(() => {
-        document.title = 'Авторизация | QLOP'
-        window.scrollTo(0, 0);
-    }, [])
-
     const [data, setData] = useState({
         name: '',
         surname: '',
@@ -27,6 +21,12 @@ const AuthPage = () => {
     const isLogIn = location.pathname === '/auth'
     const isAuth = useSelector(state => state.user.isAuth)
     const [err, setErr] = useState(false)
+
+    useEffect(() => {
+        document.title = 'Авторизация | QLOP'
+        window.scrollTo(0, 0);
+    }, [])
+
 
     useEffect(() => {
         window.scrollTo(0, 0);
