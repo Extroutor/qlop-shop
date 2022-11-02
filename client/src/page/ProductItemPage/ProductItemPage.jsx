@@ -14,6 +14,8 @@ const ProductItemPage = () => {
     const chosenProduct = productObj.find(item => item.id === param)
     const dispatch = useDispatch()
     const [active, setActive] = useState(false);
+    const [activeFav, setActiveFav] = useState(false);
+
 
     const [isClicked, setIsClicked] = useState(false)
     const [size, setSize] = useState('')
@@ -91,19 +93,25 @@ const ProductItemPage = () => {
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         e.preventDefault();
-                                        setActive(true)
+                                        setActiveFav(true)
                                     }}
                                 />
                             </div>
                     }
                     <div className='title'>{chosenProduct.name}</div>
                     <div className='price'>{chosenProduct.price} ₽</div>
-                    <div className='size_wrapper'>
-                        {sizes.map(item =>
-                            <div key={item.id} className={size === item.id ? 'size_item active' : 'size_item'}
-                                 onClick={() => setSize(item.id)}>{item.name}</div>
-                        )}
-                    </div>
+                    {sizes.length > 0
+                        ?
+                        <div className='size_wrapper'>
+                            {sizes.map(item =>
+                                <div key={item.id} className={size === item.id ? 'size_item active' : 'size_item'}
+                                     onClick={() => setSize(item.id)}>{item.name}</div>
+                            )}
+                        </div>
+                        :
+                        <></>
+                    }
+
                     <div className='button_wrap'>
                         {isClicked
                             ?
@@ -129,20 +137,19 @@ const ProductItemPage = () => {
                             <></>
                         }
                     </div>
+                    <div className='description'>
+                        <div className='desct_item'>
+                            <div className='desct_title'>Описание:</div>
+                            <div className='descr_text'>{chosenProduct.description}</div>
+                        </div>
+                        <div className='desct_item'>
+                            <div className='desct_title'>Артикул:</div>
+                            <div className='descr_text'>{chosenProduct.article}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div className='description'>
-                <div className='desct_item'>
-                    <div className='desct_title'>Описание:</div>
-                    <div className='descr_text'>{chosenProduct.description}</div>
-                </div>
-                <div className='desct_item'>
-                    <div className='desct_title'>Артикул:</div>
-                    <div className='descr_text'>{chosenProduct.article}</div>
-                </div>
-            </div>
-
-            <Modal active={active} setActive={setActive}>
+            <Modal active={activeFav} setActive={setActiveFav}>
                 <div className={st.text}>Вы не вошли в систему</div>
                 <div className={st.button_wrapper}>
                     <button

@@ -37,24 +37,24 @@
 
     .price {
       font-weight: 400;
-      font-size: 20px;
-      padding: 10px 0 20px;
+      font-size: 26px;
+      padding: 5px 0 30px;
       color: #505050;
     }
 
 
     .button {
       padding: 10px 20px;
-      background-color: #ffffff;
+      background-color: #fff;
       color: #323232;
       border: 1px solid #323232;
       cursor: pointer;
-      min-width: 120px;
       font-weight: 400;
       margin-bottom: 20px;
       transition: 0.1s linear;
       text-transform: uppercase;
       word-spacing: 1px;
+      font-size: 0.7em
     }
 
     .button:hover {
@@ -62,9 +62,8 @@
     }
 
     .button_basket {
-      padding: 10px 16px;
+      padding: 10px 20px;
       text-transform: none;
-      font-size: 12px;
       border: 1px solid grey;
     }
 
@@ -133,24 +132,22 @@
 }
 
 .button_wrap {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  //margin-top: 200px;
+  //position: absolute;
+  //bottom: 0;
+  //left: 0;
   display: flex;
-  flex-direction: column;
-
   text-align: left;
-
-  justify-content: flex-end;
   cursor: pointer;
-  width: 100%;
+  width: 50%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .size_wrapper{
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 .size_item {
@@ -166,9 +163,9 @@
 }
 
 .description {
-  width: 80%;
+  width: 100%;
   display: flex;
-  margin: 0 auto;
+  margin: 20px auto 0;
   flex-direction: column; 
 }
 
@@ -212,10 +209,17 @@
 
       .title{
         font-size: 6vw;
-        margin-bottom: 30px;
+        margin-bottom: 0px;
       }
       .size_wrapper{
-        margin-bottom: 100px;
+        //margin-bottom: 100px;
+        margin-top: 0;
+      }
+      .button_wrap{
+        width: 100%;
+      }
+      .price{
+        padding-bottom: 30px;
       }
     }
   }
