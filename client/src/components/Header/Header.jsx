@@ -56,7 +56,7 @@ const Header = () => {
                                     <Link to='/'>
                                         <li>Профиль</li>
                                     </Link>
-                                    <Link to='/'>
+                                    <Link to='/order'>
                                         <li>Мои заказы</li>
                                     </Link>
                                     <Link to='/favorite'>

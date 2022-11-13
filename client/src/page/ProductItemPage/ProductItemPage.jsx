@@ -36,7 +36,7 @@ const ProductItemPage = () => {
             if (!size) {
                 setActive(true)
             } else {
-                dispatch(addToBasket(chosenProduct))
+                dispatch(addToBasket({...chosenProduct, size}))
                 setIsClicked(true)
             }
         } else {
@@ -104,8 +104,8 @@ const ProductItemPage = () => {
                         ?
                         <div className='size_wrapper'>
                             {sizes.map(item =>
-                                <div key={item.id} className={size === item.id ? 'size_item active' : 'size_item'}
-                                     onClick={() => setSize(item.id)}>{item.name}</div>
+                                <div key={item.id} className={size === item.name ? 'size_item active' : 'size_item'}
+                                     onClick={() => setSize(item.name)}>{item.name}</div>
                             )}
                         </div>
                         :

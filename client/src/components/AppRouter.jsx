@@ -8,6 +8,8 @@ import NotFoundPage from "../page/NotFoundPage/NotFoundPage";
 import BasketPage from "../page/BasketPage/BasketPage";
 import AuthPage from "../page/UserPage/AuthPage";
 import ContactPage from "../page/ContactPage/ContactPage";
+import AboutPage from "../page/AboutPage/AboutPage";
+import OrderPage from "../page/OrderPage/OrderPage";
 
 const AppRouter = () => {
     return (
@@ -20,6 +22,8 @@ const AppRouter = () => {
                 <Route path='/registration' element={<AuthPage />}/>
                 <Route path='/contact' element={<ContactPage />}/>
                 <Route path='/basket' element={<BasketPage/>}/>
+                <Route path='/about' element={<AboutPage/>}/>
+                <Route path='/order' element={<OrderPage/>}/>
                 <Route path='/category/:id' element={<CatalogPage/>}/>
                 <Route path='/product/:id' element={<ProductItemPage/>}/>
                 <Route path='/*' element={<NotFoundPage/>}/>

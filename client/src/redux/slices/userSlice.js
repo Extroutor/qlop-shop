@@ -7,8 +7,11 @@ const initialState = {
     isAuth: false,
     data: {
         email: 'mail@mail.ru',
-        password: 'qwerty'
-    }
+        password: 'qwerty',
+        name: 'Leila',
+        surname: 'Ahmedova'
+    },
+    orderData: {}
 }
 
 const calcTotalPrice = (basket) => {
@@ -93,6 +96,10 @@ export const userSlice = createSlice({
             },
             exit: (state, action) => {
                 state.isAuth = false
+            },
+            order: (state, action) => {
+                state.orderData = action.payload.orderData
+                state.basket = []
             }
         }
     }
@@ -108,7 +115,8 @@ export const {
     deleteFromFav,
     registration,
     signIn,
-    exit
+    exit,
+    order
 } = userSlice.actions
 
 export default userSlice.reducer

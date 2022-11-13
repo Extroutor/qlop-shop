@@ -34,20 +34,19 @@ const AuthPage = () => {
             setErr(false)
             navigate('/catalog')
         }
-    }, [err])
+    }, [isAuth, err])
 
     const onAuthClick = () => {
-        console.log('on func')
         if (isLogIn) {
             dispatch(signIn(data))
         } else {
             dispatch(registration(data))
         }
-        if (isAuth) {
-            setErr(false)
-        } else {
-            setErr(true)
-        }
+        setTimeout(() => {
+            if (!isAuth)
+                setErr(true)
+        }, 100)
+
     }
 
     return (
