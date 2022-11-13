@@ -17,7 +17,9 @@
     align-items: center;
     justify-content: center;
     color: #323232;
-
+    @media (max-width: 324px) {
+      font-size: 14px;
+    }
     .select {
       font-family: 'Montserrat', sans-serif;
       border: 1px solid grey;

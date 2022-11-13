@@ -25,12 +25,15 @@
 }
 
 .content_wrap {
-  width: 60%;
+  width: 80%;
   margin: 30px auto 0;
 
 
   .content {
     font-weight: 300;
+    @media (max-width: 426px) {
+      font-size: 14px;
+    }
 
   }
 

@@ -21,6 +21,12 @@
 .sec_text {
   font-weight: 300;
 }
+@media (max-width: 426px) {
+  .sec_text {
+    font-size: 22px;
+    text-align: center;
+  }
+}
 
 .butt-div{
   display: flex;
@@ -39,7 +45,12 @@
   word-spacing: 3px;
   cursor: pointer;
   color: #646C54;
+}
 
+@media (max-width: 426px) {
+  .butt-div button {
+    width: 70%;
+  }
 }
 
 .butt-div button:hover{

@@ -31,7 +31,10 @@
   width: 60vw;
   transform: scale(0.5);
   transition: 0.2s all;
-
+  @media (max-width: 426px) {
+    padding: 20px;
+    width: 100vw;
+  }
   .button_wrapper {
 
     display: flex;

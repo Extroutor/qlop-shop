@@ -31,6 +31,10 @@
         @media (max-width: 786px) {
           display: none;
         }
+        @media (min-width: 1440px) {
+          width: 70%;
+          margin-left: 50px;
+        }
 
         li {
           border-bottom: 1.5px solid white;

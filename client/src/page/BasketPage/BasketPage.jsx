@@ -111,9 +111,9 @@ const BasketPage = () => {
                     </>
                 </Modal>
                 :
-                <OrderModal active={orderActive} setActive={setOrderActive}>
-                    {isOrdered
-                        ?
+                isOrdered
+                    ?
+                    <Modal active={orderActive} setActive={setOrderActive}>
                         <div className='done_wrap'>
                             <div className='done_img_wrap'>
                                 <img src={done}/>
@@ -127,20 +127,28 @@ const BasketPage = () => {
                                 </button>
                             </div>
                         </div>
-                        :
+                    </Modal>
+                    :
+                    <OrderModal active={orderActive} setActive={setOrderActive}>
                         <div className='order_wrap'>
                             <div className='order_title'>Оформление зaказа</div>
                             <div className='order_content_wrap'>
                                 <div className='order_list'>
                                     {basket.map(item =>
                                         <div key={item.id} className='order_item'>
-                                            <div className='order_img_wrap'>
-                                                <img src={item.img} className='order_img' alt={item.name}/>
+                                            <div className='g1'>
+                                                <div className='order_img_wrap'>
+                                                    <img src={item.img} className='order_img' alt={item.name}/>
+                                                </div>
+                                                <div className='order_item_name'>{item.name}</div>
                                             </div>
-                                            <div className='order_item_name'>{item.name}</div>
-                                            <div className='order_item_count'>{item.size}</div>
-                                            <div className='order_item_count'>{item.count} шт.</div>
-                                            <div className='order_item_price'>{item.price} ₽ / {item.totalPrice} ₽</div>
+                                            <div className='g2'>
+                                                <div className='order_item_size'>{item.size}</div>
+                                                <div className='order_item_count'>{item.count} шт.</div>
+                                                <div className='order_item_price'>{item.price} ₽ / {item.totalPrice} ₽
+                                                </div>
+                                            </div>
+
                                         </div>
                                     )}
                                 </div>
@@ -212,8 +220,7 @@ const BasketPage = () => {
                                 </div>
                             </div>
                         </div>
-                    }
-                </OrderModal>
+                    </OrderModal>
             }
             <Modal active={deleteActive} setActive={setDeleteActive}>
                 <div className={style.text}>Вы действительно хотите удалить этот товар?</div>

@@ -10,6 +10,10 @@
     width: 60%;
     margin: 0 auto;
 
+    @media (max-width: 769px) {
+      width: 80%;
+    }
+
     .main_title {
       display: flex;
       justify-content: center;
@@ -37,10 +41,16 @@
   display: flex;
   justify-content: center;
   margin-top: -3px;
+  @media (max-width: 546px) {
+    font-size: 24px;
+  }
 }
 
 .info {
   width: 70%;
+  @media (max-width: 546px) {
+    font-size: 12px;
+  }
 
   .address{
     font-weight: 600;

@@ -32,6 +32,11 @@
   transform: scale(0.5);
   transition: 0.2s all;
 
+  @media (max-width: 426px) {
+    padding: 20px;
+    width: 100vw;
+  }
+
   .button_wrapper {
 
     display: flex;
@@ -48,6 +53,12 @@
       margin-right: 10px;
       margin-top: 20px;
       letter-spacing: 1px;
+      @media (max-width: 426px) {
+        font-size: 12px;
+      }
+      @media (max-width: 321px) {
+        font-size: 10px;
+      }
     }
 
     .button_not {
@@ -70,6 +81,9 @@
     letter-spacing: 1px;
     word-spacing: 1px;
     text-align: center;
+    @media (max-width: 426px) {
+      font-size: 12px;
+    }
   }
 }
 

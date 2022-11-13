@@ -5,7 +5,7 @@ const initialState = {
     basket: [],
     orders: [],
     totalPrice: 0,
-    isAuth: true,
+    isAuth: false,
     data: {
         email: 'mail@mail.ru',
         password: 'qwerty',
