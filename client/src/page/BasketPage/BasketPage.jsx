@@ -37,12 +37,19 @@ const BasketPage = () => {
         if (!address || !phone) {
             setErr(true)
         } else {
-            let date = new Date();
-            let orderData = {...basket, address, userData, date}
-            dispatch(order(orderData))
+            let d = new Date()
+            let date = d.toUTCString();
+            let orderData = {
+                items: [...basket],
+                address,
+                userData,
+                totalPrice,
+                date
+            }
+            let jsnOrd = JSON.stringify(orderData)
+            dispatch(order(jsnOrd))
             setErr(false)
             setIsOrdered(true)
-            console.log(date)
         }
     }
     return (
@@ -112,6 +119,13 @@ const BasketPage = () => {
                                 <img src={done}/>
                             </div>
                             <div className='done_text'>Заказ успешно оформлен</div>
+                            <div className='order_btns_wrap'>
+                                <button
+                                    className='order_button order_button_not'
+                                    onClick={() => setOrderActive(false)}
+                                >Закрыть
+                                </button>
+                            </div>
                         </div>
                         :
                         <div className='order_wrap'>
@@ -182,7 +196,7 @@ const BasketPage = () => {
                                         }}/>
                                 </div>
                                 <div>
-                                    <div style={err? {color: 'red'} : {opacity: '0'}}>Заполните форму</div>
+                                    <div style={err ? {color: 'red'} : {opacity: '0'}}>Заполните форму</div>
                                 </div>
                                 <div className='order_btns_wrap'>
                                     <button

@@ -3,8 +3,9 @@ import {createSlice} from '@reduxjs/toolkit'
 const initialState = {
     favoriteProducts: [],
     basket: [],
+    orders: [],
     totalPrice: 0,
-    isAuth: false,
+    isAuth: true,
     data: {
         email: 'mail@mail.ru',
         password: 'qwerty',
@@ -98,7 +99,8 @@ export const userSlice = createSlice({
                 state.isAuth = false
             },
             order: (state, action) => {
-                state.orderData = action.payload.orderData
+                let jsn = JSON.parse(action.payload)
+                state.orders.push({...jsn, id: state.orders.length + 1})
                 state.basket = []
             }
         }
