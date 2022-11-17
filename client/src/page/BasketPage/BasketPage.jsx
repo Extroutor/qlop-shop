@@ -6,7 +6,7 @@ import {deleteAll, order} from "../../redux/slices/userSlice";
 import Modal from "../../components/Modal/Modal";
 import {useEffect} from "react";
 import style from "../../components/Modal/Modal.module.scss";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import OrderModal from "../../components/Modal/OrderModal/OrderModal";
 import done from './../../assets/done.svg'
 
@@ -122,9 +122,18 @@ const BasketPage = () => {
                             <div className='order_btns_wrap'>
                                 <button
                                     className='order_button order_button_not'
-                                    onClick={() => setOrderActive(false)}
-                                >Закрыть
+                                    onClick={() => {
+                                        setOrderActive(false)
+                                        navigate('/order')
+                                    }}
+                                >На страницу заказов
                                 </button>
+                                <button
+                                    className='order_button order_button_not'
+                                    onClick={() => {
+                                        setOrderActive(false)
+                                    }}
+                                >Закрыть</button>
                             </div>
                         </div>
                     </Modal>
@@ -194,7 +203,7 @@ const BasketPage = () => {
                                             setAddress(e.target.value)
                                         }}/>
                                     <input
-                                        type='number'
+                                        type='tel'
                                         placeholder='Введите номер телефона'
                                         className='input'
                                         value={phone}

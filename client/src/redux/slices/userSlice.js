@@ -102,6 +102,11 @@ export const userSlice = createSlice({
                 let jsn = JSON.parse(action.payload)
                 state.orders.push({...jsn, id: state.orders.length + 1})
                 state.basket = []
+            },
+            setChanges: (state, action) => {
+                state.data.name = action.payload.name
+                state.data.surname = action.payload.surname
+                state.data.date = action.payload.date
             }
         }
     }
@@ -118,7 +123,8 @@ export const {
     registration,
     signIn,
     exit,
-    order
+    order,
+    setChanges
 } = userSlice.actions
 
 export default userSlice.reducer

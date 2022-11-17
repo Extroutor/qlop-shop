@@ -10,25 +10,29 @@ import AuthPage from "../page/UserPage/AuthPage";
 import ContactPage from "../page/ContactPage/ContactPage";
 import AboutPage from "../page/AboutPage/AboutPage";
 import OrderPage from "../page/OrderPage/OrderPage";
+import ProfilePage from "../page/UserPage/ProfilePage/ProfilePage";
+import {useSelector} from "react-redux";
 
 const AppRouter = () => {
+    const isAuth = useSelector(state => state.user.isAuth)
     return (
-            <Routes>
-                <Route path='/' element={<MainPage/>}/>
-                <Route path='/catalog/:id' element={<CatalogPage />}/>
-                <Route path='/catalog' element={<CatalogPage />}/>
-                <Route path='/favorite' element={<FavoritePage />}/>
-                <Route path='/auth' element={<AuthPage />}/>
-                <Route path='/registration' element={<AuthPage />}/>
-                <Route path='/contact' element={<ContactPage />}/>
-                <Route path='/basket' element={<BasketPage/>}/>
-                <Route path='/about' element={<AboutPage/>}/>
-                <Route path='/order' element={<OrderPage/>}/>
-                <Route path='/category/:id' element={<CatalogPage/>}/>
-                <Route path='/product/:id' element={<ProductItemPage/>}/>
-                <Route path='/*' element={<NotFoundPage/>}/>
-            </Routes>
-    );
-};
+        <Routes>
+            <Route path='/favorite' element={<FavoritePage/>}/>
+            <Route path='/order' element={<OrderPage/>}/>
+            <Route path='/profile' element={<ProfilePage/>}/>)
+            <Route path='/' element={<MainPage/>}/>
+            <Route path='/catalog/:id' element={<CatalogPage/>}/>
+            <Route path='/catalog' element={<CatalogPage/>}/>
+            <Route path='/auth' element={<AuthPage/>}/>
+            <Route path='/registration' element={<AuthPage/>}/>
+            <Route path='/contact' element={<ContactPage/>}/>
+            <Route path='/basket' element={<BasketPage/>}/>
+            <Route path='/about' element={<AboutPage/>}/>
+            <Route path='/category/:id' element={<CatalogPage/>}/>
+            <Route path='/product/:id' element={<ProductItemPage/>}/>
+            <Route path='/*' element={<NotFoundPage/>}/>
+        </Routes>
+    )
+}
 
 export default AppRouter;

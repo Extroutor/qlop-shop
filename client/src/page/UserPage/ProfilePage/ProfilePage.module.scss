@@ -1,0 +1,143 @@
+.title {
+  margin: 20px auto 50px;
+  display: flex;
+  justify-content: center;
+  color: #5d5d5d;
+  font-weight: 300;
+}
+.wrap {
+  min-height: 500px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.exit_wrap{
+width: 100%;
+  display: flex;
+}
+
+.exit {
+  padding: 10px 20px;
+  border: 2px dashed #ce0101;
+  color: #ce0101;
+  width: min-content;
+  transition: 0.3s;
+  cursor: pointer;
+  font-weight: 500;
+}
+.exit:hover {
+  border: 2px solid #ce0101;
+  color: white;
+  transition: 0.3s;
+  background-color: #ce0101;
+}
+
+.links_wrap{
+  display: flex;
+
+  .links {
+    font-weight: 400;
+    border: 1px solid gray;
+    width: max-content;
+    padding: 10px 15px;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .links:hover {
+    background-color: #f3f3f3;
+    transition: 0.3s;
+    transform: scale(1.05);
+  }
+
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  //margin-top: 30px;
+
+  .main_input {
+    width: 100%;
+    padding: 15px 15px;
+    border: none;
+    border-bottom: 1px solid gray;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    outline: none;
+  }
+}
+
+.form_wrap{
+  width: 50%;
+  margin: 50px auto;
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
+}
+
+.save_settings{
+  color: #252525;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 30px;
+}
+.save_settings:hover{
+  color: #595959;
+}
+
+.done_settings{
+  color: #005d1e;
+  margin-top: 30px;
+}
+
+.text {
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  word-spacing: 1px;
+  text-align: center;
+  @media (max-width: 426px) {
+    font-size: 12px;
+  }
+}
+.button_wrapper {
+
+  display: flex;
+  justify-content: center;
+  .button {
+    padding: 8px 15px;
+    background-color: #323232;
+    color: white;
+    border: none;
+    cursor: pointer;
+    //width: 50px;
+    font-weight: 500;
+    font-size: 14px;
+    margin-right: 10px;
+    margin-top: 20px;
+    letter-spacing: 1px;
+    @media (max-width: 426px) {
+      font-size: 12px;
+    }
+    @media (max-width: 321px) {
+      font-size: 10px;
+    }
+  }
+
+  .button_not {
+    background-color: #d9d9d9;
+    color: #000000;
+  }
+
+  .button:hover {
+    background-color: #464646;
+  }
+
+  .button_not:hover {
+    background-color: #e3e3e3;
+  }
+}

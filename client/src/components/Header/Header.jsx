@@ -48,12 +48,12 @@ const Header = () => {
                         ?
                         <div className='right_wrapper auth'>
                             <span className='drop_main'>
-                                <Link to='/user'>
+                                <Link to='/profile'>
                                 <CgProfile className='icon'/>
-                            </Link>
+                                </Link>
                                 <div className='drop'>
                                 <ul>
-                                    <Link to='/'>
+                                    <Link to='/profile'>
                                         <li>Профиль</li>
                                     </Link>
                                     <Link to='/order'>
