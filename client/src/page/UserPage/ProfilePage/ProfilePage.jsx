@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import style from './ProfilePage.module.scss'
-import st from "../AuthPage.module.scss";
 import {useDispatch, useSelector} from "react-redux";
 import {exit, setChanges} from "../../../redux/slices/userSlice";
 import Modal from "../../../components/Modal/Modal";

@@ -11,10 +11,8 @@ import ContactPage from "../page/ContactPage/ContactPage";
 import AboutPage from "../page/AboutPage/AboutPage";
 import OrderPage from "../page/OrderPage/OrderPage";
 import ProfilePage from "../page/UserPage/ProfilePage/ProfilePage";
-import {useSelector} from "react-redux";
 
 const AppRouter = () => {
-    const isAuth = useSelector(state => state.user.isAuth)
     return (
         <Routes>
             <Route path='/favorite' element={<FavoritePage/>}/>

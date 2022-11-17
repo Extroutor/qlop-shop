@@ -35,7 +35,7 @@ const MenuBurger = (props) => {
                     {props.isAuth
                         ?
                         <div className='right_wrapper_bottom_auth drop_main'>
-                            <Link to='/user'>
+                            <Link to='/profile'>
                                 <CgProfile
                                     className='icon'
                                     onClick={() => {

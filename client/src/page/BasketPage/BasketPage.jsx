@@ -6,7 +6,7 @@ import {deleteAll, order} from "../../redux/slices/userSlice";
 import Modal from "../../components/Modal/Modal";
 import {useEffect} from "react";
 import style from "../../components/Modal/Modal.module.scss";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import OrderModal from "../../components/Modal/OrderModal/OrderModal";
 import done from './../../assets/done.svg'
 
@@ -116,7 +116,7 @@ const BasketPage = () => {
                     <Modal active={orderActive} setActive={setOrderActive}>
                         <div className='done_wrap'>
                             <div className='done_img_wrap'>
-                                <img src={done}/>
+                                <img src={done} alt='pic'/>
                             </div>
                             <div className='done_text'>Заказ успешно оформлен</div>
                             <div className='order_btns_wrap'>
