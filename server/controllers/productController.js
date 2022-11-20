@@ -1,11 +1,19 @@
-const {Product} = require('../models/models')
+const {Product, ProductSize} = require('../models/models')
 const ApiError = require('../error/ApiError')
 
 class ProductController {
     async create(req, res){
-        const {name, size, price, categoryId, img} = req.body
-        const category = await Product.create({name, size, price, categoryId, img})
-        return res.json(category)
+        const {name, description, article, sizes, price, categoryId, img} = req.body
+        const product = await Product.create({name, description, article, price, categoryId, img})
+        if (sizes){
+            sizes.forEach(i =>
+                ProductSize.create({
+                    sizeId: i.sizeId,
+                    productId: product.id,
+                })
+            )
+        }
+        return res.json(product)
     }
 
     async getAll(req, res) {
@@ -43,22 +51,13 @@ class ProductController {
         return res.json(product)
     }
 
-    async update(req, res){
-        const {id} = req.params
-        if (!Number(id)){
-            return next(ApiError.badRequest('Некорректный id'))
-        }
-        const {name, size, price, categoryId, img} = req.body
-        await Product.update(
-            {name, size, price, categoryId, img},
-            {where: {id}})
-    }
-
     async delete(req, res){
         const {id} = req.params
         if (!Number(id)){
             return next(ApiError.badRequest('Некорректный id'))
         }
+        await ProductSize.destroy({where:{productId: id}})
+
         await Product.destroy({where: {id}})
     }
 }
