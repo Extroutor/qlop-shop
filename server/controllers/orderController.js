@@ -1,5 +1,5 @@
 const ApiError = require("../error/ApiError");
-const {Order, OrderItem, OrderItemProduct} = require("../models/models");
+const {Order, OrderItem, OrderItemProduct, BasketProduct, FavoriteProduct} = require("../models/models");
 
 class OrderController{
     async create(req, res){
@@ -28,6 +28,7 @@ class OrderController{
                     orderItemId: order.id,
                     productId: i.productId,
                     count: i.count,
+                    sizeId: i.sizeId,
                 }),
             )
         }
@@ -90,12 +91,6 @@ class OrderController{
 
         return res.json(order)
     }
-    //  пока не работает :(
-    async addProductToOrder(req, res){
-    }
-
-    async deleteProductFromOrder(req, res){
-    }
 
     async deleteOrder(req, res){
         let {id} = req.params
@@ -105,6 +100,36 @@ class OrderController{
         await OrderItemProduct.destroy({where: {orderItemId: id}})
 
         await OrderItem.destroy({where: {id}})
+    }
+
+    //  new
+    async addProduct(req, res){
+        const {id, orderId, productId} = req.params
+
+        if (!id || !productId || !orderId ){
+            return next(ApiError.badRequest('Некорректный id'))
+        }
+
+        const {count, sizeId} = req.body
+
+        const product = OrderItemProduct.create({
+            count: count,
+            sizeId: sizeId,
+            productId: productId,
+            orderItemId: orderId
+        })
+        if (!product){
+            return next(ApiError.badRequest('товар не создан'))
+        }
+        return res.json(product)
+    }
+
+    async deleteProduct(req, res){
+        const {orderId, productId} = req.params
+        if (!orderId || !productId){
+            return next(ApiError.badRequest('Некорректный id'))
+        }
+        await OrderItemProduct.destroy({where: {orderItemId: orderId, productId: productId}})
     }
 }
 
