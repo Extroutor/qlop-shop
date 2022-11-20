@@ -1,5 +1,5 @@
 const ApiError = require("../error/ApiError");
-const {Favorite, FavoriteProduct} = require("../models/models");
+const {Favorite, FavoriteProduct, BasketProduct, Basket} = require("../models/models");
 
 class FavoriteController{
     async create(req, res){
@@ -10,13 +10,12 @@ class FavoriteController{
 
         const favorite = await Favorite.create({userId})
 
+        console.log(favoriteProducts)
         if (favoriteProducts){
-            console.log(favoriteProducts)
-            //basketProducts = JSON.parse(basketProducts)
             favoriteProducts.forEach(i =>
                 FavoriteProduct.create({
                     favoriteId: favorite.id,
-                    favoriteProductId: i.favoriteProductId,
+                    productId: i.productId,
                 })
             )
         }
@@ -42,13 +41,6 @@ class FavoriteController{
         return res.json(favorite)
     }
 
-    //  пока не работает :(
-    async addProduct(req, res){
-    }
-
-    async deleteProduct(req, res){
-    }
-
     async delete(req, res){
         let {id} = req.params
         if (!Number(id)){
@@ -58,6 +50,33 @@ class FavoriteController{
 
         await Favorite.destroy({where: {id}})
     }
+
+    //  new
+    async addProduct(req, res){
+        const {id, productId} = req.params
+        console.log(req.params)
+        if (!id || !productId ){
+            return next(ApiError.badRequest('Некорректный id'))
+        }
+
+        const product = FavoriteProduct.create({
+            favoriteId: id,
+            productId: productId,
+        })
+        if (!product){
+            return next(ApiError.badRequest('товар не создан'))
+        }
+        return res.json(product)
+    }
+
+    async deleteProduct(req, res){
+        const {id, productId} = req.params
+        if (!id || !productId){
+            return next(ApiError.badRequest('Некорректный id'))
+        }
+        await FavoriteProduct.destroy({where: {favoriteId: id, productId: productId}})
+    }
+
 }
 
 module.exports = new FavoriteController()
