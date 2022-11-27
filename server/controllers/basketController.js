@@ -43,24 +43,22 @@ class BasketController{
         return res.json(basket)
     }
 
-    //  пока не работает :(
+    //  new
     async addProduct(req, res){
         const id = req.params
         if (!id || Number(id)){
             return next(ApiError.badRequest('Некорректный id'))
         }
-
-        let {productId, count} = req.body
-        if (!productId || count < 1)
-        {
-            return next(ApiError.badRequest('Некорректный id или количество товара'))
-        }
-
-        await BasketProduct.create({
-            basketId: {id},
-            id: {productId},
-            count: {count},
+        const {productId, count, sizeId} = req.body
+        const product = BasketProduct.create({
+            basketId: id,
+            productId: productId,
+            count: count,
+            sizeId: sizeId,
         })
+        if (!product){
+            return next(ApiError.badRequest('товар не создан'))
+        }
 
         return res.json(basket)
     }
@@ -70,16 +68,8 @@ class BasketController{
         if (!id || Number(id)){
             return next(ApiError.badRequest('Некорректный id'))
         }
-
-        let {productId} = req.body
-        if (!productId)
-        {
-            return next(ApiError.badRequest('Некорректный id продукта'))
-        }
-
-        await BasketProduct.destroy({
-            where: {id: productId, basketId: id},
-        })
+        const {productId} = req.body
+        await BasketProduct.destroy({where: {basketId: id, productId: productId}})
     }
 
     async delete(req, res){
