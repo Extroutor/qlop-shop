@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {IoBasketOutline, IoMenuSharp} from "react-icons/io5";
 import {Link, useNavigate} from "react-router-dom";
 import './Header.scss'
-import {changeCategory} from "../../redux/slices/catalogSlice";
+import {changeCategory, setCategories} from "../../redux/slices/catalogSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {AiOutlineClose} from "react-icons/ai";
 import MenuBurger from "./MenuBurger";
 import {CgProfile} from "react-icons/cg";
 import {exit} from "../../redux/slices/userSlice";
 import st from "../Modal/Modal.module.scss";
-import Modal from "../Modal/Modal";
+import Modal from "../Modal/Modal"
+import {getCategories} from "../../api/shopApi";
 
 const Header = () => {
 
@@ -21,10 +22,14 @@ const Header = () => {
     const count = useSelector(state => state.user.basket.length)
     const navigate = useNavigate();
 
+    useEffect( () => {
+        getCategories().then(data => dispatch(setCategories(data)))
+    }, [])
+
     return (
         <div className='header'>
             <div className='wrapper'>
-                <div className='left_side'>
+                <div className= 'left_side'>
                     <div className='header_title'>
                         <Link onClick={() =>
                             setMenuActive(false)}
@@ -116,7 +121,6 @@ const Header = () => {
                 items={categoryList}
                 isAuth={isAuth}
             />
-            {/* todo ОБЩИЕ СТИЛИ ДЛЯ КНОПОК И ТД*/}
             <Modal active={active} setActive={setActive}>
                 <div className={st.text}>Вы действительно хотите выйти из системы?</div>
                 <div className={st.button_wrapper}>
