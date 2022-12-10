@@ -1,4 +1,4 @@
-const {Product, ProductSize} = require('../models/models')
+const {Product, ProductSize, Category} = require('../models/models')
 const ApiError = require('../error/ApiError')
 
 class ProductController {
@@ -16,26 +16,30 @@ class ProductController {
         return res.json(product)
     }
 
-    async getAll(req, res) {
-        let {size_id, categoryId, limit, page} = req.query
-        page = page || 1 // текущая страница
-        limit = limit || 9// количество отображаемых товаров на странице
-        let offset =  page * limit - limit // отступ, чтобы товары на страницах не повторялись
+    async getAll(req, res, next) {
+        // let {size_id, categoryId, limit, page} = req.query
+        // page = page || 1 // текущая страница
+        // limit = limit || 9// количество отображаемых товаров на странице
+        // let offset =  page * limit - limit // отступ, чтобы товары на страницах не повторялись
 
-        let products
-        if (!size_id && !categoryId){
-            products = await Product.findAndCountAll({limit, offset})
+        let products = await Product.findAll()
+        if (!products){
+            return next(ApiError.badRequest('Товары не найдены'))
         }
-        if (size_id && !categoryId){
-            products = await Product.findAndCountAll({where: {size_id}, limit, offset})
-        }
-        if (!size_id && categoryId){
-            products = await Product.findAndCountAll({where: {categoryId}, limit, offset})
-        }
-        if (size_id && categoryId){
-            products = await Product.findAndCountAll({where: {size_id, categoryId}, limit, offset})
-        }
+        // if (!size_id && !categoryId){
+        //     products = await Product.findAndCountAll({limit, offset})
+        // }
+        // if (size_id && !categoryId){
+        //     products = await Product.findAndCountAll({where: {size_id}, limit, offset})
+        // }
+        // if (!size_id && categoryId){
+        //     products = await Product.findAndCountAll({where: {categoryId}, limit, offset})
+        // }
+        // if (size_id && categoryId){
+        //     products = await Product.findAndCountAll({where: {size_id, categoryId}, limit, offset})
+        // }
         return res.json(products)
+
     }
 
     async getOne(req, res){

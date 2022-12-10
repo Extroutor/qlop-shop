@@ -1,19 +1,23 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ProductItem from "./ProductItem/ProductItem";
 import style from './Catalog.module.scss'
 import {useDispatch, useSelector} from 'react-redux'
-import {setSortOption} from "../../redux/slices/catalogSlice";
+import {setProducts, setSortOption} from "../../redux/slices/catalogSlice";
 import {useParams} from "react-router-dom";
+import {getAllProducts} from "../../api/shopApi";
 
 const Catalog = () => {
 
     const dispatch = useDispatch()
     const param = +useParams().id // convert to number
     const catalogList = useSelector(state => state.catalog.catalogList)
-    let filteredCatalogList = catalogList.filter(item => item.category === param)
+    let filteredCatalogList = catalogList.filter(item => item.categoryId === param)
     let list;
-
     const [selectedOption, setSelectedOption] = useState('')
+
+    useEffect( () => {
+        getAllProducts().then(data => (dispatch(setProducts(data))))
+    }, [])
 
     if (param) {
         list = filteredCatalogList
