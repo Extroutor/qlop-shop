@@ -1,9 +1,4 @@
 import axios from "axios";
-import {productItem} from "../redux/slices/catalogSlice";
-
-const $host = axios.create({
-    baseURL: process.env.REACT_APP_API_URL
-})
 
 const $authHost = axios.create({
     baseURL: process.env.REACT_APP_API_URL
@@ -11,13 +6,11 @@ const $authHost = axios.create({
 
 export const getCategories = async () => {
     const {data} = await $authHost.get('api/category')
-    console.log('getCategories', data)
     return data
 }
 
 export const getAllProducts = async () => {
     const {data} = await $authHost.get('api/product')
-    console.log('getAllProducts', data)
     return data
 }
 

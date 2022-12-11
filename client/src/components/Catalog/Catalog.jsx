@@ -17,7 +17,7 @@ const Catalog = () => {
 
     useEffect( () => {
         getAllProducts().then(data => (dispatch(setProducts(data))))
-    }, [])
+    }, [dispatch])
 
     if (param) {
         list = filteredCatalogList

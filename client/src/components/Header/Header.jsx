@@ -7,10 +7,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {AiOutlineClose} from "react-icons/ai";
 import MenuBurger from "./MenuBurger";
 import {CgProfile} from "react-icons/cg";
-import {exit} from "../../redux/slices/userSlice";
+import {exit, setAuth, setUserData} from "../../redux/slices/userSlice";
 import st from "../Modal/Modal.module.scss";
 import Modal from "../Modal/Modal"
 import {getCategories} from "../../api/shopApi";
+import Cookies from "universal-cookie";
+import {getUserInformation} from "../../api/authApi";
 
 const Header = () => {
 
@@ -21,15 +23,32 @@ const Header = () => {
     const isAuth = useSelector(state => state.user.isAuth)
     const count = useSelector(state => state.user.basket.length)
     const navigate = useNavigate();
+    let cookie = new Cookies()
 
-    useEffect( () => {
+    useEffect(() => {
+        getCategories().then(data => dispatch(setCategories(data)))
+    }, [dispatch])
+
+    useEffect(() => {
+        const token = cookie.get('token')
+        const id = cookie.get('id')
+        if (token) {
+            console.log('есть токен', token)
+            console.log('есть id', id)
+            dispatch(setAuth(true))
+            getUserInformation(id).then((data) => {
+                dispatch(setUserData(data))
+            }).catch((err) => {
+                console.log(err)
+            })
+        }
         getCategories().then(data => dispatch(setCategories(data)))
     }, [])
 
     return (
         <div className='header'>
             <div className='wrapper'>
-                <div className= 'left_side'>
+                <div className='left_side'>
                     <div className='header_title'>
                         <Link onClick={() =>
                             setMenuActive(false)}
@@ -127,11 +146,12 @@ const Header = () => {
                     <button
                         className={st.button}
                         onClick={() => {
-                            dispatch(exit())
+                            cookie.remove('token')
+                            cookie.remove('id')
+                            dispatch(setAuth(false))
                             navigate('/')
                             setActive(false)
-                        }
-                        }
+                        }}
                     >Да
                     </button>
 

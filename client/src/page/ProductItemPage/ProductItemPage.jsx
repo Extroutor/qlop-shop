@@ -26,10 +26,10 @@ const ProductItemPage = () => {
         window.scrollTo(0, 0);
         getOneProduct(param).then(data => setChosenProduct(data))
         getSizes(param).then(sizes => setSizes(sizes))
-    }, [])
+    }, [chosenProduct.name, param])
 
     const onClickedButton = () => {
-        if (chosenProduct.sizes.length > 0) {
+        if (sizes.length > 0) {
             if (!size) {
                 setActive(true)
             } else {
@@ -102,8 +102,8 @@ const ProductItemPage = () => {
                         ?
                         <div className='size_wrapper'>
                             {sizes.map((item, index) =>
-                                <div key={index} className={size === item.name ? 'size_item active' : 'size_item'}
-                                     onClick={() => setSize(item.name)}>{item}</div>
+                                <div key={index} className={size === item ? 'size_item active' : 'size_item'}
+                                     onClick={() => setSize(item)}>{item}</div>
                             )}
                         </div>
                         :

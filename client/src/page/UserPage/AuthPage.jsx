@@ -3,8 +3,10 @@ import {Link, useLocation} from "react-router-dom";
 import st from './AuthPage.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {registration, signIn} from "../../redux/slices/userSlice";
 import {useEffect} from "react";
+import {registration, login, getUserInformation} from "../../api/authApi";
+import {setAuth, setUserData} from "../../redux/slices/userSlice";
+import Cookie from "universal-cookie";
 
 const AuthPage = () => {
     const [data, setData] = useState({
@@ -21,6 +23,7 @@ const AuthPage = () => {
     const isLogIn = location.pathname === '/auth'
     const isAuth = useSelector(state => state.user.isAuth)
     const [err, setErr] = useState(false)
+    let cookie = new Cookie()
 
     useEffect(() => {
         document.title = 'Авторизация | QLOP'
@@ -38,9 +41,50 @@ const AuthPage = () => {
 
     const onAuthClick = () => {
         if (isLogIn) {
-            dispatch(signIn(data))
+            login(
+                data.email,
+                data.password
+            ).then((token) => {
+                dispatch(setAuth(true))
+                getUserInformation(token.id).then((data) => {
+                    dispatch(setUserData(data))
+                    cookie.set("id", token.id, {
+                        path: "/",
+                        maxAge: 60 * 60 * 24,
+                        sameSite: "strict",
+                        secure: true,
+                    });
+                }).catch((err) => {
+                    console.log(err)
+                })
+            }).catch((err) => {
+                console.log(err)
+                setErr(true)
+            })
         } else {
-            dispatch(registration(data))
+            registration(
+                data.name,
+                data.surname,
+                data.email,
+                data.password,
+            ).then((token) => {
+                dispatch(setAuth(true))
+                getUserInformation(token.id).then((data) => {
+                    dispatch(setUserData(data))
+                    cookie.set("id", token.id, {
+                        path: "/",
+                        maxAge: 60 * 60 * 24,
+                        sameSite: "strict",
+                        secure: true,
+                    });
+                }).catch((err) => {
+                    console.log(err)
+                })
+
+            }).catch((err) => {
+                console.log(err)
+                setErr(true)
+            })
         }
         setTimeout(() => {
             if (!isAuth)
@@ -78,7 +122,10 @@ const AuthPage = () => {
                             type='password'
                             placeholder='Введите пароль...'
                             value={data.password}
-                            onChange={e => setData({...data, password: e.target.value})}
+                            onChange={e => {
+                                setData({...data, password: e.target.value})
+                                setErr(false)
+                            }}
                         />
                     </div>
                     <p className={st.question}>Нет аккаунта? <Link

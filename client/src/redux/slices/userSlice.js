@@ -6,12 +6,7 @@ const initialState = {
     orders: [],
     totalPrice: 0,
     isAuth: false,
-    data: {
-        email: 'mail@mail.ru',
-        password: 'qwerty',
-        name: 'Leila',
-        surname: 'Ahmedova'
-    },
+    userData: {},
     orderData: {}
 }
 
@@ -104,10 +99,16 @@ export const userSlice = createSlice({
                 state.basket = []
             },
             setChanges: (state, action) => {
-                state.data.name = action.payload.name
-                state.data.surname = action.payload.surname
-                state.data.date = action.payload.date
-            }
+                state.userData.name = action.payload.name
+                state.userData.surname = action.payload.surname
+                state.userData.date = action.payload.date
+            },
+            setAuth: (state, action) => {
+                state.isAuth = action.payload
+            },
+            setUserData: (state, action) => {
+                state.userData = action.payload
+            },
         }
     }
 )
@@ -124,7 +125,9 @@ export const {
     signIn,
     exit,
     order,
-    setChanges
+    setChanges,
+    setAuth,
+    setUserData
 } = userSlice.actions
 
 export default userSlice.reducer

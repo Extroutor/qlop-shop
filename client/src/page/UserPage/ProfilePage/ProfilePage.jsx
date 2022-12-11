@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import style from './ProfilePage.module.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {exit, setChanges} from "../../../redux/slices/userSlice";
+import {exit, setAuth, setChanges} from "../../../redux/slices/userSlice";
 import Modal from "../../../components/Modal/Modal";
 import {Link, useNavigate} from "react-router-dom";
+import Cookies from "universal-cookie";
 
 const ProfilePage = () => {
-    const userInfo = useSelector(state => state.user.data)
+    const userInfo = useSelector(state => state.user.userData)
     const [active, setActive] = useState(false)
     let [name, setName] = useState(userInfo.name)
     let [surname, setSurname] = useState(userInfo.surname)
@@ -15,6 +16,7 @@ const ProfilePage = () => {
     let [isSettings, setIsSettings] = useState(false)
     const dispatch = useDispatch();
     const navigate = useNavigate()
+    let cookie = new Cookies()
 
     useEffect(() => {
         document.title = "Мой профиль | Qlop"
@@ -92,7 +94,9 @@ const ProfilePage = () => {
                     <button
                         className={style.button}
                         onClick={() => {
-                            dispatch(exit())
+                            cookie.remove('token')
+                            cookie.remove('id')
+                            dispatch(setAuth(false))
                             navigate('/')
                             setActive(false)
                         }
