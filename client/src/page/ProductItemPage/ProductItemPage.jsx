@@ -6,33 +6,30 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import st from "../../components/Modal/Modal.module.scss";
 import Modal from "../../components/Modal/Modal";
 import {AiFillHeart, AiOutlineHeart} from "react-icons/ai";
+import {getOneProduct, getSizes} from "../../api/shopApi";
 
 const ProductItemPage = () => {
-
     const param = +useParams().id // convert to number
-    const productObj = useSelector(state => state.catalog.catalogList)
-    const chosenProduct = productObj.find(item => item.id === param)
+    const [chosenProduct, setChosenProduct] = useState({sizes: []})
     const dispatch = useDispatch()
     const [active, setActive] = useState(false);
     const [activeFav, setActiveFav] = useState(false);
-
-
     const [isClicked, setIsClicked] = useState(false)
     const [size, setSize] = useState('')
-
     const isAuth = useSelector(state => state.user.isAuth)
     const navigate = useNavigate();
     const [onFavClicked, setOnFavClicked] = useState(false)
-
-    let sizes = chosenProduct.sizes
+    const [sizes, setSizes] = useState([])
 
     useEffect(() => {
         document.title = chosenProduct.name + ' | QLOP'
         window.scrollTo(0, 0);
+        getOneProduct(param).then(data => setChosenProduct(data))
+        getSizes(param).then(sizes => setSizes(sizes))
     }, [])
 
     const onClickedButton = () => {
-        if (sizes.length > 0) {
+        if (chosenProduct.sizes.length > 0) {
             if (!size) {
                 setActive(true)
             } else {
@@ -44,6 +41,7 @@ const ProductItemPage = () => {
             setIsClicked(true)
         }
     }
+    
     const toAuthPage = () => {
         navigate('/auth')
     }
@@ -103,9 +101,9 @@ const ProductItemPage = () => {
                     {sizes.length > 0
                         ?
                         <div className='size_wrapper'>
-                            {sizes.map(item =>
-                                <div key={item.id} className={size === item.name ? 'size_item active' : 'size_item'}
-                                     onClick={() => setSize(item.name)}>{item.name}</div>
+                            {sizes.map((item, index) =>
+                                <div key={index} className={size === item.name ? 'size_item active' : 'size_item'}
+                                     onClick={() => setSize(item.name)}>{item}</div>
                             )}
                         </div>
                         :

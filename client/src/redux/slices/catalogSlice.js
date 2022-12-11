@@ -3,6 +3,7 @@ import {createSlice} from '@reduxjs/toolkit'
 const initialState = {
     catalogList: [],
     categoryList: [],
+    productItem: null,
     activeCategory: null,
     filteredCatalogList: '',
     chosenProduct: {}
@@ -44,6 +45,9 @@ export const catalogSlice = createSlice({
             setProducts: (state, action) => {
                 state.catalogList = action.payload
             },
+            productItem: (state, action) => {
+                state.productItem = action.payload
+            }
         },
     }
 )
@@ -54,6 +58,8 @@ export const {
     viewAllProducts,
     setSortOption,
     setCategories,
-    setProducts} = catalogSlice.actions
+    setProducts,
+    productItem
+} = catalogSlice.actions
 
 export default catalogSlice.reducer

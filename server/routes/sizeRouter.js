@@ -6,5 +6,6 @@ router.post('/', sizeController.create)
 router.get('/', sizeController.getAll)
 router.get('/:id', sizeController.getOne)
 router.delete('/:id', sizeController.delete)
+router.get('/product/:id', sizeController.getSizeByProductId)
 
 module.exports = router

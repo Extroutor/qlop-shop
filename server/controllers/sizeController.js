@@ -40,6 +40,28 @@ class SizeController{
 
         await Size.destroy({where: {id}})
     }
+
+    async getSizeByProductId(req, res){
+        const {id} = req.params
+        if (!Number(id)){
+            return next(ApiError.badRequest('Некорректный id'))
+        }
+        let productSizes = await ProductSize.findAll({where: {productId : id}})
+        if (!productSizes){
+            return next(ApiError.badRequest('размеры не найдены'))
+        }
+
+        let sizes = []
+        if (productSizes){
+            for (const s of productSizes) {
+                console.log(s.sizeId)
+                const size = await Size.findOne({where: {id: s.sizeId}})
+                console.log(size)
+                sizes.push(size.name)
+            }
+        }
+        return res.json(sizes)
+    }
 }
 
 module.exports = new SizeController()
