@@ -32,7 +32,9 @@ class FavoriteController{
             where: {id},
             include: [{
                 model: FavoriteProduct,
-            }]
+            }],
+            order:
+                [['createdAt', 'ASC']]
         })
         if (!favorite){
             return next(ApiError.badRequest('любимое не найдена'))

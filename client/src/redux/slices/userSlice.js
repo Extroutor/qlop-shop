@@ -111,9 +111,29 @@ export const userSlice = createSlice({
             },
             setBasket: (state, action) => {
                 state.basket = [action.payload, ...state.basket]
+                state.totalPrice = null
+
+                state.basket.forEach(function (item, i, arr) {
+                    if (item.count)
+                        state.totalPrice += item.count * item.productInfo.price
+                    else
+                        state.totalPrice += item.productInfo.price
+                });
+
+                // state.basket = state.basket.map(item => {
+                //     if (item.count)
+                //         state.totalPrice += item.count * item.productInfo.price
+                //     else
+                //         state.totalPrice += item.productInfo.price
+                //
+                // })
+                console.log(state.basket)
+                console.log(state.totalPrice)
+
             },
             setToBasket: (state, action) => {
                 state.basket.push(action.payload)
+                state.totalPrice += action.payload.count * action.payload.productInfo.price
             },
             setToFavorite: (state, action) => {
                 state.favorite.push(action.payload)
@@ -129,6 +149,9 @@ export const userSlice = createSlice({
             },
             deleteItemFromBasket: (state, action) => {
                 state.basket = state.basket.filter(item => item.productInfo.id !== action.payload)
+                let item = state.basket.find(item => item.productInfo.id !== action.payload)
+                state.totalPrice -= item.count * item.productInfo.price
+
             },
             deleteItemFromFav: (state, action) => {
                 state.favorite = state.favorite.filter(item => item.productId !== action.payload)
@@ -161,7 +184,8 @@ export const {
     deleteItemFromBasket,
     changeCount,
     deleteItemFromFav,
-    cleanFav
+    cleanFav,
+    calculateTotalPrice
 } = userSlice.actions
 
 export default userSlice.reducer

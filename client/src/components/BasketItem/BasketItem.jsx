@@ -43,27 +43,27 @@ const BasketItem = (props) => {
             <div className={st.group2}>
                 <div>{props.item.productInfo.price} ₽</div>
                 <div className={st.counter}>
-                    <button onClick={() => {
-                        const cookie = new Cookie()
-                        const id = cookie.get('id')
-                        if (props.item.count > 1) {
-                            addBasketItem(id, props.item.productInfo.id, props.item.sizeId, props.item.count - 1).then(() => {
-                                console.log('получилось')
-                                dispatch(changeCount(props.item.productInfo.id, props.item.count - 1))
-                            })
-                        }
-                    }}>-
-                    </button>
-                    <p>{count}</p>
-                    <button onClick={() => {
-                        const cookie = new Cookie()
-                        const id = cookie.get('id')
-                        addBasketItem(id, props.item.productInfo.id, props.item.sizeId, props.item.count + 1).then(() => {
-                            console.log('получилось')
-                            dispatch(changeCount({id: props.item.productInfo.id, count: props.item.count + 1}))
-                        })
-                    }}>+
-                    </button>
+                    {/*<button onClick={() => {*/}
+                    {/*    const cookie = new Cookie()*/}
+                    {/*    const id = cookie.get('id')*/}
+                    {/*    if (props.item.count > 1) {*/}
+                    {/*        addBasketItem(id, props.item.productInfo.id, props.item.sizeId, props.item.count - 1).then(() => {*/}
+                    {/*            console.log('получилось')*/}
+                    {/*            dispatch(changeCount(props.item.productInfo.id, props.item.count - 1))*/}
+                    {/*        })*/}
+                    {/*    }*/}
+                    {/*}}>-*/}
+                    {/*</button>*/}
+                    <p>{count} шт</p>
+                    {/*<button onClick={() => {*/}
+                    {/*    const cookie = new Cookie()*/}
+                    {/*    const id = cookie.get('id')*/}
+                    {/*    addBasketItem(id, props.item.productInfo.id, props.item.sizeId, props.item.count + 1).then(() => {*/}
+                    {/*        console.log('получилось')*/}
+                    {/*        dispatch(changeCount({id: props.item.productInfo.id, count: props.item.count + 1}))*/}
+                    {/*    })*/}
+                    {/*}}>+*/}
+                    {/*</button>*/}
                 </div>
                 <div>{props.item.count * props.item.productInfo.price} ₽</div>
                 <AiOutlineClose

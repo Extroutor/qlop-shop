@@ -8,7 +8,7 @@ import {cleanFav, setFavorite} from "../../redux/slices/userSlice";
 import Cookie from "universal-cookie";
 
 const FavoritePage = () => {
-    const favorites = useSelector(state => state.user.favorite) || []
+    const favorites = useSelector(state => state.user.favorite)
     const cookie = new Cookie()
     const dispatch = useDispatch();
 
@@ -21,6 +21,7 @@ const FavoritePage = () => {
                 getFavorite(id).then((data) => {
                     dispatch(cleanFav())
                     data.map(item => {
+                        console.log('dataaa', data)
                         getOneProduct(item.productId).then(data2 => {
                             dispatch(setFavorite({...item, productInfo: data2}))
                         })

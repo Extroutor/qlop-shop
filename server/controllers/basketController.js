@@ -88,7 +88,7 @@ class BasketController {
                 return next(ApiError.badRequest('товар не создан'))
             }
         } else {
-            productExist.update({ count: count} )
+            productExist.update({ count: count+1} )
         }
         return res.json(basket)
     }
