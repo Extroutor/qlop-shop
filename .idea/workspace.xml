@@ -3,23 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a7e581e6-d198-416d-82a7-39c8df955688" name="Changes" comment="registration, authorization and session">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/api/authApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/authApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/api/shopApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/shopApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/BasketItem/BasketItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BasketItem/BasketItem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Catalog/ProductItem/ProductItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Catalog/ProductItem/ProductItem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/FavoriteItem/FavoriteItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/FavoriteItem/FavoriteItem.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/page/BasketPage/BasketPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/page/BasketPage/BasketPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/page/FavoritePage/FavoritePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/page/FavoritePage/FavoritePage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/page/ProductItemPage/ProductItemPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/page/ProductItemPage/ProductItemPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/slices/catalogSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/slices/catalogSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/redux/slices/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/slices/userSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/basketController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/basketController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/favoriteController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/favoriteController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/sizeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/sizeController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/basketRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/basketRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/favoriteRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/favoriteRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/productRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/productRouter.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,6 +105,7 @@
       <workItem from="1670666242988" duration="1658000" />
       <workItem from="1670667944822" duration="35943000" />
       <workItem from="1671088807215" duration="19910000" />
+      <workItem from="1671465647472" duration="725000" />
     </task>
     <task id="LOCAL-00001" summary="fetch one product with sizes">
       <created>1670749806928</created>

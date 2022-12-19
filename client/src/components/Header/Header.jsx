@@ -7,10 +7,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {AiOutlineClose} from "react-icons/ai";
 import MenuBurger from "./MenuBurger";
 import {CgProfile} from "react-icons/cg";
-import {exit, setAuth, setUserData} from "../../redux/slices/userSlice";
+import {cleanBasket, exit, setAuth, setBasket, setUserData} from "../../redux/slices/userSlice";
 import st from "../Modal/Modal.module.scss";
 import Modal from "../Modal/Modal"
-import {getCategories} from "../../api/shopApi";
+import {getBasket, getCategories, getOneProduct} from "../../api/shopApi";
 import Cookies from "universal-cookie";
 import {getUserInformation} from "../../api/authApi";
 
@@ -41,6 +41,15 @@ const Header = () => {
             })
         }
         getCategories().then(data => dispatch(setCategories(data)))
+        if (id) {
+            getBasket(id).then((data) => {
+                data.map(item => {
+                    getOneProduct(item.productId).then(data2 => {
+                        dispatch(setBasket({...item, productInfo: data2}))
+                    })
+                })
+            })
+        }
     }, [])
 
     return (

@@ -35,20 +35,15 @@ const ProductItemPage = () => {
             if (!size) {
                 setActive(true)
             } else {
-                // dispatch(addToBasket({...chosenProduct, size}))
                 const id = cookie.get('id')
-                console.log('добаление в корзину')
-                console.log('id', id)
-                console.log('param', param)
-                console.log('size', size)
-                addBasketItem(id, param, size, 1).then(() => {
+                addBasketItem(id, param, null, 1).then(() => {
                     console.log('все ок')
                     setIsClicked(true)
                 })
             }
         } else {
             const id = cookie.get('id')
-            addBasketItem(id, param, size).then(() => {
+            addBasketItem(id, param, size, 1).then(() => {
                 console.log('все ок')
                 setIsClicked(true)
             })
@@ -180,7 +175,7 @@ const ProductItemPage = () => {
                     </button>
                     <button
                         className={[st.button, st.button_not].join(' ')}
-                        onClick={() => setActive(false)}
+                        onClick={() => setActiveFav(false)}
                     >Закрыть
                     </button>
                 </div>

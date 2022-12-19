@@ -23,7 +23,7 @@ export const getOneProduct = async (id) => {
 export const getSizes = async (id) => {
     const {data} = await $authHost.get('api/sizes/product/' + id)
     return data
-}  
+}
 
 export const getBasket = async (id) => {
     const {data} = await $authHost.get('api/basket/' + id)
@@ -31,23 +31,18 @@ export const getBasket = async (id) => {
 }
 
 export const addBasketItem = async (id, productId, size, count) => {
-    if (size) {
-        await $authHost.post('api/basket/product/' + id, {productId, size, count})
-    } else {
-        size = null
-        await $authHost.post('api/basket/product/' + id, {productId, size, count})
-    }
+    await $authHost.post('api/basket/product/' + id, {productId, size, count})
 }
 
 export const addFavItem = async (userId, productId) => {
-        await $authHost.put('api/favorite/user/' + userId + '/add/' + productId)
+    await $authHost.put('api/favorite/user/' + userId + '/add/' + productId)
 }
 export const deleteBasketItem = async (basketId, productId) => {
-        await $authHost.put('api/basket/' + basketId + '/delete/' + productId)
+    await $authHost.put('api/basket/' + basketId + '/delete/' + productId)
 }
 
 export const deleteFavItem = async (id, productId) => {
-        await $authHost.put('api/favorite/user/' + id + '/delete/' + productId)
+    await $authHost.put('api/favorite/user/' + id + '/delete/' + productId)
 }
 
 export const getFavorite = async (id) => {
