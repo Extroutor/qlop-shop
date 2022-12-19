@@ -2,18 +2,25 @@ import React, {useState} from 'react';
 import BasketItem from "../../components/BasketItem/BasketItem";
 import './BasketPage.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {deleteAll, order} from "../../redux/slices/userSlice";
+import {
+    cleanBasket,
+    deleteItemFromBasket,
+    order,
+    setBasket,
+} from "../../redux/slices/userSlice";
 import Modal from "../../components/Modal/Modal";
 import {useEffect} from "react";
 import style from "../../components/Modal/Modal.module.scss";
 import {useNavigate} from "react-router-dom";
 import OrderModal from "../../components/Modal/OrderModal/OrderModal";
 import done from './../../assets/done.svg'
+import {deleteBasketItem, getBasket, getOneProduct} from "../../api/shopApi";
+import Cookie from "universal-cookie";
 
 const BasketPage = () => {
     const [deleteActive, setDeleteActive] = useState(false);
     const [orderActive, setOrderActive] = useState(false);
-    const user = useSelector(state => state.user.data)
+    const user = useSelector(state => state.user.userData)
     let [userData, setUserData] = useState(user)
     let [address, setAddress] = useState('')
     let [phone, setPhone] = useState('')
@@ -24,11 +31,25 @@ const BasketPage = () => {
     const dispatch = useDispatch();
     const isAuth = useSelector(state => state.user.isAuth)
     const navigate = useNavigate()
+    const cookie = new Cookie()
 
     useEffect(() => {
         document.title = "Корзина | Qlop"
         window.scrollTo(0, 0);
+
+        const id = cookie.get('id')
+        if (id) {
+            getBasket(id).then((data) => {
+                dispatch(cleanBasket())
+                    data.map(item => {
+                        getOneProduct(item.productId).then(data2 => {
+                            dispatch(setBasket({...item, productInfo: data2}))
+                        })
+                    })
+                })
+        }
     }, [])
+
     const toAuthPage = () => {
         navigate('/auth')
     }
@@ -52,10 +73,11 @@ const BasketPage = () => {
             setIsOrdered(true)
         }
     }
+
     return (
         <div className='basket_wrapper'>
             <h1 className='bas'>Моя корзина</h1>
-            {basket.length < 1
+            {basket.length === 0
                 ?
                 <div>
                     <h4 className='bas'>Ваша корзина пустая :(</h4>
@@ -133,7 +155,8 @@ const BasketPage = () => {
                                     onClick={() => {
                                         setOrderActive(false)
                                     }}
-                                >Закрыть</button>
+                                >Закрыть
+                                </button>
                             </div>
                         </div>
                     </Modal>
@@ -144,17 +167,17 @@ const BasketPage = () => {
                             <div className='order_content_wrap'>
                                 <div className='order_list'>
                                     {basket.map(item =>
-                                        <div key={item.id} className='order_item'>
+                                        <div key={item.productInfo.id} className='order_item'>
                                             <div className='g1'>
                                                 <div className='order_img_wrap'>
-                                                    <img src={item.img} className='order_img' alt={item.name}/>
+                                                    <img src={item.productInfo.img} className='order_img' alt={item.productInfo.name}/>
                                                 </div>
-                                                <div className='order_item_name'>{item.name}</div>
+                                                <div className='order_item_name'>{item.productInfo.name}</div>
                                             </div>
                                             <div className='g2'>
-                                                <div className='order_item_size'>{item.size}</div>
+                                                <div className='order_item_size'>{item.productInfo.size}</div>
                                                 <div className='order_item_count'>{item.count} шт.</div>
-                                                <div className='order_item_price'>{item.price} ₽ / {item.totalPrice} ₽
+                                                <div className='order_item_price'>{item.productInfo.price} ₽ / {item.totalPrice} ₽
                                                 </div>
                                             </div>
 
@@ -237,7 +260,14 @@ const BasketPage = () => {
                     <button
                         className={style.button}
                         onClick={() => {
-                            dispatch(deleteAll())
+                            const cookie = new Cookie()
+                            let id = cookie.get('id')
+                            basket.map((item) => {
+                                deleteBasketItem(id, item.productInfo.id).then(() => {
+                                        dispatch(deleteItemFromBasket(item.productInfo.id))
+                                    }
+                                )
+                            })
                             setDeleteActive(false)
                         }}
                     >Да

@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a7e581e6-d198-416d-82a7-39c8df955688" name="Changes" comment="fetch one product with sizes">
-      <change afterPath="$PROJECT_DIR$/client/src/api/authApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="a7e581e6-d198-416d-82a7-39c8df955688" name="Changes" comment="registration, authorization and session">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/api/authApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/authApi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/api/shopApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/api/shopApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Catalog/Catalog.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Catalog/Catalog.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/BasketItem/BasketItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/BasketItem/BasketItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Catalog/ProductItem/ProductItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Catalog/ProductItem/ProductItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/FavoriteItem/FavoriteItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/FavoriteItem/FavoriteItem.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/page/BasketPage/BasketPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/page/BasketPage/BasketPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/page/FavoritePage/FavoritePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/page/FavoritePage/FavoritePage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/page/ProductItemPage/ProductItemPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/page/ProductItemPage/ProductItemPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/page/UserPage/AuthPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/page/UserPage/AuthPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/page/UserPage/ProfilePage/ProfilePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/page/UserPage/ProfilePage/ProfilePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/redux/slices/catalogSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/slices/catalogSlice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/redux/slices/userSlice.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/redux/slices/userSlice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/server/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/userController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/middleware/authmiddleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/middleware/authmiddleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/models.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/models.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/userRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/userRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/basketController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/basketController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/favoriteController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/favoriteController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/sizeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/sizeController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/basketRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/basketRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/favoriteRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/favoriteRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/productRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/productRouter.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +54,7 @@
     &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\WebStorm 2022.2.3\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -115,7 +117,8 @@
       <workItem from="1669650443880" duration="1115000" />
       <workItem from="1670664405903" duration="939000" />
       <workItem from="1670666242988" duration="1658000" />
-      <workItem from="1670667944822" duration="21002000" />
+      <workItem from="1670667944822" duration="35943000" />
+      <workItem from="1671088807215" duration="19910000" />
     </task>
     <task id="LOCAL-00001" summary="fetch one product with sizes">
       <created>1670749806928</created>
@@ -124,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670749806928</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="registration, authorization and session">
+      <created>1670780915921</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1670780915921</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,6 +153,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fetch one product with sizes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fetch one product with sizes" />
+    <MESSAGE value="registration, authorization and session" />
+    <option name="LAST_COMMIT_MESSAGE" value="registration, authorization and session" />
   </component>
 </project>

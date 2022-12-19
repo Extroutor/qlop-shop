@@ -52,29 +52,47 @@ class FavoriteController{
     }
 
     //  new
-    async addProduct(req, res){
-        const {id, productId} = req.params
-        console.log(req.params)
-        if (!id || !productId ){
+    async addProduct(req, res, next){
+        const {userId, productId} = req.params
+
+        if (!userId || !productId ){
             return next(ApiError.badRequest('Некорректный id'))
         }
 
-        const product = FavoriteProduct.create({
-            favoriteId: id,
-            productId: productId,
+        const favorite = await Favorite.findOne({ where: { userId: userId }})
+        if (!favorite){
+            return next(ApiError.badRequest('нет избранных'))
+        }
+
+        let favoriteProduct = await FavoriteProduct.findOne({
+            where: {
+                favoriteId: favorite.id,
+                productId: productId,
+            }
         })
-        if (!product){
-            return next(ApiError.badRequest('товар не создан'))
-        }
-        return res.json(product)
-    }
 
-    async deleteProduct(req, res){
-        const {id, productId} = req.params
-        if (!id || !productId){
+        if (!favoriteProduct){
+            favoriteProduct = await FavoriteProduct.create({
+                favoriteId: favorite.id,
+                productId: productId,
+            })}
+
+        return res.json(favoriteProduct)
+}
+
+    async deleteProduct(req, res, next){
+        const {userId, productId} = req.params
+        if (!userId || !productId){
             return next(ApiError.badRequest('Некорректный id'))
         }
-        await FavoriteProduct.destroy({where: {favoriteId: id, productId: productId}})
+
+        const favorite = await Favorite.findOne({ where: {userId: userId} })
+        if (!favorite){
+            return next(ApiError.badRequest('товара нет в избранных'))
+        }
+        await FavoriteProduct.destroy({where: {favoriteId: favorite.id, productId: productId}})
+
+        return res.json(true)
     }
 
 }

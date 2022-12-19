@@ -59,7 +59,6 @@ export const {
     setSortOption,
     setCategories,
     setProducts,
-    productItem
 } = catalogSlice.actions
 
 export default catalogSlice.reducer

@@ -1,7 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import Cookies from "universal-cookie";
-import {setUserData} from "../redux/slices/userSlice";
 
 const $authHost = axios.create({
     baseURL: process.env.REACT_APP_API_URL

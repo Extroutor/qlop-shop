@@ -33,8 +33,6 @@ const Header = () => {
         const token = cookie.get('token')
         const id = cookie.get('id')
         if (token) {
-            console.log('есть токен', token)
-            console.log('есть id', id)
             dispatch(setAuth(true))
             getUserInformation(id).then((data) => {
                 dispatch(setUserData(data))

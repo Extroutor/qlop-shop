@@ -4,9 +4,11 @@ import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {setChosenProduct} from "../../../redux/slices/catalogSlice";
 import {AiFillHeart, AiOutlineHeart} from "react-icons/ai";
-import {addToFav, deleteFromFav} from "../../../redux/slices/userSlice";
+import {addToFav, deleteFromFav, deleteItemFromFav, setFavorite} from "../../../redux/slices/userSlice";
 import Modal from "../../Modal/Modal";
 import st from "../../Modal/Modal.module.scss";
+import Cookie from "universal-cookie";
+import {addFavItem, deleteFavItem} from "../../../api/shopApi";
 
 const ProductItem = (props) => {
     const [onFavClicked, setOnFavClicked] = useState(false)
@@ -14,15 +16,25 @@ const ProductItem = (props) => {
     const isAuth = useSelector(state => state.user.isAuth)
     const dispatch = useDispatch()
     const navigate = useNavigate();
+    const cookie = new Cookie()
 
     const onClick = (e) => {
         e.stopPropagation();
         e.preventDefault();
+        let id = cookie.get('id')
         if (onFavClicked) {
-            dispatch(deleteFromFav(props.item))
+            deleteFavItem(id, props.item.id).then(() => {
+                    dispatch(deleteItemFromFav(props.item.productId))
+                    setOnFavClicked(!onFavClicked)
+                }
+            )
+        } else {
+            console.log(props.item)
+            addFavItem(id, props.item.id).then(() => {
+                dispatch(setFavorite(props.item))
+                setOnFavClicked(!onFavClicked)
+            })
         }
-        dispatch(addToFav(props.item))
-        setOnFavClicked(!onFavClicked)
     }
 
     const toAuthPage = () => {

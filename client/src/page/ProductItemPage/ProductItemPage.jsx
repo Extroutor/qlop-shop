@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import './ProductItemPage.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {addToBasket, addToFav, deleteFromFav} from "../../redux/slices/userSlice";
+import {addToBasket, addToFav, deleteFromFav, deleteItemFromFav, setFavorite} from "../../redux/slices/userSlice";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import st from "../../components/Modal/Modal.module.scss";
 import Modal from "../../components/Modal/Modal";
 import {AiFillHeart, AiOutlineHeart} from "react-icons/ai";
-import {getOneProduct, getSizes} from "../../api/shopApi";
+import {addBasketItem, addFavItem, deleteFavItem, getOneProduct, getSizes} from "../../api/shopApi";
+import Cookie from "universal-cookie";
 
 const ProductItemPage = () => {
     const param = +useParams().id // convert to number
@@ -20,6 +21,7 @@ const ProductItemPage = () => {
     const navigate = useNavigate();
     const [onFavClicked, setOnFavClicked] = useState(false)
     const [sizes, setSizes] = useState([])
+    const cookie = new Cookie()
 
     useEffect(() => {
         document.title = chosenProduct.name + ' | QLOP'
@@ -33,15 +35,27 @@ const ProductItemPage = () => {
             if (!size) {
                 setActive(true)
             } else {
-                dispatch(addToBasket({...chosenProduct, size}))
-                setIsClicked(true)
+                // dispatch(addToBasket({...chosenProduct, size}))
+                const id = cookie.get('id')
+                console.log('добаление в корзину')
+                console.log('id', id)
+                console.log('param', param)
+                console.log('size', size)
+                addBasketItem(id, param, size, 1).then(() => {
+                    console.log('все ок')
+                    setIsClicked(true)
+                })
             }
         } else {
-            dispatch(addToBasket(chosenProduct))
+            const id = cookie.get('id')
+            addBasketItem(id, param, size).then(() => {
+                console.log('все ок')
+                setIsClicked(true)
+            })
             setIsClicked(true)
         }
     }
-    
+
     const toAuthPage = () => {
         navigate('/auth')
     }
@@ -49,10 +63,20 @@ const ProductItemPage = () => {
         e.stopPropagation();
         e.preventDefault();
         if (onFavClicked) {
-            dispatch(deleteFromFav(chosenProduct))
+            const cookie = new Cookie()
+            let id = cookie.get('id')
+            deleteFavItem(id, chosenProduct.id).then(() => {
+                    dispatch(deleteItemFromFav(chosenProduct.id))
+                    setOnFavClicked(!onFavClicked)
+                }
+            )
         }
-        dispatch(addToFav(chosenProduct))
-        setOnFavClicked(!onFavClicked)
+        const id = cookie.get('id')
+
+        addFavItem(id, param).then(() => {
+            dispatch(setFavorite(chosenProduct))
+            setOnFavClicked(!onFavClicked)
+        })
     }
 
     return (
@@ -74,27 +98,22 @@ const ProductItemPage = () => {
                             />
                         </div>
                         :
-                        isAuth
-                            ?
-                            <div className='big_heart'>
-                                <AiOutlineHeart
-                                    className='big_her'
-                                    onClick={(e) => {
-                                        onClickedFavButton(e)
-                                    }}
-                                />
-                            </div>
-                            :
-                            <div className='big_heart'>
-                                <AiOutlineHeart
-                                    className='big_her'
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        e.preventDefault();
-                                        setActiveFav(true)
-                                    }}
-                                />
-                            </div>
+                        <div className='big_heart'>
+                            <AiOutlineHeart
+                                className='big_her'
+                                onClick={
+                                    isAuth
+                                        ? (e) => {
+                                            onClickedFavButton(e)
+                                        }
+                                        : (e) => {
+                                            e.stopPropagation();
+                                            e.preventDefault();
+                                            setActiveFav(true)
+                                        }
+                                }
+                            />
+                        </div>
                     }
                     <div className='title'>{chosenProduct.name}</div>
                     <div className='price'>{chosenProduct.price} ₽</div>
@@ -119,7 +138,11 @@ const ProductItemPage = () => {
                             :
                             <button
                                 className='button'
-                                onClick={onClickedButton}
+                                onClick={isAuth ? onClickedButton : (e) => {
+                                    e.stopPropagation()
+                                    e.preventDefault()
+                                    setActiveFav(true)
+                                }}
                             >
                                 В корзину
                             </button>
@@ -162,6 +185,7 @@ const ProductItemPage = () => {
                     </button>
                 </div>
             </Modal>
+
             <Modal active={active} setActive={setActive}>
                 <div className={st.text}>Выберите размер, чтобы добавить в корзину</div>
                 <div className={st.button_wrapper}>

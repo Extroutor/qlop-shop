@@ -4,8 +4,7 @@ const favoriteController = require('../controllers/favoriteController')
 
 router.post('/', favoriteController.create)
 router.get('/:id', favoriteController.getOne)
-router.put('/:id/add/:productId', favoriteController.addProduct)
-router.put('/:id/delete/:productId', favoriteController.deleteProduct)
 router.delete('/:id', favoriteController.delete)
-
+router.put('/user/:userId/add/:productId', favoriteController.addProduct)
+router.put('/user/:userId/delete/:productId', favoriteController.deleteProduct)
 module.exports = router

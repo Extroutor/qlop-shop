@@ -3,34 +3,40 @@ import style from './FavoriteItem.module.scss';
 import {Link} from "react-router-dom";
 import {setChosenProduct} from "../../redux/slices/catalogSlice";
 import {AiOutlineClose} from "react-icons/ai";
-import {deleteFromFav, deleteProductInBasket} from "../../redux/slices/userSlice";
+import {deleteItemFromFav} from "../../redux/slices/userSlice";
 import {useDispatch} from "react-redux";
 import Modal from "../Modal/Modal";
 import {useState} from "react";
+import Cookie from "universal-cookie";
+import {deleteFavItem} from "../../api/shopApi";
 
 const FavoriteItem = (props) => {
     const [active, setActive] = useState(false);
-
-
     const dispatch = useDispatch();
 
     const onClick = (e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        dispatch(deleteFromFav(props.item))
+        const cookie = new Cookie()
+        let id = cookie.get('id')
+        deleteFavItem(id, props.item.productId).then(() => {
+                console.log('bbb')
+                dispatch(deleteItemFromFav(props.item.productId))
+                setActive(false)
+            }
+        )
     }
 
     return (
         <div className={style.product}>
             <Link
                 className={style.product_link}
-                to={`/product/${props.item.id}`}
+                to={`/product/${props.item.productId}`}
                 onClick={() => {
                     dispatch(setChosenProduct(props.item))
                 }}
             >
                 <div className={style.product_img_wrap}>
-                    <img className={style.product_img_wrap_img} src={props.item.img} alt={props.item.name}/>
+                    <img className={style.product_img_wrap_img} src={props.item.productInfo.img}
+                         alt={props.item.productInfo.name}/>
                     <div className={style.heart}
                     >
                         <AiOutlineClose
@@ -44,8 +50,8 @@ const FavoriteItem = (props) => {
                     </div>
                 </div>
                 <div className={style.product_info}>
-                    <div className={style.product_name}>{props.item.name}</div>
-                    <div>{props.item.price} ₽</div>
+                    <div className={style.product_name}>{props.item.productInfo.name}</div>
+                    <div>{props.item.productInfo.price} ₽</div>
                 </div>
             </Link>
             <Modal active={active} setActive={setActive}>

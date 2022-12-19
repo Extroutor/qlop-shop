@@ -62,6 +62,15 @@ class SizeController{
         }
         return res.json(sizes)
     }
+
+    async getOneByName(req, res){
+        const { name } = req.params
+        const size = await Size.findOne({where: {name: name}})
+        if (!size){
+            return next(ApiError.badRequest('размер не найден'))
+        }
+        return res.json(size)
+    }
 }
 
 module.exports = new SizeController()

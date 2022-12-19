@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
-    favoriteProducts: [],
+    favorite: [],
     basket: [],
     orders: [],
     totalPrice: 0,
@@ -109,6 +109,37 @@ export const userSlice = createSlice({
             setUserData: (state, action) => {
                 state.userData = action.payload
             },
+            setBasket: (state, action) => {
+                state.basket = [action.payload, ...state.basket]
+            },
+            setToBasket: (state, action) => {
+                state.basket.push(action.payload)
+            },
+            setToFavorite: (state, action) => {
+                state.favorite.push(action.payload)
+            },
+            cleanBasket: (state, action) => {
+                state.basket = []
+            },
+            cleanFav: (state, action) => {
+                state.favorite = []
+            },
+            setFavorite: (state, action) => {
+                state.favorite = [action.payload, ...state.favorite]
+            },
+            deleteItemFromBasket: (state, action) => {
+                state.basket = state.basket.filter(item => item.productInfo.id !== action.payload)
+            },
+            deleteItemFromFav: (state, action) => {
+                state.favorite = state.favorite.filter(item => item.productId !== action.payload)
+            },
+            changeCount: (state, action) => {
+                state.basket = state.basket.map(item => {
+                    if (item.productInfo.id !== action.payload.id) {
+                        item.count = action.payload.count
+                    }
+                })
+            },
         }
     }
 )
@@ -116,18 +147,21 @@ export const userSlice = createSlice({
 export const {
     increment,
     decrement,
-    deleteProductInBasket,
-    deleteAll,
     addToBasket,
     addToFav,
     deleteFromFav,
-    registration,
-    signIn,
     exit,
     order,
     setChanges,
     setAuth,
-    setUserData
+    setUserData,
+    setBasket,
+    setFavorite,
+    cleanBasket,
+    deleteItemFromBasket,
+    changeCount,
+    deleteItemFromFav,
+    cleanFav
 } = userSlice.actions
 
 export default userSlice.reducer
