@@ -66,7 +66,6 @@ const MenuBurger = (props) => {
                                   className='count_burger'
                             >
                                 <IoBasketOutline className='icon'/>
-                                <div> :{count}</div>
                             </Link>
                         </div>
                         :
@@ -84,7 +83,6 @@ const MenuBurger = (props) => {
                                   className='count_burger'
                             >
                                 <IoBasketOutline className='icon'/>
-                                <div> :{count}</div>
                             </Link>
                         </div>
                     }

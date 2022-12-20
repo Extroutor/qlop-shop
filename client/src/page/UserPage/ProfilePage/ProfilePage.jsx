@@ -35,37 +35,37 @@ const ProfilePage = () => {
                     <input
                         className={style.main_input}
                         value={name}
-                        onChange={(e) => {
-                            setIsSettings(true)
-                            setIsChange(false)
-                            setName(e.target.value)
-                        }}
+                        // onChange={(e) => {
+                        //     setIsSettings(true)
+                        //     setIsChange(false)
+                        //     setName(e.target.value)
+                        // }}
                     />
                     <div style={{fontWeight: '700'}}>Фамилия</div>
                     <input
                         className={style.main_input}
                         value={surname}
-                        onChange={(e) => {
-                            setIsSettings(true)
-                            setIsChange(false)
-                            setSurname(e.target.value)
-                        }}
+                        // onChange={(e) => {
+                        //     setIsSettings(true)
+                        //     setIsChange(false)
+                        //     setSurname(e.target.value)
+                        // }}
                     />
                     <div style={{fontWeight: '700'}}>Email</div>
                     <div
                         className={style.main_input}>{userInfo.email}</div>
-                    <div style={{fontWeight: '700'}}>Дата рождения</div>
-                    <input
-                        type='date'
-                        className={style.main_input}
-                        value={userInfo.date}
-                        style={{width: '80%'}}
-                        onChange={(e) => {
-                            setIsSettings(true)
-                            setIsChange(false)
-                            setDate(e.target.value)
-                        }}
-                    />
+                    {/*<div style={{fontWeight: '700'}}>Дата рождения</div>*/}
+                    {/*<input*/}
+                    {/*    type='date'*/}
+                    {/*    className={style.main_input}*/}
+                    {/*    value={userInfo.date}*/}
+                    {/*    style={{width: '80%'}}*/}
+                    {/*    onChange={(e) => {*/}
+                    {/*        setIsSettings(true)*/}
+                    {/*        setIsChange(false)*/}
+                    {/*        setDate(e.target.value)*/}
+                    {/*    }}*/}
+                    {/*/>*/}
                 </div>
                 {isSettings
                 ?

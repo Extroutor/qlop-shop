@@ -140,6 +140,7 @@ export const userSlice = createSlice({
             },
             cleanBasket: (state, action) => {
                 state.basket = []
+                state.totalPrice = null
             },
             cleanFav: (state, action) => {
                 state.favorite = []

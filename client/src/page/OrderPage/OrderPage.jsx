@@ -38,7 +38,7 @@ const OrderPage = () => {
                     <div className={style.order_list}>
                         {orders.map(item =>
                             <div key={item.id} className={style.order_item}>
-                                <div className={style.date}>{item.createdAt}</div>
+                                <div className={style.date}>{item.createdAt.substring(0, 10)}</div>
                                 <div className={style.count_price}>
                                     <div>Количество товаров: {item.order_item_products.length} шт</div>
                                     <div>Общая стоимость: {item.total_price} ₽</div>
@@ -47,7 +47,7 @@ const OrderPage = () => {
                                 <div className={style.list}>Список товаров:</div>
                                 <div className={style.item_list}>
                                     {item.order_item_products.map(i =>
-                                        <div key={i.id} className={style.item}>{i.product.name} {i.product.price}₽ {i.size}</div>
+                                        <div key={i.id} className={style.item}>{i.product.name} {i.product.price}₽ {i.size ? i.size.name : ''}</div>
                                     )}
                                 </div>
 

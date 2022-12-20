@@ -65,10 +65,13 @@ class OrderController{
             where: {orderId: order.id},
             include: [{
                 model: OrderItemProduct,
-                include: [{ model: Product }],
+                include: [{
+                    model: Product,
+                }, { model: Size}],
                 order:
                     [['createdAt', 'ASC']]
             }],
+
             order:
                 [['createdAt', 'ASC']]
         })

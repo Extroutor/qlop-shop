@@ -19,6 +19,8 @@ import Cookie from "universal-cookie";
 
 const BasketPage = () => {
     const [deleteActive, setDeleteActive] = useState(false);
+    const [deleteAllActive, setDeleteAllActive] = useState(false);
+
     const [orderActive, setOrderActive] = useState(false);
     const user = useSelector(state => state.user.userData)
     let [userData, setUserData] = useState({name: user.name, surname: user.surname, email: user.email})
@@ -91,7 +93,7 @@ const BasketPage = () => {
                     <div className='clear_button'>
                         <button
                             className='clear_button_btn'
-                            onClick={() => setDeleteActive(true)}
+                            onClick={() => setDeleteAllActive(true)}
 
                         >
                             Очистить корзину
@@ -281,6 +283,32 @@ const BasketPage = () => {
                     <button
                         className={[style.button, style.button_not].join(' ')}
                         onClick={() => setDeleteActive(false)}
+                    >Нет
+                    </button>
+                </div>
+            </Modal>
+            <Modal active={deleteAllActive} setActive={setDeleteAllActive}>
+                <div className={style.text}>Вы действительно хотите удалить товары?</div>
+                <div className={style.button_wrapper}>
+                    <button
+                        className={style.button}
+                        onClick={() => {
+                            const cookie = new Cookie()
+                            let id = cookie.get('id')
+                            basket.map((item) => {
+                                deleteBasketItem(id, item.productInfo.id).then(() => {
+                                        dispatch(deleteItemFromBasket(item.productInfo.id))
+                                    }
+                                )
+                            })
+                            dispatch(cleanBasket())
+                            setDeleteAllActive(false)
+                        }}
+                    >Да
+                    </button>
+                    <button
+                        className={[style.button, style.button_not].join(' ')}
+                        onClick={() => setDeleteAllActive(false)}
                     >Нет
                     </button>
                 </div>
