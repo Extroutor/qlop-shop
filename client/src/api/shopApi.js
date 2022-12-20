@@ -50,8 +50,32 @@ export const getFavorite = async (id) => {
     return data.favorite_products
 }
 
-export const getProductItem = async (id) => {
-    const {data} = await $authHost.get('api/favorite/' + id)
-    return data.favorite_products
+export const createOrder = async (
+    id,
+    name,
+    surname,
+    email,
+    address,
+    phone,
+    products,
+    total_price
+) => {
+    console.log(id, name, surname, email, address, phone, products, total_price)
+    const {data} = await $authHost.post('api/orders/user/' + id, {
+        name,
+        surname,
+        email,
+        address,
+        phone,
+        products,
+        total_price
+    })
+    console.log('data', data)
 }
 
+export const getOrders = async (id) => {
+    console.log(id)
+    const {data} = await $authHost.get('api/orders/user/' + id)
+    console.log('data', data)
+    return data
+}

@@ -24,14 +24,14 @@ const ProductItem = (props) => {
         let id = cookie.get('id')
         if (onFavClicked) {
             deleteFavItem(id, props.item.id).then(() => {
-                    dispatch(deleteItemFromFav(props.item.productId))
+                    // dispatch(deleteItemFromFav(props.item.productId))
                     setOnFavClicked(!onFavClicked)
                 }
             )
         } else {
             console.log(props.item)
             addFavItem(id, props.item.id).then(() => {
-                dispatch(setFavorite(props.item))
+                // dispatch(setFavorite(props.item))
                 setOnFavClicked(!onFavClicked)
             })
         }

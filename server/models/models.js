@@ -55,11 +55,15 @@ const Order = sequelize.define('order', {
 
 const OrderItem = sequelize.define('order_item', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    // внешние ключи sequelize подставит сам, когда будем делать связи
-    date: {type: DataTypes.DATE, allowNull: false},
+    name: {type: DataTypes.STRING},
+    surname: {type: DataTypes.STRING},
+    email: {type: DataTypes.STRING},
+    phone: {type: DataTypes.STRING},
+
+//date: {type: DataTypes.DATE, allowNull: false},
     address: {type: DataTypes.STRING, allowNull: false},
     total_price: {type: DataTypes.INTEGER, allowNull: false},
-    // total_price
+// total_price
 })
 
 const OrderItemProduct = sequelize.define('order_item_product', {

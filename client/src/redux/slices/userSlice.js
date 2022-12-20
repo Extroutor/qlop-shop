@@ -147,6 +147,9 @@ export const userSlice = createSlice({
             setFavorite: (state, action) => {
                 state.favorite = [action.payload, ...state.favorite]
             },
+            setOrders: (state, action) => {
+                state.orders = action.payload
+            },
             deleteItemFromBasket: (state, action) => {
                 state.basket = state.basket.filter(item => item.productInfo.id !== action.payload)
                 let item = state.basket.find(item => item.productInfo.id !== action.payload)
@@ -162,6 +165,9 @@ export const userSlice = createSlice({
                         item.count = action.payload.count
                     }
                 })
+            },
+            cleanOrders: (state, action) => {
+                state.orders = []
             },
         }
     }
@@ -185,7 +191,8 @@ export const {
     changeCount,
     deleteItemFromFav,
     cleanFav,
-    calculateTotalPrice
+    cleanOrders,
+    setOrders
 } = userSlice.actions
 
 export default userSlice.reducer

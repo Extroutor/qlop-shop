@@ -1,135 +1,101 @@
 const ApiError = require("../error/ApiError");
-const {Order, OrderItem, OrderItemProduct, BasketProduct, FavoriteProduct} = require("../models/models");
+const {Order, OrderItem, OrderItemProduct, BasketProduct, Product, Basket, Size} = require("../models/models");
 
 class OrderController{
-    async create(req, res){
-        let {userId} = req.body
-        if (!userId || !Number(userId)){
-            return next(ApiError.badRequest('Некорректный id пользователя'))
-        }
-        const orders = await Order.create({userId})
-        return res.json(orders)
-    }
+    async createOrderItem(req, res){
+        const {userId} = req.params
+        const {name, surname, email, address, phone, products, total_price} = req.body
 
-    async createOrder(req, res){
-        const {id} = req.params
-        if (!Number(id)){
+        if (!userId){
             return next(ApiError.badRequest('некорректный id'))
         }
-        const {date, total_price, address, orderProducts} = req.body
 
-        const order = await OrderItem.create({orderId: id, date, total_price, address})
+        const orders = await Order.findOne({where: { userId: userId}})
 
-        if (orderProducts){
-            //basketProducts = JSON.parse(basketProducts)
-            console.log(orderProducts)
-            orderProducts.forEach(i =>
-                OrderItemProduct.create({
+        if(!orders){
+            return next(ApiError.badRequest('заказы этого пользователя не найдены'))
+        }
+
+        const order = await OrderItem.create({orderId: orders.id, name, surname,
+            email, address, phone, total_price })
+
+        const basket = await Basket.findOne({where: { userId: userId }})
+
+        if (products){
+            for (const i of products) {
+//let sizeObj = await Size.findOne({where: { name: i.size} })
+                await OrderItemProduct.create({
                     orderItemId: order.id,
                     productId: i.productId,
                     count: i.count,
-                    sizeId: i.sizeId,
-                }),
-            )
-        }
-        return res.json(order)
-    }
+                    sizeId: i.sizeId
+//sizeId: sizeObj.id,
+                })
 
-    async getAll(req, res){
-        const orders = await Order.findAndCountAll({
-            include: [{
-                model: OrderItem,
-            }]
-        })
-        if (!orders){
-            return next(ApiError.badRequest('заказы не найдены'))
-        }
-        return res.json(orders)
-    }
-
-    async getAllOrders(req, res){
-        const {id} = req.params
-        if (!Number(id)){
-            return next(ApiError.badRequest('Некорректный id'))
+                await BasketProduct.destroy({ where: {basketId: basket.id, productId: i.productId }})
+            }
         }
 
-        let {limit, page} = req.query
-        page = page || 1 // текущая страница
-        limit = limit || 5// количество отображаемых товаров на странице
-        let offset =  page * limit - limit // отступ, чтобы товары на страницах не повторялись
-
-        const orders = await OrderItem.findAndCountAll({
-            where: {orderId: id},
+        const result = await OrderItem.findOne({
+            where: {id: order.id},
             include: [{
                 model: OrderItemProduct,
+                include: [{ model: Product }],
+                order:
+                    [['createdAt', 'ASC']]
             }],
-            limit,
-            offset
         })
-        if (!orders){
-            return next(ApiError.badRequest('любимое не найдена'))
+        return res.json(result)
+    }
+
+    async getAllByUserId(req, res){
+        const {userId} = req.params
+
+        if (!userId){
+            return next(ApiError.badRequest('некорректный id'))
         }
 
-        return res.json(orders)
+        const order = await Order.findOne({where: { userId: userId }})
+
+        if(!order){
+            return next(ApiError.badRequest('заказы этого пользователя не найдены'))
+        }
+
+        const orderItems = await OrderItem.findAll({
+            where: {orderId: order.id},
+            include: [{
+                model: OrderItemProduct,
+                include: [{ model: Product }],
+                order:
+                    [['createdAt', 'ASC']]
+            }],
+            order:
+                [['createdAt', 'ASC']]
+        })
+        if (!orderItems){
+            return next(ApiError.badRequest('заказы не найдены'))
+        }
+        return res.json(orderItems)
     }
 
     async getOneOrder(req, res){
         const {id} = req.params
-        if (!Number(id)){
-            return next(ApiError.badRequest('Некорректный id'))
+
+        if (!id){
+            return next(ApiError.badRequest('некорректный id'))
         }
 
         const order = await OrderItem.findOne({
-            where: {orderId: id},
+            where: {id},
             include: [{
                 model: OrderItemProduct,
-            }]
+                include: [{ model: Product }],
+                order:
+                    [['createdAt', 'ASC']]
+            }],
         })
-        if (!order){
-            return next(ApiError.badRequest('любимое не найдена'))
-        }
 
         return res.json(order)
-    }
-
-    async deleteOrder(req, res){
-        let {id} = req.params
-        if (!Number(id)){
-            return next(ApiError.badRequest('Некорректный id'))
-        }
-        await OrderItemProduct.destroy({where: {orderItemId: id}})
-
-        await OrderItem.destroy({where: {id}})
-    }
-
-    //  new
-    async addProduct(req, res){
-        const {id, orderId, productId} = req.params
-
-        if (!id || !productId || !orderId ){
-            return next(ApiError.badRequest('Некорректный id'))
-        }
-
-        const {count, sizeId} = req.body
-
-        const product = OrderItemProduct.create({
-            count: count,
-            sizeId: sizeId,
-            productId: productId,
-            orderItemId: orderId
-        })
-        if (!product){
-            return next(ApiError.badRequest('товар не создан'))
-        }
-        return res.json(product)
-    }
-
-    async deleteProduct(req, res){
-        const {orderId, productId} = req.params
-        if (!orderId || !productId){
-            return next(ApiError.badRequest('Некорректный id'))
-        }
-        await OrderItemProduct.destroy({where: {orderItemId: orderId, productId: productId}})
     }
 }
 

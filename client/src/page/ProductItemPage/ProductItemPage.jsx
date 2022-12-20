@@ -36,7 +36,7 @@ const ProductItemPage = () => {
                 setActive(true)
             } else {
                 const id = cookie.get('id')
-                addBasketItem(id, param, null, 1).then(() => {
+                addBasketItem(id, param, size, 1).then(() => {
                     console.log('все ок')
                     setIsClicked(true)
                 })
@@ -57,21 +57,20 @@ const ProductItemPage = () => {
     const onClickedFavButton = (e) => {
         e.stopPropagation();
         e.preventDefault();
+        const cookie = new Cookie()
+        let id = cookie.get('id')
         if (onFavClicked) {
-            const cookie = new Cookie()
-            let id = cookie.get('id')
             deleteFavItem(id, chosenProduct.id).then(() => {
-                    dispatch(deleteItemFromFav(chosenProduct.id))
+                    // dispatch(deleteItemFromFav(chosenProduct.id))
                     setOnFavClicked(!onFavClicked)
                 }
             )
+        } else {
+            addFavItem(id, param).then(() => {
+                // dispatch(setFavorite(chosenProduct))
+                setOnFavClicked(!onFavClicked)
+            })
         }
-        const id = cookie.get('id')
-
-        addFavItem(id, param).then(() => {
-            dispatch(setFavorite(chosenProduct))
-            setOnFavClicked(!onFavClicked)
-        })
     }
 
     return (

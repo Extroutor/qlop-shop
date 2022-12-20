@@ -41,15 +41,16 @@ const Header = () => {
             })
         }
         getCategories().then(data => dispatch(setCategories(data)))
-        if (id) {
-            getBasket(id).then((data) => {
-                data.map(item => {
-                    getOneProduct(item.productId).then(data2 => {
-                        dispatch(setBasket({...item, productInfo: data2}))
-                    })
-                })
-            })
-        }
+        // if (id) {
+        //     getBasket(id).then((data) => {
+        //         dispatch(cleanBasket())
+        //         data.map(item => {
+        //             getOneProduct(item.productId).then(data2 => {
+        //                 dispatch(setBasket({...item, productInfo: data2}))
+        //             })
+        //         })
+        //     })
+        // }
     }, [])
 
     return (
